@@ -1,0 +1,1502 @@
+{
+  "name": "file_explorer_operations_v1",
+  "created_at": "2025-12-30T16:26:27.654208",
+  "num_samples": 83,
+  "app_type": "file_explorer",
+  "samples": [
+    {
+      "id": "file_explorer_000000",
+      "app_name": "Finder",
+      "operation": {
+        "action": "click_folder",
+        "target_element": "input",
+        "target_bounds": [
+          50,
+          10,
+          1500,
+          45
+        ],
+        "target_text": "C:\\Users\\Documents",
+        "params": {},
+        "timestamp": 1767083187.6542084
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "file_explorer_000001",
+      "app_name": "Nautilus",
+      "operation": {
+        "action": "click_folder",
+        "target_element": "file",
+        "target_bounds": [
+          220,
+          100,
+          600,
+          130
+        ],
+        "target_text": "文件2.txt",
+        "params": {},
+        "timestamp": 1767083187.6719923
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "file_explorer_000002",
+      "app_name": "Nautilus",
+      "operation": {
+        "action": "click_address_bar",
+        "target_element": "sidebar",
+        "target_bounds": [
+          0,
+          50,
+          200,
+          850
+        ],
+        "target_text": "",
+        "params": {},
+        "timestamp": 1767083187.6905365
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "file_explorer_000003",
+      "app_name": "Finder",
+      "operation": {
+        "action": "click_file",
+        "target_element": "input",
+        "target_bounds": [
+          50,
+          10,
+          1500,
+          45
+        ],
+        "target_text": "C:\\Users\\Documents",
+        "params": {},
+        "timestamp": 1767083187.7084868
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "file_explorer_000004",
+      "app_name": "Explorer",
+      "operation": {
+        "action": "click_sidebar",
+        "target_element": "file",
+        "target_bounds": [
+          220,
+          130,
+          600,
+          160
+        ],
+        "target_text": "文件3.txt",
+        "params": {},
+        "timestamp": 1767083187.7240086
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "file_explorer_000005",
+      "app_name": "Explorer",
+      "operation": {
+        "action": "scroll_list",
+        "target_element": "file",
+        "target_bounds": [
+          220,
+          100,
+          600,
+          130
+        ],
+        "target_text": "文件2.txt",
+        "params": {},
+        "timestamp": 1767083187.7422504
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "file_explorer_000006",
+      "app_name": "Finder",
+      "operation": {
+        "action": "click_file",
+        "target_element": "input",
+        "target_bounds": [
+          50,
+          10,
+          1500,
+          45
+        ],
+        "target_text": "C:\\Users\\Documents",
+        "params": {},
+        "timestamp": 1767083187.7570753
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "file_explorer_000007",
+      "app_name": "Explorer",
+      "operation": {
+        "action": "scroll_list",
+        "target_element": "file",
+        "target_bounds": [
+          220,
+          100,
+          600,
+          130
+        ],
+        "target_text": "文件2.txt",
+        "params": {},
+        "timestamp": 1767083187.7732115
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "file_explorer_000008",
+      "app_name": "Nautilus",
+      "operation": {
+        "action": "scroll_list",
+        "target_element": "file",
+        "target_bounds": [
+          220,
+          160,
+          600,
+          190
+        ],
+        "target_text": "文件4.txt",
+        "params": {},
+        "timestamp": 1767083187.785546
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "file_explorer_000009",
+      "app_name": "Nautilus",
+      "operation": {
+        "action": "click_address_bar",
+        "target_element": "sidebar",
+        "target_bounds": [
+          0,
+          50,
+          200,
+          850
+        ],
+        "target_text": "",
+        "params": {},
+        "timestamp": 1767083187.803373
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "file_explorer_000010",
+      "app_name": "Explorer",
+      "operation": {
+        "action": "scroll_list",
+        "target_element": "sidebar",
+        "target_bounds": [
+          0,
+          50,
+          200,
+          850
+        ],
+        "target_text": "",
+        "params": {},
+        "timestamp": 1767083187.818467
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "file_explorer_000011",
+      "app_name": "Explorer",
+      "operation": {
+        "action": "click_sidebar",
+        "target_element": "file",
+        "target_bounds": [
+          220,
+          190,
+          600,
+          220
+        ],
+        "target_text": "文件5.txt",
+        "params": {},
+        "timestamp": 1767083187.833053
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "file_explorer_000012",
+      "app_name": "Nautilus",
+      "operation": {
+        "action": "click_file",
+        "target_element": "file",
+        "target_bounds": [
+          220,
+          70,
+          600,
+          100
+        ],
+        "target_text": "文件1.txt",
+        "params": {},
+        "timestamp": 1767083187.8474703
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "file_explorer_000013",
+      "app_name": "Explorer",
+      "operation": {
+        "action": "click_address_bar",
+        "target_element": "file",
+        "target_bounds": [
+          220,
+          160,
+          600,
+          190
+        ],
+        "target_text": "文件4.txt",
+        "params": {},
+        "timestamp": 1767083187.8665345
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "file_explorer_000014",
+      "app_name": "Nautilus",
+      "operation": {
+        "action": "scroll_list",
+        "target_element": "file",
+        "target_bounds": [
+          220,
+          70,
+          600,
+          100
+        ],
+        "target_text": "文件1.txt",
+        "params": {},
+        "timestamp": 1767083187.883709
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "file_explorer_000015",
+      "app_name": "Nautilus",
+      "operation": {
+        "action": "scroll_list",
+        "target_element": "file",
+        "target_bounds": [
+          220,
+          70,
+          600,
+          100
+        ],
+        "target_text": "文件1.txt",
+        "params": {},
+        "timestamp": 1767083187.898997
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "file_explorer_000016",
+      "app_name": "Nautilus",
+      "operation": {
+        "action": "scroll_list",
+        "target_element": "file",
+        "target_bounds": [
+          220,
+          130,
+          600,
+          160
+        ],
+        "target_text": "文件3.txt",
+        "params": {},
+        "timestamp": 1767083187.9151666
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "file_explorer_000017",
+      "app_name": "Finder",
+      "operation": {
+        "action": "scroll_list",
+        "target_element": "file",
+        "target_bounds": [
+          220,
+          160,
+          600,
+          190
+        ],
+        "target_text": "文件4.txt",
+        "params": {},
+        "timestamp": 1767083187.9293647
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "file_explorer_000018",
+      "app_name": "Explorer",
+      "operation": {
+        "action": "click_sidebar",
+        "target_element": "file",
+        "target_bounds": [
+          220,
+          190,
+          600,
+          220
+        ],
+        "target_text": "文件5.txt",
+        "params": {},
+        "timestamp": 1767083187.9442306
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "file_explorer_000019",
+      "app_name": "Nautilus",
+      "operation": {
+        "action": "click_address_bar",
+        "target_element": "file",
+        "target_bounds": [
+          220,
+          190,
+          600,
+          220
+        ],
+        "target_text": "文件5.txt",
+        "params": {},
+        "timestamp": 1767083187.9607532
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "file_explorer_000020",
+      "app_name": "Explorer",
+      "operation": {
+        "action": "click_address_bar",
+        "target_element": "file",
+        "target_bounds": [
+          220,
+          160,
+          600,
+          190
+        ],
+        "target_text": "文件4.txt",
+        "params": {},
+        "timestamp": 1767083187.971038
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "file_explorer_000021",
+      "app_name": "Finder",
+      "operation": {
+        "action": "scroll_list",
+        "target_element": "input",
+        "target_bounds": [
+          50,
+          10,
+          1500,
+          45
+        ],
+        "target_text": "C:\\Users\\Documents",
+        "params": {},
+        "timestamp": 1767083187.9916062
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "file_explorer_000022",
+      "app_name": "Nautilus",
+      "operation": {
+        "action": "scroll_list",
+        "target_element": "file",
+        "target_bounds": [
+          220,
+          190,
+          600,
+          220
+        ],
+        "target_text": "文件5.txt",
+        "params": {},
+        "timestamp": 1767083188.006976
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "file_explorer_000023",
+      "app_name": "Finder",
+      "operation": {
+        "action": "scroll_list",
+        "target_element": "file",
+        "target_bounds": [
+          220,
+          160,
+          600,
+          190
+        ],
+        "target_text": "文件4.txt",
+        "params": {},
+        "timestamp": 1767083188.0219915
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "file_explorer_000024",
+      "app_name": "Finder",
+      "operation": {
+        "action": "scroll_list",
+        "target_element": "file",
+        "target_bounds": [
+          220,
+          190,
+          600,
+          220
+        ],
+        "target_text": "文件5.txt",
+        "params": {},
+        "timestamp": 1767083188.029246
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "file_explorer_000025",
+      "app_name": "Explorer",
+      "operation": {
+        "action": "click_file",
+        "target_element": "sidebar",
+        "target_bounds": [
+          0,
+          50,
+          200,
+          850
+        ],
+        "target_text": "",
+        "params": {},
+        "timestamp": 1767083188.0489979
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "file_explorer_000026",
+      "app_name": "Finder",
+      "operation": {
+        "action": "click_file",
+        "target_element": "file",
+        "target_bounds": [
+          220,
+          190,
+          600,
+          220
+        ],
+        "target_text": "文件5.txt",
+        "params": {},
+        "timestamp": 1767083188.0634925
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "file_explorer_000027",
+      "app_name": "Explorer",
+      "operation": {
+        "action": "click_address_bar",
+        "target_element": "file",
+        "target_bounds": [
+          220,
+          190,
+          600,
+          220
+        ],
+        "target_text": "文件5.txt",
+        "params": {},
+        "timestamp": 1767083188.0762682
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "file_explorer_000028",
+      "app_name": "Finder",
+      "operation": {
+        "action": "click_file",
+        "target_element": "file",
+        "target_bounds": [
+          220,
+          160,
+          600,
+          190
+        ],
+        "target_text": "文件4.txt",
+        "params": {},
+        "timestamp": 1767083188.0900605
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "file_explorer_000029",
+      "app_name": "Explorer",
+      "operation": {
+        "action": "click_sidebar",
+        "target_element": "file",
+        "target_bounds": [
+          220,
+          100,
+          600,
+          130
+        ],
+        "target_text": "文件2.txt",
+        "params": {},
+        "timestamp": 1767083188.1020792
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "file_explorer_000030",
+      "app_name": "Finder",
+      "operation": {
+        "action": "click_address_bar",
+        "target_element": "file",
+        "target_bounds": [
+          220,
+          160,
+          600,
+          190
+        ],
+        "target_text": "文件4.txt",
+        "params": {},
+        "timestamp": 1767083188.1211603
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "file_explorer_000031",
+      "app_name": "Nautilus",
+      "operation": {
+        "action": "scroll_list",
+        "target_element": "file",
+        "target_bounds": [
+          220,
+          100,
+          600,
+          130
+        ],
+        "target_text": "文件2.txt",
+        "params": {},
+        "timestamp": 1767083188.1367848
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "file_explorer_000032",
+      "app_name": "Finder",
+      "operation": {
+        "action": "click_folder",
+        "target_element": "file",
+        "target_bounds": [
+          220,
+          100,
+          600,
+          130
+        ],
+        "target_text": "文件2.txt",
+        "params": {},
+        "timestamp": 1767083188.153006
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "file_explorer_000033",
+      "app_name": "Nautilus",
+      "operation": {
+        "action": "scroll_list",
+        "target_element": "file",
+        "target_bounds": [
+          220,
+          160,
+          600,
+          190
+        ],
+        "target_text": "文件4.txt",
+        "params": {},
+        "timestamp": 1767083188.1681013
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "file_explorer_000034",
+      "app_name": "Explorer",
+      "operation": {
+        "action": "click_address_bar",
+        "target_element": "input",
+        "target_bounds": [
+          50,
+          10,
+          1500,
+          45
+        ],
+        "target_text": "C:\\Users\\Documents",
+        "params": {},
+        "timestamp": 1767083188.1761198
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "file_explorer_000035",
+      "app_name": "Finder",
+      "operation": {
+        "action": "click_folder",
+        "target_element": "input",
+        "target_bounds": [
+          50,
+          10,
+          1500,
+          45
+        ],
+        "target_text": "C:\\Users\\Documents",
+        "params": {},
+        "timestamp": 1767083188.1961014
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "file_explorer_000036",
+      "app_name": "Explorer",
+      "operation": {
+        "action": "click_file",
+        "target_element": "input",
+        "target_bounds": [
+          50,
+          10,
+          1500,
+          45
+        ],
+        "target_text": "C:\\Users\\Documents",
+        "params": {},
+        "timestamp": 1767083188.206318
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "file_explorer_000037",
+      "app_name": "Finder",
+      "operation": {
+        "action": "click_folder",
+        "target_element": "input",
+        "target_bounds": [
+          50,
+          10,
+          1500,
+          45
+        ],
+        "target_text": "C:\\Users\\Documents",
+        "params": {},
+        "timestamp": 1767083188.2264993
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "file_explorer_000038",
+      "app_name": "Finder",
+      "operation": {
+        "action": "click_file",
+        "target_element": "file",
+        "target_bounds": [
+          220,
+          160,
+          600,
+          190
+        ],
+        "target_text": "文件4.txt",
+        "params": {},
+        "timestamp": 1767083188.23805
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "file_explorer_000039",
+      "app_name": "Explorer",
+      "operation": {
+        "action": "click_sidebar",
+        "target_element": "file",
+        "target_bounds": [
+          220,
+          100,
+          600,
+          130
+        ],
+        "target_text": "文件2.txt",
+        "params": {},
+        "timestamp": 1767083188.250919
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "file_explorer_000040",
+      "app_name": "Explorer",
+      "operation": {
+        "action": "click_address_bar",
+        "target_element": "sidebar",
+        "target_bounds": [
+          0,
+          50,
+          200,
+          850
+        ],
+        "target_text": "",
+        "params": {},
+        "timestamp": 1767083188.2684634
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "file_explorer_000041",
+      "app_name": "Finder",
+      "operation": {
+        "action": "click_address_bar",
+        "target_element": "file",
+        "target_bounds": [
+          220,
+          190,
+          600,
+          220
+        ],
+        "target_text": "文件5.txt",
+        "params": {},
+        "timestamp": 1767083188.2789729
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "file_explorer_000042",
+      "app_name": "Explorer",
+      "operation": {
+        "action": "click_folder",
+        "target_element": "file",
+        "target_bounds": [
+          220,
+          100,
+          600,
+          130
+        ],
+        "target_text": "文件2.txt",
+        "params": {},
+        "timestamp": 1767083188.2972388
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "file_explorer_000043",
+      "app_name": "Finder",
+      "operation": {
+        "action": "click_address_bar",
+        "target_element": "file",
+        "target_bounds": [
+          220,
+          190,
+          600,
+          220
+        ],
+        "target_text": "文件5.txt",
+        "params": {},
+        "timestamp": 1767083188.3141634
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "file_explorer_000044",
+      "app_name": "Explorer",
+      "operation": {
+        "action": "scroll_list",
+        "target_element": "file",
+        "target_bounds": [
+          220,
+          130,
+          600,
+          160
+        ],
+        "target_text": "文件3.txt",
+        "params": {},
+        "timestamp": 1767083188.3252764
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "file_explorer_000045",
+      "app_name": "Explorer",
+      "operation": {
+        "action": "click_folder",
+        "target_element": "file",
+        "target_bounds": [
+          220,
+          160,
+          600,
+          190
+        ],
+        "target_text": "文件4.txt",
+        "params": {},
+        "timestamp": 1767083188.34273
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "file_explorer_000046",
+      "app_name": "Explorer",
+      "operation": {
+        "action": "click_folder",
+        "target_element": "sidebar",
+        "target_bounds": [
+          0,
+          50,
+          200,
+          850
+        ],
+        "target_text": "",
+        "params": {},
+        "timestamp": 1767083188.35817
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "file_explorer_000047",
+      "app_name": "Finder",
+      "operation": {
+        "action": "click_address_bar",
+        "target_element": "file",
+        "target_bounds": [
+          220,
+          160,
+          600,
+          190
+        ],
+        "target_text": "文件4.txt",
+        "params": {},
+        "timestamp": 1767083188.3736384
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "file_explorer_000048",
+      "app_name": "Finder",
+      "operation": {
+        "action": "click_sidebar",
+        "target_element": "file",
+        "target_bounds": [
+          220,
+          160,
+          600,
+          190
+        ],
+        "target_text": "文件4.txt",
+        "params": {},
+        "timestamp": 1767083188.3901854
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "file_explorer_000049",
+      "app_name": "Finder",
+      "operation": {
+        "action": "click_folder",
+        "target_element": "input",
+        "target_bounds": [
+          50,
+          10,
+          1500,
+          45
+        ],
+        "target_text": "C:\\Users\\Documents",
+        "params": {},
+        "timestamp": 1767083188.404053
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "file_explorer_000050",
+      "app_name": "Explorer",
+      "operation": {
+        "action": "click_file",
+        "target_element": "file",
+        "target_bounds": [
+          220,
+          130,
+          600,
+          160
+        ],
+        "target_text": "文件3.txt",
+        "params": {},
+        "timestamp": 1767083188.422642
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "file_explorer_000051",
+      "app_name": "Finder",
+      "operation": {
+        "action": "click_file",
+        "target_element": "file",
+        "target_bounds": [
+          220,
+          70,
+          600,
+          100
+        ],
+        "target_text": "文件1.txt",
+        "params": {},
+        "timestamp": 1767083188.4391193
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "file_explorer_000052",
+      "app_name": "Nautilus",
+      "operation": {
+        "action": "click_file",
+        "target_element": "file",
+        "target_bounds": [
+          220,
+          190,
+          600,
+          220
+        ],
+        "target_text": "文件5.txt",
+        "params": {},
+        "timestamp": 1767083188.4539208
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "file_explorer_000053",
+      "app_name": "Nautilus",
+      "operation": {
+        "action": "click_address_bar",
+        "target_element": "input",
+        "target_bounds": [
+          50,
+          10,
+          1500,
+          45
+        ],
+        "target_text": "C:\\Users\\Documents",
+        "params": {},
+        "timestamp": 1767083188.4685338
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "file_explorer_000054",
+      "app_name": "Finder",
+      "operation": {
+        "action": "click_sidebar",
+        "target_element": "sidebar",
+        "target_bounds": [
+          0,
+          50,
+          200,
+          850
+        ],
+        "target_text": "",
+        "params": {},
+        "timestamp": 1767083188.4835196
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "file_explorer_000055",
+      "app_name": "Finder",
+      "operation": {
+        "action": "scroll_list",
+        "target_element": "input",
+        "target_bounds": [
+          50,
+          10,
+          1500,
+          45
+        ],
+        "target_text": "C:\\Users\\Documents",
+        "params": {},
+        "timestamp": 1767083188.4975328
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "file_explorer_000056",
+      "app_name": "Finder",
+      "operation": {
+        "action": "click_address_bar",
+        "target_element": "file",
+        "target_bounds": [
+          220,
+          130,
+          600,
+          160
+        ],
+        "target_text": "文件3.txt",
+        "params": {},
+        "timestamp": 1767083188.5115445
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "file_explorer_000057",
+      "app_name": "Nautilus",
+      "operation": {
+        "action": "click_folder",
+        "target_element": "file",
+        "target_bounds": [
+          220,
+          130,
+          600,
+          160
+        ],
+        "target_text": "文件3.txt",
+        "params": {},
+        "timestamp": 1767083188.5264058
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "file_explorer_000058",
+      "app_name": "Nautilus",
+      "operation": {
+        "action": "click_sidebar",
+        "target_element": "file",
+        "target_bounds": [
+          220,
+          190,
+          600,
+          220
+        ],
+        "target_text": "文件5.txt",
+        "params": {},
+        "timestamp": 1767083188.5365763
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "file_explorer_000059",
+      "app_name": "Nautilus",
+      "operation": {
+        "action": "click_sidebar",
+        "target_element": "input",
+        "target_bounds": [
+          50,
+          10,
+          1500,
+          45
+        ],
+        "target_text": "C:\\Users\\Documents",
+        "params": {},
+        "timestamp": 1767083188.5567882
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "file_explorer_000060",
+      "app_name": "Nautilus",
+      "operation": {
+        "action": "scroll_list",
+        "target_element": "file",
+        "target_bounds": [
+          220,
+          160,
+          600,
+          190
+        ],
+        "target_text": "文件4.txt",
+        "params": {},
+        "timestamp": 1767083188.570337
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "file_explorer_000061",
+      "app_name": "Explorer",
+      "operation": {
+        "action": "scroll_list",
+        "target_element": "file",
+        "target_bounds": [
+          220,
+          100,
+          600,
+          130
+        ],
+        "target_text": "文件2.txt",
+        "params": {},
+        "timestamp": 1767083188.579175
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "file_explorer_000062",
+      "app_name": "Explorer",
+      "operation": {
+        "action": "click_file",
+        "target_element": "file",
+        "target_bounds": [
+          220,
+          70,
+          600,
+          100
+        ],
+        "target_text": "文件1.txt",
+        "params": {},
+        "timestamp": 1767083188.598914
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "file_explorer_000063",
+      "app_name": "Finder",
+      "operation": {
+        "action": "click_address_bar",
+        "target_element": "file",
+        "target_bounds": [
+          220,
+          70,
+          600,
+          100
+        ],
+        "target_text": "文件1.txt",
+        "params": {},
+        "timestamp": 1767083188.61423
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "file_explorer_000064",
+      "app_name": "Explorer",
+      "operation": {
+        "action": "click_address_bar",
+        "target_element": "file",
+        "target_bounds": [
+          220,
+          70,
+          600,
+          100
+        ],
+        "target_text": "文件1.txt",
+        "params": {},
+        "timestamp": 1767083188.6293392
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "file_explorer_000065",
+      "app_name": "Finder",
+      "operation": {
+        "action": "click_file",
+        "target_element": "file",
+        "target_bounds": [
+          220,
+          130,
+          600,
+          160
+        ],
+        "target_text": "文件3.txt",
+        "params": {},
+        "timestamp": 1767083188.645137
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "file_explorer_000066",
+      "app_name": "Finder",
+      "operation": {
+        "action": "click_address_bar",
+        "target_element": "file",
+        "target_bounds": [
+          220,
+          130,
+          600,
+          160
+        ],
+        "target_text": "文件3.txt",
+        "params": {},
+        "timestamp": 1767083188.6603806
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "file_explorer_000067",
+      "app_name": "Finder",
+      "operation": {
+        "action": "click_address_bar",
+        "target_element": "file",
+        "target_bounds": [
+          220,
+          190,
+          600,
+          220
+        ],
+        "target_text": "文件5.txt",
+        "params": {},
+        "timestamp": 1767083188.676625
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "file_explorer_000068",
+      "app_name": "Finder",
+      "operation": {
+        "action": "scroll_list",
+        "target_element": "file",
+        "target_bounds": [
+          220,
+          130,
+          600,
+          160
+        ],
+        "target_text": "文件3.txt",
+        "params": {},
+        "timestamp": 1767083188.6911874
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "file_explorer_000069",
+      "app_name": "Nautilus",
+      "operation": {
+        "action": "click_file",
+        "target_element": "file",
+        "target_bounds": [
+          220,
+          100,
+          600,
+          130
+        ],
+        "target_text": "文件2.txt",
+        "params": {},
+        "timestamp": 1767083188.7103198
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "file_explorer_000070",
+      "app_name": "Nautilus",
+      "operation": {
+        "action": "click_folder",
+        "target_element": "file",
+        "target_bounds": [
+          220,
+          70,
+          600,
+          100
+        ],
+        "target_text": "文件1.txt",
+        "params": {},
+        "timestamp": 1767083188.7269318
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "file_explorer_000071",
+      "app_name": "Explorer",
+      "operation": {
+        "action": "click_address_bar",
+        "target_element": "file",
+        "target_bounds": [
+          220,
+          190,
+          600,
+          220
+        ],
+        "target_text": "文件5.txt",
+        "params": {},
+        "timestamp": 1767083188.7426002
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "file_explorer_000072",
+      "app_name": "Nautilus",
+      "operation": {
+        "action": "click_file",
+        "target_element": "file",
+        "target_bounds": [
+          220,
+          190,
+          600,
+          220
+        ],
+        "target_text": "文件5.txt",
+        "params": {},
+        "timestamp": 1767083188.7597034
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "file_explorer_000073",
+      "app_name": "Explorer",
+      "operation": {
+        "action": "click_file",
+        "target_element": "file",
+        "target_bounds": [
+          220,
+          160,
+          600,
+          190
+        ],
+        "target_text": "文件4.txt",
+        "params": {},
+        "timestamp": 1767083188.7681918
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "file_explorer_000074",
+      "app_name": "Explorer",
+      "operation": {
+        "action": "click_sidebar",
+        "target_element": "file",
+        "target_bounds": [
+          220,
+          130,
+          600,
+          160
+        ],
+        "target_text": "文件3.txt",
+        "params": {},
+        "timestamp": 1767083188.7833297
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "file_explorer_000075",
+      "app_name": "Explorer",
+      "operation": {
+        "action": "click_folder",
+        "target_element": "file",
+        "target_bounds": [
+          220,
+          70,
+          600,
+          100
+        ],
+        "target_text": "文件1.txt",
+        "params": {},
+        "timestamp": 1767083188.8036978
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "file_explorer_000076",
+      "app_name": "Nautilus",
+      "operation": {
+        "action": "click_folder",
+        "target_element": "file",
+        "target_bounds": [
+          220,
+          100,
+          600,
+          130
+        ],
+        "target_text": "文件2.txt",
+        "params": {},
+        "timestamp": 1767083188.8110635
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "file_explorer_000077",
+      "app_name": "Explorer",
+      "operation": {
+        "action": "click_address_bar",
+        "target_element": "file",
+        "target_bounds": [
+          220,
+          190,
+          600,
+          220
+        ],
+        "target_text": "文件5.txt",
+        "params": {},
+        "timestamp": 1767083188.832018
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "file_explorer_000078",
+      "app_name": "Explorer",
+      "operation": {
+        "action": "click_file",
+        "target_element": "file",
+        "target_bounds": [
+          220,
+          70,
+          600,
+          100
+        ],
+        "target_text": "文件1.txt",
+        "params": {},
+        "timestamp": 1767083188.839662
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "file_explorer_000079",
+      "app_name": "Nautilus",
+      "operation": {
+        "action": "click_folder",
+        "target_element": "file",
+        "target_bounds": [
+          220,
+          160,
+          600,
+          190
+        ],
+        "target_text": "文件4.txt",
+        "params": {},
+        "timestamp": 1767083188.860487
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "file_explorer_000080",
+      "app_name": "Nautilus",
+      "operation": {
+        "action": "click_file",
+        "target_element": "file",
+        "target_bounds": [
+          220,
+          130,
+          600,
+          160
+        ],
+        "target_text": "文件3.txt",
+        "params": {},
+        "timestamp": 1767083188.8745716
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "file_explorer_000081",
+      "app_name": "Finder",
+      "operation": {
+        "action": "click_sidebar",
+        "target_element": "file",
+        "target_bounds": [
+          220,
+          70,
+          600,
+          100
+        ],
+        "target_text": "文件1.txt",
+        "params": {},
+        "timestamp": 1767083188.8914192
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "file_explorer_000082",
+      "app_name": "Finder",
+      "operation": {
+        "action": "click_file",
+        "target_element": "file",
+        "target_bounds": [
+          220,
+          190,
+          600,
+          220
+        ],
+        "target_text": "文件5.txt",
+        "params": {},
+        "timestamp": 1767083188.9069202
+      },
+      "elements_count": 8
+    }
+  ]
+}

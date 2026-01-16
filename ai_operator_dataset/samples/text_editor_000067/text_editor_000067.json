@@ -1,0 +1,75 @@
+{
+  "sample_id": "text_editor_000067",
+  "image_path": "samples\\text_editor_000067\\screenshot.png",
+  "operation": {
+    "action": "click_sidebar",
+    "target_element": "toolbar",
+    "target_bounds": [
+      0,
+      30,
+      1600,
+      70
+    ],
+    "target_text": "",
+    "params": {},
+    "timestamp": 1767083187.4195318
+  },
+  "elements": [
+    {
+      "type": "menu",
+      "bounds": [
+        0,
+        0,
+        1600,
+        30
+      ],
+      "text": "文件 编辑 视图 帮助",
+      "action": "click_menu"
+    },
+    {
+      "type": "toolbar",
+      "bounds": [
+        0,
+        30,
+        1600,
+        70
+      ],
+      "text": "",
+      "action": "click_tool"
+    },
+    {
+      "type": "sidebar",
+      "bounds": [
+        0,
+        70,
+        200,
+        900
+      ],
+      "text": "",
+      "action": "click_sidebar"
+    },
+    {
+      "type": "editor",
+      "bounds": [
+        200,
+        70,
+        1600,
+        900
+      ],
+      "text": "# Welcome to Code Editor\nprint('Hello World')",
+      "action": "type_text"
+    },
+    {
+      "type": "statusbar",
+      "bounds": [
+        0,
+        870,
+        1600,
+        900
+      ],
+      "text": "Line 1, Column 1 | Python",
+      "action": ""
+    }
+  ],
+  "created_at": "2025-12-30T16:26:27.426153"
+}

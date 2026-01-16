@@ -1,0 +1,108 @@
+{
+  "sample_id": "web_browser_000080",
+  "image_path": "samples\\web_browser_000080\\screenshot.png",
+  "operation": {
+    "action": "click_tab",
+    "target_element": "input",
+    "target_bounds": [
+      50,
+      10,
+      1350,
+      45
+    ],
+    "target_text": "https://www.example.com",
+    "params": {},
+    "timestamp": 1767083186.390159
+  },
+  "elements": [
+    {
+      "type": "input",
+      "bounds": [
+        50,
+        10,
+        1350,
+        45
+      ],
+      "text": "https://www.example.com",
+      "action": "click_input"
+    },
+    {
+      "type": "tab",
+      "bounds": [
+        50,
+        50,
+        200,
+        80
+      ],
+      "text": "标签页 1",
+      "action": "click_tab"
+    },
+    {
+      "type": "tab",
+      "bounds": [
+        200,
+        50,
+        350,
+        80
+      ],
+      "text": "标签页 2",
+      "action": "click_tab"
+    },
+    {
+      "type": "tab",
+      "bounds": [
+        350,
+        50,
+        500,
+        80
+      ],
+      "text": "标签页 3",
+      "action": "click_tab"
+    },
+    {
+      "type": "toolbar",
+      "bounds": [
+        50,
+        85,
+        1550,
+        110
+      ],
+      "text": "",
+      "action": "click_bookmark"
+    },
+    {
+      "type": "content",
+      "bounds": [
+        50,
+        115,
+        1550,
+        850
+      ],
+      "text": "",
+      "action": "scroll"
+    },
+    {
+      "type": "button",
+      "bounds": [
+        100,
+        200,
+        250,
+        240
+      ],
+      "text": "点击这里",
+      "action": "left_click"
+    },
+    {
+      "type": "link",
+      "bounds": [
+        100,
+        300,
+        300,
+        320
+      ],
+      "text": "了解更多",
+      "action": "left_click"
+    }
+  ],
+  "created_at": "2025-12-30T16:26:26.395118"
+}

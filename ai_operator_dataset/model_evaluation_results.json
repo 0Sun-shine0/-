@@ -1,0 +1,25 @@
+{
+  "overall_metrics": {
+    "mse": 0.127044215798378,
+    "mae": 0.2029474824666977,
+    "accuracy": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1_score": 1.0
+  },
+  "coordinate_metrics": {
+    "mse": 0.0216227974742651,
+    "mae": 0.1185745894908905
+  },
+  "action_metrics": {
+    "accuracy": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1_score": 1.0
+  },
+  "dataset_info": {
+    "test_samples": 75,
+    "model_path": "ai_operator_dataset/models/ai_operator_model.pth"
+  },
+  "timestamp": "2025-12-30T18:43:45.527146"
+}

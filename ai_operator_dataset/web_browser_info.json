@@ -1,0 +1,1502 @@
+{
+  "name": "web_browser_operations_v1",
+  "created_at": "2025-12-30T16:26:25.179149",
+  "num_samples": 83,
+  "app_type": "web_browser",
+  "samples": [
+    {
+      "id": "web_browser_000000",
+      "app_name": "Chrome",
+      "operation": {
+        "action": "click_button",
+        "target_element": "button",
+        "target_bounds": [
+          100,
+          200,
+          250,
+          240
+        ],
+        "target_text": "点击这里",
+        "params": {},
+        "timestamp": 1767083185.1791494
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "web_browser_000001",
+      "app_name": "Edge",
+      "operation": {
+        "action": "click_button",
+        "target_element": "button",
+        "target_bounds": [
+          100,
+          200,
+          250,
+          240
+        ],
+        "target_text": "点击这里",
+        "params": {},
+        "timestamp": 1767083185.2022543
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "web_browser_000002",
+      "app_name": "Edge",
+      "operation": {
+        "action": "click_address_bar",
+        "target_element": "button",
+        "target_bounds": [
+          100,
+          200,
+          250,
+          240
+        ],
+        "target_text": "点击这里",
+        "params": {},
+        "timestamp": 1767083185.2181244
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "web_browser_000003",
+      "app_name": "Chrome",
+      "operation": {
+        "action": "click_button",
+        "target_element": "link",
+        "target_bounds": [
+          100,
+          300,
+          300,
+          320
+        ],
+        "target_text": "了解更多",
+        "params": {},
+        "timestamp": 1767083185.234642
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "web_browser_000004",
+      "app_name": "Edge",
+      "operation": {
+        "action": "click_tab",
+        "target_element": "toolbar",
+        "target_bounds": [
+          50,
+          85,
+          1550,
+          110
+        ],
+        "target_text": "",
+        "params": {},
+        "timestamp": 1767083185.2509766
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "web_browser_000005",
+      "app_name": "Edge",
+      "operation": {
+        "action": "click_button",
+        "target_element": "link",
+        "target_bounds": [
+          100,
+          300,
+          300,
+          320
+        ],
+        "target_text": "了解更多",
+        "params": {},
+        "timestamp": 1767083185.2674866
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "web_browser_000006",
+      "app_name": "Safari",
+      "operation": {
+        "action": "click_button",
+        "target_element": "link",
+        "target_bounds": [
+          100,
+          300,
+          300,
+          320
+        ],
+        "target_text": "了解更多",
+        "params": {},
+        "timestamp": 1767083185.2781239
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "web_browser_000007",
+      "app_name": "Chrome",
+      "operation": {
+        "action": "click_link",
+        "target_element": "link",
+        "target_bounds": [
+          100,
+          300,
+          300,
+          320
+        ],
+        "target_text": "了解更多",
+        "params": {},
+        "timestamp": 1767083185.2908888
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "web_browser_000008",
+      "app_name": "Firefox",
+      "operation": {
+        "action": "click_address_bar",
+        "target_element": "input",
+        "target_bounds": [
+          50,
+          10,
+          1350,
+          45
+        ],
+        "target_text": "https://www.example.com",
+        "params": {},
+        "timestamp": 1767083185.311172
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "web_browser_000009",
+      "app_name": "Edge",
+      "operation": {
+        "action": "click_tab",
+        "target_element": "toolbar",
+        "target_bounds": [
+          50,
+          85,
+          1550,
+          110
+        ],
+        "target_text": "",
+        "params": {},
+        "timestamp": 1767083185.3252034
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "web_browser_000010",
+      "app_name": "Edge",
+      "operation": {
+        "action": "click_link",
+        "target_element": "link",
+        "target_bounds": [
+          100,
+          300,
+          300,
+          320
+        ],
+        "target_text": "了解更多",
+        "params": {},
+        "timestamp": 1767083185.3394055
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "web_browser_000011",
+      "app_name": "Chrome",
+      "operation": {
+        "action": "click_link",
+        "target_element": "link",
+        "target_bounds": [
+          100,
+          300,
+          300,
+          320
+        ],
+        "target_text": "了解更多",
+        "params": {},
+        "timestamp": 1767083185.3457763
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "web_browser_000012",
+      "app_name": "Safari",
+      "operation": {
+        "action": "click_button",
+        "target_element": "button",
+        "target_bounds": [
+          100,
+          200,
+          250,
+          240
+        ],
+        "target_text": "点击这里",
+        "params": {},
+        "timestamp": 1767083185.3688538
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "web_browser_000013",
+      "app_name": "Edge",
+      "operation": {
+        "action": "click_button",
+        "target_element": "input",
+        "target_bounds": [
+          50,
+          10,
+          1350,
+          45
+        ],
+        "target_text": "https://www.example.com",
+        "params": {},
+        "timestamp": 1767083185.387273
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "web_browser_000014",
+      "app_name": "Chrome",
+      "operation": {
+        "action": "click_link",
+        "target_element": "input",
+        "target_bounds": [
+          50,
+          10,
+          1350,
+          45
+        ],
+        "target_text": "https://www.example.com",
+        "params": {},
+        "timestamp": 1767083185.4030833
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "web_browser_000015",
+      "app_name": "Safari",
+      "operation": {
+        "action": "click_button",
+        "target_element": "link",
+        "target_bounds": [
+          100,
+          300,
+          300,
+          320
+        ],
+        "target_text": "了解更多",
+        "params": {},
+        "timestamp": 1767083185.419731
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "web_browser_000016",
+      "app_name": "Firefox",
+      "operation": {
+        "action": "click_tab",
+        "target_element": "button",
+        "target_bounds": [
+          100,
+          200,
+          250,
+          240
+        ],
+        "target_text": "点击这里",
+        "params": {},
+        "timestamp": 1767083185.4348218
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "web_browser_000017",
+      "app_name": "Chrome",
+      "operation": {
+        "action": "scroll_page",
+        "target_element": "button",
+        "target_bounds": [
+          100,
+          200,
+          250,
+          240
+        ],
+        "target_text": "点击这里",
+        "params": {},
+        "timestamp": 1767083185.4496896
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "web_browser_000018",
+      "app_name": "Safari",
+      "operation": {
+        "action": "scroll_page",
+        "target_element": "button",
+        "target_bounds": [
+          100,
+          200,
+          250,
+          240
+        ],
+        "target_text": "点击这里",
+        "params": {},
+        "timestamp": 1767083185.4637475
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "web_browser_000019",
+      "app_name": "Firefox",
+      "operation": {
+        "action": "click_button",
+        "target_element": "button",
+        "target_bounds": [
+          100,
+          200,
+          250,
+          240
+        ],
+        "target_text": "点击这里",
+        "params": {},
+        "timestamp": 1767083185.479808
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "web_browser_000020",
+      "app_name": "Safari",
+      "operation": {
+        "action": "click_tab",
+        "target_element": "button",
+        "target_bounds": [
+          100,
+          200,
+          250,
+          240
+        ],
+        "target_text": "点击这里",
+        "params": {},
+        "timestamp": 1767083185.4960153
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "web_browser_000021",
+      "app_name": "Chrome",
+      "operation": {
+        "action": "scroll_page",
+        "target_element": "input",
+        "target_bounds": [
+          50,
+          10,
+          1350,
+          45
+        ],
+        "target_text": "https://www.example.com",
+        "params": {},
+        "timestamp": 1767083185.512537
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "web_browser_000022",
+      "app_name": "Firefox",
+      "operation": {
+        "action": "click_button",
+        "target_element": "input",
+        "target_bounds": [
+          50,
+          10,
+          1350,
+          45
+        ],
+        "target_text": "https://www.example.com",
+        "params": {},
+        "timestamp": 1767083185.5233269
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "web_browser_000023",
+      "app_name": "Safari",
+      "operation": {
+        "action": "click_button",
+        "target_element": "link",
+        "target_bounds": [
+          100,
+          300,
+          300,
+          320
+        ],
+        "target_text": "了解更多",
+        "params": {},
+        "timestamp": 1767083185.5414817
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "web_browser_000024",
+      "app_name": "Chrome",
+      "operation": {
+        "action": "click_link",
+        "target_element": "link",
+        "target_bounds": [
+          100,
+          300,
+          300,
+          320
+        ],
+        "target_text": "了解更多",
+        "params": {},
+        "timestamp": 1767083185.5604503
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "web_browser_000025",
+      "app_name": "Safari",
+      "operation": {
+        "action": "click_link",
+        "target_element": "input",
+        "target_bounds": [
+          50,
+          10,
+          1350,
+          45
+        ],
+        "target_text": "https://www.example.com",
+        "params": {},
+        "timestamp": 1767083185.5775924
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "web_browser_000026",
+      "app_name": "Chrome",
+      "operation": {
+        "action": "scroll_page",
+        "target_element": "toolbar",
+        "target_bounds": [
+          50,
+          85,
+          1550,
+          110
+        ],
+        "target_text": "",
+        "params": {},
+        "timestamp": 1767083185.5937066
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "web_browser_000027",
+      "app_name": "Safari",
+      "operation": {
+        "action": "click_tab",
+        "target_element": "link",
+        "target_bounds": [
+          100,
+          300,
+          300,
+          320
+        ],
+        "target_text": "了解更多",
+        "params": {},
+        "timestamp": 1767083185.6108034
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "web_browser_000028",
+      "app_name": "Chrome",
+      "operation": {
+        "action": "click_button",
+        "target_element": "link",
+        "target_bounds": [
+          100,
+          300,
+          300,
+          320
+        ],
+        "target_text": "了解更多",
+        "params": {},
+        "timestamp": 1767083185.627563
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "web_browser_000029",
+      "app_name": "Safari",
+      "operation": {
+        "action": "click_button",
+        "target_element": "link",
+        "target_bounds": [
+          100,
+          300,
+          300,
+          320
+        ],
+        "target_text": "了解更多",
+        "params": {},
+        "timestamp": 1767083185.640498
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "web_browser_000030",
+      "app_name": "Safari",
+      "operation": {
+        "action": "scroll_page",
+        "target_element": "toolbar",
+        "target_bounds": [
+          50,
+          85,
+          1550,
+          110
+        ],
+        "target_text": "",
+        "params": {},
+        "timestamp": 1767083185.6576488
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "web_browser_000031",
+      "app_name": "Safari",
+      "operation": {
+        "action": "click_address_bar",
+        "target_element": "input",
+        "target_bounds": [
+          50,
+          10,
+          1350,
+          45
+        ],
+        "target_text": "https://www.example.com",
+        "params": {},
+        "timestamp": 1767083185.6681936
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "web_browser_000032",
+      "app_name": "Edge",
+      "operation": {
+        "action": "click_address_bar",
+        "target_element": "toolbar",
+        "target_bounds": [
+          50,
+          85,
+          1550,
+          110
+        ],
+        "target_text": "",
+        "params": {},
+        "timestamp": 1767083185.6845767
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "web_browser_000033",
+      "app_name": "Edge",
+      "operation": {
+        "action": "click_link",
+        "target_element": "button",
+        "target_bounds": [
+          100,
+          200,
+          250,
+          240
+        ],
+        "target_text": "点击这里",
+        "params": {},
+        "timestamp": 1767083185.6928043
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "web_browser_000034",
+      "app_name": "Firefox",
+      "operation": {
+        "action": "scroll_page",
+        "target_element": "toolbar",
+        "target_bounds": [
+          50,
+          85,
+          1550,
+          110
+        ],
+        "target_text": "",
+        "params": {},
+        "timestamp": 1767083185.7047625
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "web_browser_000035",
+      "app_name": "Safari",
+      "operation": {
+        "action": "click_button",
+        "target_element": "input",
+        "target_bounds": [
+          50,
+          10,
+          1350,
+          45
+        ],
+        "target_text": "https://www.example.com",
+        "params": {},
+        "timestamp": 1767083185.72853
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "web_browser_000036",
+      "app_name": "Safari",
+      "operation": {
+        "action": "click_tab",
+        "target_element": "button",
+        "target_bounds": [
+          100,
+          200,
+          250,
+          240
+        ],
+        "target_text": "点击这里",
+        "params": {},
+        "timestamp": 1767083185.7405827
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "web_browser_000037",
+      "app_name": "Firefox",
+      "operation": {
+        "action": "scroll_page",
+        "target_element": "link",
+        "target_bounds": [
+          100,
+          300,
+          300,
+          320
+        ],
+        "target_text": "了解更多",
+        "params": {},
+        "timestamp": 1767083185.7515068
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "web_browser_000038",
+      "app_name": "Safari",
+      "operation": {
+        "action": "click_address_bar",
+        "target_element": "button",
+        "target_bounds": [
+          100,
+          200,
+          250,
+          240
+        ],
+        "target_text": "点击这里",
+        "params": {},
+        "timestamp": 1767083185.768376
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "web_browser_000039",
+      "app_name": "Safari",
+      "operation": {
+        "action": "scroll_page",
+        "target_element": "toolbar",
+        "target_bounds": [
+          50,
+          85,
+          1550,
+          110
+        ],
+        "target_text": "",
+        "params": {},
+        "timestamp": 1767083185.7829087
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "web_browser_000040",
+      "app_name": "Safari",
+      "operation": {
+        "action": "click_tab",
+        "target_element": "link",
+        "target_bounds": [
+          100,
+          300,
+          300,
+          320
+        ],
+        "target_text": "了解更多",
+        "params": {},
+        "timestamp": 1767083185.8010747
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "web_browser_000041",
+      "app_name": "Edge",
+      "operation": {
+        "action": "click_link",
+        "target_element": "input",
+        "target_bounds": [
+          50,
+          10,
+          1350,
+          45
+        ],
+        "target_text": "https://www.example.com",
+        "params": {},
+        "timestamp": 1767083185.8040962
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "web_browser_000042",
+      "app_name": "Chrome",
+      "operation": {
+        "action": "click_link",
+        "target_element": "link",
+        "target_bounds": [
+          100,
+          300,
+          300,
+          320
+        ],
+        "target_text": "了解更多",
+        "params": {},
+        "timestamp": 1767083185.8318892
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "web_browser_000043",
+      "app_name": "Firefox",
+      "operation": {
+        "action": "click_link",
+        "target_element": "link",
+        "target_bounds": [
+          100,
+          300,
+          300,
+          320
+        ],
+        "target_text": "了解更多",
+        "params": {},
+        "timestamp": 1767083185.8468218
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "web_browser_000044",
+      "app_name": "Firefox",
+      "operation": {
+        "action": "click_address_bar",
+        "target_element": "link",
+        "target_bounds": [
+          100,
+          300,
+          300,
+          320
+        ],
+        "target_text": "了解更多",
+        "params": {},
+        "timestamp": 1767083185.860931
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "web_browser_000045",
+      "app_name": "Safari",
+      "operation": {
+        "action": "click_button",
+        "target_element": "button",
+        "target_bounds": [
+          100,
+          200,
+          250,
+          240
+        ],
+        "target_text": "点击这里",
+        "params": {},
+        "timestamp": 1767083185.874138
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "web_browser_000046",
+      "app_name": "Chrome",
+      "operation": {
+        "action": "click_button",
+        "target_element": "link",
+        "target_bounds": [
+          100,
+          300,
+          300,
+          320
+        ],
+        "target_text": "了解更多",
+        "params": {},
+        "timestamp": 1767083185.890021
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "web_browser_000047",
+      "app_name": "Edge",
+      "operation": {
+        "action": "click_tab",
+        "target_element": "toolbar",
+        "target_bounds": [
+          50,
+          85,
+          1550,
+          110
+        ],
+        "target_text": "",
+        "params": {},
+        "timestamp": 1767083185.890021
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "web_browser_000048",
+      "app_name": "Firefox",
+      "operation": {
+        "action": "click_link",
+        "target_element": "toolbar",
+        "target_bounds": [
+          50,
+          85,
+          1550,
+          110
+        ],
+        "target_text": "",
+        "params": {},
+        "timestamp": 1767083185.9186277
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "web_browser_000049",
+      "app_name": "Edge",
+      "operation": {
+        "action": "click_link",
+        "target_element": "input",
+        "target_bounds": [
+          50,
+          10,
+          1350,
+          45
+        ],
+        "target_text": "https://www.example.com",
+        "params": {},
+        "timestamp": 1767083185.922206
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "web_browser_000050",
+      "app_name": "Safari",
+      "operation": {
+        "action": "scroll_page",
+        "target_element": "toolbar",
+        "target_bounds": [
+          50,
+          85,
+          1550,
+          110
+        ],
+        "target_text": "",
+        "params": {},
+        "timestamp": 1767083185.9359753
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "web_browser_000051",
+      "app_name": "Firefox",
+      "operation": {
+        "action": "click_address_bar",
+        "target_element": "link",
+        "target_bounds": [
+          100,
+          300,
+          300,
+          320
+        ],
+        "target_text": "了解更多",
+        "params": {},
+        "timestamp": 1767083185.9602013
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "web_browser_000052",
+      "app_name": "Edge",
+      "operation": {
+        "action": "click_tab",
+        "target_element": "link",
+        "target_bounds": [
+          100,
+          300,
+          300,
+          320
+        ],
+        "target_text": "了解更多",
+        "params": {},
+        "timestamp": 1767083185.9684772
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "web_browser_000053",
+      "app_name": "Chrome",
+      "operation": {
+        "action": "scroll_page",
+        "target_element": "input",
+        "target_bounds": [
+          50,
+          10,
+          1350,
+          45
+        ],
+        "target_text": "https://www.example.com",
+        "params": {},
+        "timestamp": 1767083185.9910872
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "web_browser_000054",
+      "app_name": "Firefox",
+      "operation": {
+        "action": "scroll_page",
+        "target_element": "button",
+        "target_bounds": [
+          100,
+          200,
+          250,
+          240
+        ],
+        "target_text": "点击这里",
+        "params": {},
+        "timestamp": 1767083185.9988334
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "web_browser_000055",
+      "app_name": "Safari",
+      "operation": {
+        "action": "scroll_page",
+        "target_element": "link",
+        "target_bounds": [
+          100,
+          300,
+          300,
+          320
+        ],
+        "target_text": "了解更多",
+        "params": {},
+        "timestamp": 1767083186.0186622
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "web_browser_000056",
+      "app_name": "Firefox",
+      "operation": {
+        "action": "click_address_bar",
+        "target_element": "toolbar",
+        "target_bounds": [
+          50,
+          85,
+          1550,
+          110
+        ],
+        "target_text": "",
+        "params": {},
+        "timestamp": 1767083186.0312912
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "web_browser_000057",
+      "app_name": "Safari",
+      "operation": {
+        "action": "click_address_bar",
+        "target_element": "toolbar",
+        "target_bounds": [
+          50,
+          85,
+          1550,
+          110
+        ],
+        "target_text": "",
+        "params": {},
+        "timestamp": 1767083186.0484486
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "web_browser_000058",
+      "app_name": "Edge",
+      "operation": {
+        "action": "click_address_bar",
+        "target_element": "link",
+        "target_bounds": [
+          100,
+          300,
+          300,
+          320
+        ],
+        "target_text": "了解更多",
+        "params": {},
+        "timestamp": 1767083186.0621922
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "web_browser_000059",
+      "app_name": "Chrome",
+      "operation": {
+        "action": "click_link",
+        "target_element": "input",
+        "target_bounds": [
+          50,
+          10,
+          1350,
+          45
+        ],
+        "target_text": "https://www.example.com",
+        "params": {},
+        "timestamp": 1767083186.0778925
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "web_browser_000060",
+      "app_name": "Firefox",
+      "operation": {
+        "action": "click_button",
+        "target_element": "toolbar",
+        "target_bounds": [
+          50,
+          85,
+          1550,
+          110
+        ],
+        "target_text": "",
+        "params": {},
+        "timestamp": 1767083186.0919125
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "web_browser_000061",
+      "app_name": "Firefox",
+      "operation": {
+        "action": "click_button",
+        "target_element": "input",
+        "target_bounds": [
+          50,
+          10,
+          1350,
+          45
+        ],
+        "target_text": "https://www.example.com",
+        "params": {},
+        "timestamp": 1767083186.1070018
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "web_browser_000062",
+      "app_name": "Edge",
+      "operation": {
+        "action": "click_tab",
+        "target_element": "input",
+        "target_bounds": [
+          50,
+          10,
+          1350,
+          45
+        ],
+        "target_text": "https://www.example.com",
+        "params": {},
+        "timestamp": 1767083186.1220996
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "web_browser_000063",
+      "app_name": "Firefox",
+      "operation": {
+        "action": "click_address_bar",
+        "target_element": "toolbar",
+        "target_bounds": [
+          50,
+          85,
+          1550,
+          110
+        ],
+        "target_text": "",
+        "params": {},
+        "timestamp": 1767083186.1345408
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "web_browser_000064",
+      "app_name": "Firefox",
+      "operation": {
+        "action": "click_button",
+        "target_element": "button",
+        "target_bounds": [
+          100,
+          200,
+          250,
+          240
+        ],
+        "target_text": "点击这里",
+        "params": {},
+        "timestamp": 1767083186.1450446
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "web_browser_000065",
+      "app_name": "Chrome",
+      "operation": {
+        "action": "click_button",
+        "target_element": "input",
+        "target_bounds": [
+          50,
+          10,
+          1350,
+          45
+        ],
+        "target_text": "https://www.example.com",
+        "params": {},
+        "timestamp": 1767083186.1680784
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "web_browser_000066",
+      "app_name": "Chrome",
+      "operation": {
+        "action": "click_link",
+        "target_element": "toolbar",
+        "target_bounds": [
+          50,
+          85,
+          1550,
+          110
+        ],
+        "target_text": "",
+        "params": {},
+        "timestamp": 1767083186.1742668
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "web_browser_000067",
+      "app_name": "Safari",
+      "operation": {
+        "action": "click_link",
+        "target_element": "link",
+        "target_bounds": [
+          100,
+          300,
+          300,
+          320
+        ],
+        "target_text": "了解更多",
+        "params": {},
+        "timestamp": 1767083186.1900241
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "web_browser_000068",
+      "app_name": "Edge",
+      "operation": {
+        "action": "click_tab",
+        "target_element": "link",
+        "target_bounds": [
+          100,
+          300,
+          300,
+          320
+        ],
+        "target_text": "了解更多",
+        "params": {},
+        "timestamp": 1767083186.2068732
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "web_browser_000069",
+      "app_name": "Safari",
+      "operation": {
+        "action": "click_address_bar",
+        "target_element": "link",
+        "target_bounds": [
+          100,
+          300,
+          300,
+          320
+        ],
+        "target_text": "了解更多",
+        "params": {},
+        "timestamp": 1767083186.2207355
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "web_browser_000070",
+      "app_name": "Chrome",
+      "operation": {
+        "action": "scroll_page",
+        "target_element": "toolbar",
+        "target_bounds": [
+          50,
+          85,
+          1550,
+          110
+        ],
+        "target_text": "",
+        "params": {},
+        "timestamp": 1767083186.243862
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "web_browser_000071",
+      "app_name": "Firefox",
+      "operation": {
+        "action": "click_tab",
+        "target_element": "input",
+        "target_bounds": [
+          50,
+          10,
+          1350,
+          45
+        ],
+        "target_text": "https://www.example.com",
+        "params": {},
+        "timestamp": 1767083186.2598686
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "web_browser_000072",
+      "app_name": "Safari",
+      "operation": {
+        "action": "click_tab",
+        "target_element": "toolbar",
+        "target_bounds": [
+          50,
+          85,
+          1550,
+          110
+        ],
+        "target_text": "",
+        "params": {},
+        "timestamp": 1767083186.2757545
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "web_browser_000073",
+      "app_name": "Safari",
+      "operation": {
+        "action": "scroll_page",
+        "target_element": "toolbar",
+        "target_bounds": [
+          50,
+          85,
+          1550,
+          110
+        ],
+        "target_text": "",
+        "params": {},
+        "timestamp": 1767083186.2902412
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "web_browser_000074",
+      "app_name": "Chrome",
+      "operation": {
+        "action": "click_tab",
+        "target_element": "toolbar",
+        "target_bounds": [
+          50,
+          85,
+          1550,
+          110
+        ],
+        "target_text": "",
+        "params": {},
+        "timestamp": 1767083186.2971604
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "web_browser_000075",
+      "app_name": "Firefox",
+      "operation": {
+        "action": "click_address_bar",
+        "target_element": "button",
+        "target_bounds": [
+          100,
+          200,
+          250,
+          240
+        ],
+        "target_text": "点击这里",
+        "params": {},
+        "timestamp": 1767083186.3184366
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "web_browser_000076",
+      "app_name": "Chrome",
+      "operation": {
+        "action": "click_tab",
+        "target_element": "button",
+        "target_bounds": [
+          100,
+          200,
+          250,
+          240
+        ],
+        "target_text": "点击这里",
+        "params": {},
+        "timestamp": 1767083186.3353224
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "web_browser_000077",
+      "app_name": "Firefox",
+      "operation": {
+        "action": "click_button",
+        "target_element": "button",
+        "target_bounds": [
+          100,
+          200,
+          250,
+          240
+        ],
+        "target_text": "点击这里",
+        "params": {},
+        "timestamp": 1767083186.3457937
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "web_browser_000078",
+      "app_name": "Safari",
+      "operation": {
+        "action": "click_tab",
+        "target_element": "toolbar",
+        "target_bounds": [
+          50,
+          85,
+          1550,
+          110
+        ],
+        "target_text": "",
+        "params": {},
+        "timestamp": 1767083186.3615177
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "web_browser_000079",
+      "app_name": "Chrome",
+      "operation": {
+        "action": "click_address_bar",
+        "target_element": "link",
+        "target_bounds": [
+          100,
+          300,
+          300,
+          320
+        ],
+        "target_text": "了解更多",
+        "params": {},
+        "timestamp": 1767083186.3687615
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "web_browser_000080",
+      "app_name": "Chrome",
+      "operation": {
+        "action": "click_tab",
+        "target_element": "input",
+        "target_bounds": [
+          50,
+          10,
+          1350,
+          45
+        ],
+        "target_text": "https://www.example.com",
+        "params": {},
+        "timestamp": 1767083186.390159
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "web_browser_000081",
+      "app_name": "Chrome",
+      "operation": {
+        "action": "click_button",
+        "target_element": "toolbar",
+        "target_bounds": [
+          50,
+          85,
+          1550,
+          110
+        ],
+        "target_text": "",
+        "params": {},
+        "timestamp": 1767083186.395118
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "web_browser_000082",
+      "app_name": "Chrome",
+      "operation": {
+        "action": "click_address_bar",
+        "target_element": "link",
+        "target_bounds": [
+          100,
+          300,
+          300,
+          320
+        ],
+        "target_text": "了解更多",
+        "params": {},
+        "timestamp": 1767083186.4185035
+      },
+      "elements_count": 8
+    }
+  ]
+}

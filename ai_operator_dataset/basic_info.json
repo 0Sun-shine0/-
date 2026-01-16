@@ -1,0 +1,4764 @@
+{
+  "name": "basic_desktop_operations_v1",
+  "created_at": "2025-12-30T16:26:15.198977",
+  "num_samples": 250,
+  "resolution": "1920x1080",
+  "actions_covered": [
+    "mouse",
+    "keyboard",
+    "hotkeys",
+    "system"
+  ],
+  "samples": [
+    {
+      "id": "basic_000000",
+      "theme": "macos_dark",
+      "resolution": "1366x768",
+      "operation": {
+        "action": "right_click",
+        "target_element": "icon",
+        "target_bounds": [
+          1234,
+          550,
+          1294,
+          610
+        ],
+        "target_text": "图标3",
+        "params": {},
+        "timestamp": 1767083175.2244465
+      },
+      "elements_count": 7
+    },
+    {
+      "id": "basic_000001",
+      "theme": "windows_light",
+      "resolution": "2560x1440",
+      "operation": {
+        "action": "double_click",
+        "target_element": "icon",
+        "target_bounds": [
+          1585,
+          55,
+          1645,
+          115
+        ],
+        "target_text": "图标4",
+        "params": {},
+        "timestamp": 1767083175.257838
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "basic_000002",
+      "theme": "windows_dark",
+      "resolution": "2560x1440",
+      "operation": {
+        "action": "left_click",
+        "target_element": "button",
+        "target_bounds": [
+          10,
+          1405,
+          80,
+          1435
+        ],
+        "target_text": "开始",
+        "params": {},
+        "timestamp": 1767083175.290199
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "basic_000003",
+      "theme": "macos_light",
+      "resolution": "1366x768",
+      "operation": {
+        "action": "left_click",
+        "target_element": "icon",
+        "target_bounds": [
+          528,
+          224,
+          588,
+          284
+        ],
+        "target_text": "图标3",
+        "params": {},
+        "timestamp": 1767083175.3354602
+      },
+      "elements_count": 4
+    },
+    {
+      "id": "basic_000004",
+      "theme": "macos_light",
+      "resolution": "3840x2160",
+      "operation": {
+        "action": "double_click",
+        "target_element": "icon",
+        "target_bounds": [
+          1425,
+          625,
+          1485,
+          685
+        ],
+        "target_text": "图标7",
+        "params": {},
+        "timestamp": 1767083175.3538973
+      },
+      "elements_count": 9
+    },
+    {
+      "id": "basic_000005",
+      "theme": "macos_light",
+      "resolution": "1366x768",
+      "operation": {
+        "action": "left_click",
+        "target_element": "icon",
+        "target_bounds": [
+          106,
+          118,
+          166,
+          178
+        ],
+        "target_text": "图标3",
+        "params": {},
+        "timestamp": 1767083175.425678
+      },
+      "elements_count": 4
+    },
+    {
+      "id": "basic_000006",
+      "theme": "macos_light",
+      "resolution": "3840x2160",
+      "operation": {
+        "action": "double_click",
+        "target_element": "icon",
+        "target_bounds": [
+          3717,
+          1717,
+          3777,
+          1777
+        ],
+        "target_text": "图标4",
+        "params": {},
+        "timestamp": 1767083175.4394772
+      },
+      "elements_count": 9
+    },
+    {
+      "id": "basic_000007",
+      "theme": "macos_light",
+      "resolution": "2560x1440",
+      "operation": {
+        "action": "left_click",
+        "target_element": "icon",
+        "target_bounds": [
+          2168,
+          649,
+          2228,
+          709
+        ],
+        "target_text": "图标3",
+        "params": {},
+        "timestamp": 1767083175.523267
+      },
+      "elements_count": 6
+    },
+    {
+      "id": "basic_000008",
+      "theme": "macos_light",
+      "resolution": "1920x1080",
+      "operation": {
+        "action": "double_click",
+        "target_element": "icon",
+        "target_bounds": [
+          1263,
+          546,
+          1323,
+          606
+        ],
+        "target_text": "图标3",
+        "params": {},
+        "timestamp": 1767083175.5641055
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "basic_000009",
+      "theme": "macos_dark",
+      "resolution": "1366x768",
+      "operation": {
+        "action": "double_click",
+        "target_element": "icon",
+        "target_bounds": [
+          88,
+          477,
+          148,
+          537
+        ],
+        "target_text": "图标1",
+        "params": {},
+        "timestamp": 1767083175.587413
+      },
+      "elements_count": 7
+    },
+    {
+      "id": "basic_000010",
+      "theme": "macos_dark",
+      "resolution": "1366x768",
+      "operation": {
+        "action": "double_click",
+        "target_element": "icon",
+        "target_bounds": [
+          838,
+          446,
+          898,
+          506
+        ],
+        "target_text": "图标4",
+        "params": {},
+        "timestamp": 1767083175.6016076
+      },
+      "elements_count": 6
+    },
+    {
+      "id": "basic_000011",
+      "theme": "windows_dark",
+      "resolution": "3840x2160",
+      "operation": {
+        "action": "right_click",
+        "target_element": "icon",
+        "target_bounds": [
+          442,
+          1132,
+          502,
+          1192
+        ],
+        "target_text": "图标2",
+        "params": {},
+        "timestamp": 1767083175.6180465
+      },
+      "elements_count": 4
+    },
+    {
+      "id": "basic_000012",
+      "theme": "windows_light",
+      "resolution": "2560x1440",
+      "operation": {
+        "action": "right_click",
+        "target_element": "icon",
+        "target_bounds": [
+          1176,
+          447,
+          1236,
+          507
+        ],
+        "target_text": "图标3",
+        "params": {},
+        "timestamp": 1767083175.6965353
+      },
+      "elements_count": 4
+    },
+    {
+      "id": "basic_000013",
+      "theme": "windows_light",
+      "resolution": "3840x2160",
+      "operation": {
+        "action": "double_click",
+        "target_element": "icon",
+        "target_bounds": [
+          3684,
+          1094,
+          3744,
+          1154
+        ],
+        "target_text": "图标2",
+        "params": {},
+        "timestamp": 1767083175.7371197
+      },
+      "elements_count": 6
+    },
+    {
+      "id": "basic_000014",
+      "theme": "macos_dark",
+      "resolution": "3840x2160",
+      "operation": {
+        "action": "left_click",
+        "target_element": "button",
+        "target_bounds": [
+          10,
+          2125,
+          80,
+          2155
+        ],
+        "target_text": "开始",
+        "params": {},
+        "timestamp": 1767083175.8200572
+      },
+      "elements_count": 6
+    },
+    {
+      "id": "basic_000015",
+      "theme": "macos_dark",
+      "resolution": "1366x768",
+      "operation": {
+        "action": "right_click",
+        "target_element": "icon",
+        "target_bounds": [
+          409,
+          270,
+          469,
+          330
+        ],
+        "target_text": "图标3",
+        "params": {},
+        "timestamp": 1767083175.8907244
+      },
+      "elements_count": 6
+    },
+    {
+      "id": "basic_000016",
+      "theme": "windows_light",
+      "resolution": "1366x768",
+      "operation": {
+        "action": "right_click",
+        "target_element": "icon",
+        "target_bounds": [
+          371,
+          182,
+          431,
+          242
+        ],
+        "target_text": "图标2",
+        "params": {},
+        "timestamp": 1767083175.9010546
+      },
+      "elements_count": 7
+    },
+    {
+      "id": "basic_000017",
+      "theme": "macos_light",
+      "resolution": "2560x1440",
+      "operation": {
+        "action": "right_click",
+        "target_element": "icon",
+        "target_bounds": [
+          2153,
+          1022,
+          2213,
+          1082
+        ],
+        "target_text": "图标4",
+        "params": {},
+        "timestamp": 1767083175.9221773
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "basic_000018",
+      "theme": "windows_dark",
+      "resolution": "1366x768",
+      "operation": {
+        "action": "double_click",
+        "target_element": "icon",
+        "target_bounds": [
+          675,
+          361,
+          735,
+          421
+        ],
+        "target_text": "图标4",
+        "params": {},
+        "timestamp": 1767083175.955925
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "basic_000019",
+      "theme": "macos_light",
+      "resolution": "1920x1080",
+      "operation": {
+        "action": "left_click",
+        "target_element": "icon",
+        "target_bounds": [
+          1636,
+          528,
+          1696,
+          588
+        ],
+        "target_text": "图标2",
+        "params": {},
+        "timestamp": 1767083175.9684503
+      },
+      "elements_count": 9
+    },
+    {
+      "id": "basic_000020",
+      "theme": "windows_dark",
+      "resolution": "3840x2160",
+      "operation": {
+        "action": "right_click",
+        "target_element": "icon",
+        "target_bounds": [
+          455,
+          51,
+          515,
+          111
+        ],
+        "target_text": "图标7",
+        "params": {},
+        "timestamp": 1767083176.002016
+      },
+      "elements_count": 9
+    },
+    {
+      "id": "basic_000021",
+      "theme": "macos_light",
+      "resolution": "1920x1080",
+      "operation": {
+        "action": "right_click",
+        "target_element": "icon",
+        "target_bounds": [
+          936,
+          823,
+          996,
+          883
+        ],
+        "target_text": "图标2",
+        "params": {},
+        "timestamp": 1767083176.0749931
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "basic_000022",
+      "theme": "windows_dark",
+      "resolution": "1920x1080",
+      "operation": {
+        "action": "left_click",
+        "target_element": "button",
+        "target_bounds": [
+          10,
+          1045,
+          80,
+          1075
+        ],
+        "target_text": "开始",
+        "params": {},
+        "timestamp": 1767083176.1054232
+      },
+      "elements_count": 6
+    },
+    {
+      "id": "basic_000023",
+      "theme": "windows_dark",
+      "resolution": "3840x2160",
+      "operation": {
+        "action": "left_click",
+        "target_element": "icon",
+        "target_bounds": [
+          2084,
+          750,
+          2144,
+          810
+        ],
+        "target_text": "图标1",
+        "params": {},
+        "timestamp": 1767083176.1340666
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "basic_000024",
+      "theme": "macos_dark",
+      "resolution": "3840x2160",
+      "operation": {
+        "action": "left_click",
+        "target_element": "icon",
+        "target_bounds": [
+          3524,
+          83,
+          3584,
+          143
+        ],
+        "target_text": "图标4",
+        "params": {},
+        "timestamp": 1767083176.2149708
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "basic_000025",
+      "theme": "windows_dark",
+      "resolution": "3840x2160",
+      "operation": {
+        "action": "left_click",
+        "target_element": "icon",
+        "target_bounds": [
+          2250,
+          438,
+          2310,
+          498
+        ],
+        "target_text": "图标3",
+        "params": {},
+        "timestamp": 1767083176.2969456
+      },
+      "elements_count": 4
+    },
+    {
+      "id": "basic_000026",
+      "theme": "windows_light",
+      "resolution": "1366x768",
+      "operation": {
+        "action": "right_click",
+        "target_element": "icon",
+        "target_bounds": [
+          901,
+          84,
+          961,
+          144
+        ],
+        "target_text": "图标5",
+        "params": {},
+        "timestamp": 1767083176.3687057
+      },
+      "elements_count": 6
+    },
+    {
+      "id": "basic_000027",
+      "theme": "macos_dark",
+      "resolution": "3840x2160",
+      "operation": {
+        "action": "left_click",
+        "target_element": "icon",
+        "target_bounds": [
+          570,
+          274,
+          630,
+          334
+        ],
+        "target_text": "图标8",
+        "params": {},
+        "timestamp": 1767083176.3871307
+      },
+      "elements_count": 9
+    },
+    {
+      "id": "basic_000028",
+      "theme": "macos_dark",
+      "resolution": "2560x1440",
+      "operation": {
+        "action": "left_click",
+        "target_element": "button",
+        "target_bounds": [
+          10,
+          1405,
+          80,
+          1435
+        ],
+        "target_text": "开始",
+        "params": {},
+        "timestamp": 1767083176.4691389
+      },
+      "elements_count": 6
+    },
+    {
+      "id": "basic_000029",
+      "theme": "macos_dark",
+      "resolution": "3840x2160",
+      "operation": {
+        "action": "left_click",
+        "target_element": "button",
+        "target_bounds": [
+          10,
+          2125,
+          80,
+          2155
+        ],
+        "target_text": "开始",
+        "params": {},
+        "timestamp": 1767083176.5086327
+      },
+      "elements_count": 4
+    },
+    {
+      "id": "basic_000030",
+      "theme": "windows_light",
+      "resolution": "1366x768",
+      "operation": {
+        "action": "left_click",
+        "target_element": "icon",
+        "target_bounds": [
+          817,
+          94,
+          877,
+          154
+        ],
+        "target_text": "图标2",
+        "params": {},
+        "timestamp": 1767083176.5798068
+      },
+      "elements_count": 7
+    },
+    {
+      "id": "basic_000031",
+      "theme": "macos_dark",
+      "resolution": "3840x2160",
+      "operation": {
+        "action": "left_click",
+        "target_element": "icon",
+        "target_bounds": [
+          463,
+          353,
+          523,
+          413
+        ],
+        "target_text": "图标1",
+        "params": {},
+        "timestamp": 1767083176.600228
+      },
+      "elements_count": 7
+    },
+    {
+      "id": "basic_000032",
+      "theme": "macos_dark",
+      "resolution": "1920x1080",
+      "operation": {
+        "action": "double_click",
+        "target_element": "icon",
+        "target_bounds": [
+          1479,
+          659,
+          1539,
+          719
+        ],
+        "target_text": "图标5",
+        "params": {},
+        "timestamp": 1767083176.67459
+      },
+      "elements_count": 6
+    },
+    {
+      "id": "basic_000033",
+      "theme": "macos_light",
+      "resolution": "1920x1080",
+      "operation": {
+        "action": "left_click",
+        "target_element": "button",
+        "target_bounds": [
+          10,
+          1045,
+          80,
+          1075
+        ],
+        "target_text": "开始",
+        "params": {},
+        "timestamp": 1767083176.6947815
+      },
+      "elements_count": 6
+    },
+    {
+      "id": "basic_000034",
+      "theme": "macos_dark",
+      "resolution": "1920x1080",
+      "operation": {
+        "action": "left_click",
+        "target_element": "button",
+        "target_bounds": [
+          10,
+          1045,
+          80,
+          1075
+        ],
+        "target_text": "开始",
+        "params": {},
+        "timestamp": 1767083176.7195158
+      },
+      "elements_count": 4
+    },
+    {
+      "id": "basic_000035",
+      "theme": "windows_dark",
+      "resolution": "2560x1440",
+      "operation": {
+        "action": "right_click",
+        "target_element": "icon",
+        "target_bounds": [
+          1967,
+          374,
+          2027,
+          434
+        ],
+        "target_text": "图标8",
+        "params": {},
+        "timestamp": 1767083176.7449536
+      },
+      "elements_count": 9
+    },
+    {
+      "id": "basic_000036",
+      "theme": "windows_light",
+      "resolution": "3840x2160",
+      "operation": {
+        "action": "right_click",
+        "target_element": "icon",
+        "target_bounds": [
+          3579,
+          123,
+          3639,
+          183
+        ],
+        "target_text": "图标5",
+        "params": {},
+        "timestamp": 1767083176.7866411
+      },
+      "elements_count": 7
+    },
+    {
+      "id": "basic_000037",
+      "theme": "macos_dark",
+      "resolution": "1366x768",
+      "operation": {
+        "action": "right_click",
+        "target_element": "icon",
+        "target_bounds": [
+          258,
+          558,
+          318,
+          618
+        ],
+        "target_text": "图标1",
+        "params": {},
+        "timestamp": 1767083176.8680315
+      },
+      "elements_count": 6
+    },
+    {
+      "id": "basic_000038",
+      "theme": "windows_light",
+      "resolution": "2560x1440",
+      "operation": {
+        "action": "right_click",
+        "target_element": "icon",
+        "target_bounds": [
+          1154,
+          692,
+          1214,
+          752
+        ],
+        "target_text": "图标4",
+        "params": {},
+        "timestamp": 1767083176.8790746
+      },
+      "elements_count": 7
+    },
+    {
+      "id": "basic_000039",
+      "theme": "macos_light",
+      "resolution": "1366x768",
+      "operation": {
+        "action": "right_click",
+        "target_element": "icon",
+        "target_bounds": [
+          592,
+          81,
+          652,
+          141
+        ],
+        "target_text": "图标3",
+        "params": {},
+        "timestamp": 1767083176.918426
+      },
+      "elements_count": 7
+    },
+    {
+      "id": "basic_000040",
+      "theme": "macos_light",
+      "resolution": "1920x1080",
+      "operation": {
+        "action": "right_click",
+        "target_element": "icon",
+        "target_bounds": [
+          81,
+          236,
+          141,
+          296
+        ],
+        "target_text": "图标3",
+        "params": {},
+        "timestamp": 1767083176.9359334
+      },
+      "elements_count": 7
+    },
+    {
+      "id": "basic_000041",
+      "theme": "macos_dark",
+      "resolution": "2560x1440",
+      "operation": {
+        "action": "left_click",
+        "target_element": "icon",
+        "target_bounds": [
+          2016,
+          264,
+          2076,
+          324
+        ],
+        "target_text": "图标1",
+        "params": {},
+        "timestamp": 1767083176.9635057
+      },
+      "elements_count": 9
+    },
+    {
+      "id": "basic_000042",
+      "theme": "windows_light",
+      "resolution": "1366x768",
+      "operation": {
+        "action": "double_click",
+        "target_element": "icon",
+        "target_bounds": [
+          719,
+          519,
+          779,
+          579
+        ],
+        "target_text": "图标5",
+        "params": {},
+        "timestamp": 1767083177.0001428
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "basic_000043",
+      "theme": "macos_dark",
+      "resolution": "2560x1440",
+      "operation": {
+        "action": "left_click",
+        "target_element": "icon",
+        "target_bounds": [
+          1259,
+          1038,
+          1319,
+          1098
+        ],
+        "target_text": "图标1",
+        "params": {},
+        "timestamp": 1767083177.0159914
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "basic_000044",
+      "theme": "windows_dark",
+      "resolution": "1920x1080",
+      "operation": {
+        "action": "left_click",
+        "target_element": "button",
+        "target_bounds": [
+          10,
+          1045,
+          80,
+          1075
+        ],
+        "target_text": "开始",
+        "params": {},
+        "timestamp": 1767083177.0525882
+      },
+      "elements_count": 6
+    },
+    {
+      "id": "basic_000045",
+      "theme": "windows_dark",
+      "resolution": "1920x1080",
+      "operation": {
+        "action": "left_click",
+        "target_element": "icon",
+        "target_bounds": [
+          725,
+          463,
+          785,
+          523
+        ],
+        "target_text": "图标3",
+        "params": {},
+        "timestamp": 1767083177.0714033
+      },
+      "elements_count": 4
+    },
+    {
+      "id": "basic_000046",
+      "theme": "windows_light",
+      "resolution": "3840x2160",
+      "operation": {
+        "action": "left_click",
+        "target_element": "icon",
+        "target_bounds": [
+          3455,
+          878,
+          3515,
+          938
+        ],
+        "target_text": "图标3",
+        "params": {},
+        "timestamp": 1767083177.0958767
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "basic_000047",
+      "theme": "macos_dark",
+      "resolution": "1920x1080",
+      "operation": {
+        "action": "double_click",
+        "target_element": "icon",
+        "target_bounds": [
+          992,
+          682,
+          1052,
+          742
+        ],
+        "target_text": "图标3",
+        "params": {},
+        "timestamp": 1767083177.1736014
+      },
+      "elements_count": 6
+    },
+    {
+      "id": "basic_000048",
+      "theme": "macos_light",
+      "resolution": "2560x1440",
+      "operation": {
+        "action": "double_click",
+        "target_element": "icon",
+        "target_bounds": [
+          693,
+          927,
+          753,
+          987
+        ],
+        "target_text": "图标4",
+        "params": {},
+        "timestamp": 1767083177.2035928
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "basic_000049",
+      "theme": "macos_dark",
+      "resolution": "3840x2160",
+      "operation": {
+        "action": "double_click",
+        "target_element": "icon",
+        "target_bounds": [
+          258,
+          560,
+          318,
+          620
+        ],
+        "target_text": "图标5",
+        "params": {},
+        "timestamp": 1767083177.2442772
+      },
+      "elements_count": 6
+    },
+    {
+      "id": "basic_000050",
+      "theme": "windows_light",
+      "resolution": "3840x2160",
+      "operation": {
+        "action": "double_click",
+        "target_element": "icon",
+        "target_bounds": [
+          3319,
+          1249,
+          3379,
+          1309
+        ],
+        "target_text": "图标4",
+        "params": {},
+        "timestamp": 1767083177.3256383
+      },
+      "elements_count": 7
+    },
+    {
+      "id": "basic_000051",
+      "theme": "windows_dark",
+      "resolution": "1920x1080",
+      "operation": {
+        "action": "double_click",
+        "target_element": "icon",
+        "target_bounds": [
+          1275,
+          889,
+          1335,
+          949
+        ],
+        "target_text": "图标2",
+        "params": {},
+        "timestamp": 1767083177.4035301
+      },
+      "elements_count": 7
+    },
+    {
+      "id": "basic_000052",
+      "theme": "windows_light",
+      "resolution": "1920x1080",
+      "operation": {
+        "action": "right_click",
+        "target_element": "icon",
+        "target_bounds": [
+          1636,
+          371,
+          1696,
+          431
+        ],
+        "target_text": "图标1",
+        "params": {},
+        "timestamp": 1767083177.4290988
+      },
+      "elements_count": 6
+    },
+    {
+      "id": "basic_000053",
+      "theme": "windows_light",
+      "resolution": "3840x2160",
+      "operation": {
+        "action": "left_click",
+        "target_element": "button",
+        "target_bounds": [
+          10,
+          2125,
+          80,
+          2155
+        ],
+        "target_text": "开始",
+        "params": {},
+        "timestamp": 1767083177.456905
+      },
+      "elements_count": 7
+    },
+    {
+      "id": "basic_000054",
+      "theme": "macos_light",
+      "resolution": "1366x768",
+      "operation": {
+        "action": "left_click",
+        "target_element": "icon",
+        "target_bounds": [
+          598,
+          139,
+          658,
+          199
+        ],
+        "target_text": "图标4",
+        "params": {},
+        "timestamp": 1767083177.53496
+      },
+      "elements_count": 7
+    },
+    {
+      "id": "basic_000055",
+      "theme": "windows_dark",
+      "resolution": "2560x1440",
+      "operation": {
+        "action": "double_click",
+        "target_element": "icon",
+        "target_bounds": [
+          86,
+          695,
+          146,
+          755
+        ],
+        "target_text": "图标5",
+        "params": {},
+        "timestamp": 1767083177.5501294
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "basic_000056",
+      "theme": "macos_dark",
+      "resolution": "1366x768",
+      "operation": {
+        "action": "double_click",
+        "target_element": "icon",
+        "target_bounds": [
+          1099,
+          449,
+          1159,
+          509
+        ],
+        "target_text": "图标2",
+        "params": {},
+        "timestamp": 1767083177.5848289
+      },
+      "elements_count": 6
+    },
+    {
+      "id": "basic_000057",
+      "theme": "macos_dark",
+      "resolution": "3840x2160",
+      "operation": {
+        "action": "double_click",
+        "target_element": "icon",
+        "target_bounds": [
+          3206,
+          1639,
+          3266,
+          1699
+        ],
+        "target_text": "图标5",
+        "params": {},
+        "timestamp": 1767083177.6021185
+      },
+      "elements_count": 6
+    },
+    {
+      "id": "basic_000058",
+      "theme": "windows_light",
+      "resolution": "1366x768",
+      "operation": {
+        "action": "left_click",
+        "target_element": "button",
+        "target_bounds": [
+          10,
+          733,
+          80,
+          763
+        ],
+        "target_text": "开始",
+        "params": {},
+        "timestamp": 1767083177.6722007
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "basic_000059",
+      "theme": "windows_light",
+      "resolution": "1920x1080",
+      "operation": {
+        "action": "left_click",
+        "target_element": "icon",
+        "target_bounds": [
+          363,
+          267,
+          423,
+          327
+        ],
+        "target_text": "图标4",
+        "params": {},
+        "timestamp": 1767083177.693187
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "basic_000060",
+      "theme": "macos_light",
+      "resolution": "2560x1440",
+      "operation": {
+        "action": "double_click",
+        "target_element": "icon",
+        "target_bounds": [
+          197,
+          334,
+          257,
+          394
+        ],
+        "target_text": "图标8",
+        "params": {},
+        "timestamp": 1767083177.7183526
+      },
+      "elements_count": 9
+    },
+    {
+      "id": "basic_000061",
+      "theme": "windows_light",
+      "resolution": "1920x1080",
+      "operation": {
+        "action": "right_click",
+        "target_element": "icon",
+        "target_bounds": [
+          278,
+          159,
+          338,
+          219
+        ],
+        "target_text": "图标2",
+        "params": {},
+        "timestamp": 1767083177.7546244
+      },
+      "elements_count": 4
+    },
+    {
+      "id": "basic_000062",
+      "theme": "windows_light",
+      "resolution": "2560x1440",
+      "operation": {
+        "action": "left_click",
+        "target_element": "button",
+        "target_bounds": [
+          10,
+          1405,
+          80,
+          1435
+        ],
+        "target_text": "开始",
+        "params": {},
+        "timestamp": 1767083177.7733195
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "basic_000063",
+      "theme": "windows_light",
+      "resolution": "3840x2160",
+      "operation": {
+        "action": "left_click",
+        "target_element": "button",
+        "target_bounds": [
+          10,
+          2125,
+          80,
+          2155
+        ],
+        "target_text": "开始",
+        "params": {},
+        "timestamp": 1767083177.8249116
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "basic_000064",
+      "theme": "windows_dark",
+      "resolution": "3840x2160",
+      "operation": {
+        "action": "right_click",
+        "target_element": "icon",
+        "target_bounds": [
+          3535,
+          68,
+          3595,
+          128
+        ],
+        "target_text": "图标2",
+        "params": {},
+        "timestamp": 1767083177.894107
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "basic_000065",
+      "theme": "windows_light",
+      "resolution": "1366x768",
+      "operation": {
+        "action": "double_click",
+        "target_element": "icon",
+        "target_bounds": [
+          468,
+          62,
+          528,
+          122
+        ],
+        "target_text": "图标2",
+        "params": {},
+        "timestamp": 1767083177.9765396
+      },
+      "elements_count": 6
+    },
+    {
+      "id": "basic_000066",
+      "theme": "windows_dark",
+      "resolution": "3840x2160",
+      "operation": {
+        "action": "right_click",
+        "target_element": "icon",
+        "target_bounds": [
+          3299,
+          1853,
+          3359,
+          1913
+        ],
+        "target_text": "图标7",
+        "params": {},
+        "timestamp": 1767083177.9911635
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "basic_000067",
+      "theme": "macos_light",
+      "resolution": "1366x768",
+      "operation": {
+        "action": "double_click",
+        "target_element": "icon",
+        "target_bounds": [
+          77,
+          361,
+          137,
+          421
+        ],
+        "target_text": "图标3",
+        "params": {},
+        "timestamp": 1767083178.0684533
+      },
+      "elements_count": 7
+    },
+    {
+      "id": "basic_000068",
+      "theme": "macos_dark",
+      "resolution": "1366x768",
+      "operation": {
+        "action": "double_click",
+        "target_element": "icon",
+        "target_bounds": [
+          226,
+          427,
+          286,
+          487
+        ],
+        "target_text": "图标5",
+        "params": {},
+        "timestamp": 1767083178.0826137
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "basic_000069",
+      "theme": "windows_light",
+      "resolution": "1366x768",
+      "operation": {
+        "action": "left_click",
+        "target_element": "button",
+        "target_bounds": [
+          10,
+          733,
+          80,
+          763
+        ],
+        "target_text": "开始",
+        "params": {},
+        "timestamp": 1767083178.0973403
+      },
+      "elements_count": 4
+    },
+    {
+      "id": "basic_000070",
+      "theme": "macos_light",
+      "resolution": "1366x768",
+      "operation": {
+        "action": "left_click",
+        "target_element": "icon",
+        "target_bounds": [
+          502,
+          298,
+          562,
+          358
+        ],
+        "target_text": "图标6",
+        "params": {},
+        "timestamp": 1767083178.1124854
+      },
+      "elements_count": 7
+    },
+    {
+      "id": "basic_000071",
+      "theme": "windows_light",
+      "resolution": "1366x768",
+      "operation": {
+        "action": "left_click",
+        "target_element": "icon",
+        "target_bounds": [
+          253,
+          518,
+          313,
+          578
+        ],
+        "target_text": "图标5",
+        "params": {},
+        "timestamp": 1767083178.1237535
+      },
+      "elements_count": 9
+    },
+    {
+      "id": "basic_000072",
+      "theme": "macos_light",
+      "resolution": "1920x1080",
+      "operation": {
+        "action": "double_click",
+        "target_element": "icon",
+        "target_bounds": [
+          1067,
+          667,
+          1127,
+          727
+        ],
+        "target_text": "图标1",
+        "params": {},
+        "timestamp": 1767083178.1426544
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "basic_000073",
+      "theme": "windows_light",
+      "resolution": "3840x2160",
+      "operation": {
+        "action": "left_click",
+        "target_element": "button",
+        "target_bounds": [
+          10,
+          2125,
+          80,
+          2155
+        ],
+        "target_text": "开始",
+        "params": {},
+        "timestamp": 1767083178.1684291
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "basic_000074",
+      "theme": "windows_light",
+      "resolution": "1920x1080",
+      "operation": {
+        "action": "left_click",
+        "target_element": "button",
+        "target_bounds": [
+          10,
+          1045,
+          80,
+          1075
+        ],
+        "target_text": "开始",
+        "params": {},
+        "timestamp": 1767083178.2485995
+      },
+      "elements_count": 9
+    },
+    {
+      "id": "basic_000075",
+      "theme": "windows_light",
+      "resolution": "1920x1080",
+      "operation": {
+        "action": "right_click",
+        "target_element": "icon",
+        "target_bounds": [
+          1532,
+          899,
+          1592,
+          959
+        ],
+        "target_text": "图标5",
+        "params": {},
+        "timestamp": 1767083178.2780554
+      },
+      "elements_count": 7
+    },
+    {
+      "id": "basic_000076",
+      "theme": "macos_dark",
+      "resolution": "3840x2160",
+      "operation": {
+        "action": "right_click",
+        "target_element": "icon",
+        "target_bounds": [
+          1406,
+          638,
+          1466,
+          698
+        ],
+        "target_text": "图标6",
+        "params": {},
+        "timestamp": 1767083178.3041723
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "basic_000077",
+      "theme": "macos_dark",
+      "resolution": "1920x1080",
+      "operation": {
+        "action": "double_click",
+        "target_element": "icon",
+        "target_bounds": [
+          59,
+          660,
+          119,
+          720
+        ],
+        "target_text": "图标4",
+        "params": {},
+        "timestamp": 1767083178.3855844
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "basic_000078",
+      "theme": "windows_light",
+      "resolution": "2560x1440",
+      "operation": {
+        "action": "left_click",
+        "target_element": "button",
+        "target_bounds": [
+          10,
+          1405,
+          80,
+          1435
+        ],
+        "target_text": "开始",
+        "params": {},
+        "timestamp": 1767083178.4113142
+      },
+      "elements_count": 9
+    },
+    {
+      "id": "basic_000079",
+      "theme": "windows_light",
+      "resolution": "1366x768",
+      "operation": {
+        "action": "left_click",
+        "target_element": "icon",
+        "target_bounds": [
+          81,
+          228,
+          141,
+          288
+        ],
+        "target_text": "图标3",
+        "params": {},
+        "timestamp": 1767083178.4484267
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "basic_000080",
+      "theme": "macos_light",
+      "resolution": "1366x768",
+      "operation": {
+        "action": "right_click",
+        "target_element": "icon",
+        "target_bounds": [
+          782,
+          615,
+          842,
+          675
+        ],
+        "target_text": "图标1",
+        "params": {},
+        "timestamp": 1767083178.4627686
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "basic_000081",
+      "theme": "windows_dark",
+      "resolution": "1366x768",
+      "operation": {
+        "action": "left_click",
+        "target_element": "button",
+        "target_bounds": [
+          10,
+          733,
+          80,
+          763
+        ],
+        "target_text": "开始",
+        "params": {},
+        "timestamp": 1767083178.4744756
+      },
+      "elements_count": 6
+    },
+    {
+      "id": "basic_000082",
+      "theme": "macos_light",
+      "resolution": "1920x1080",
+      "operation": {
+        "action": "double_click",
+        "target_element": "icon",
+        "target_bounds": [
+          426,
+          402,
+          486,
+          462
+        ],
+        "target_text": "图标3",
+        "params": {},
+        "timestamp": 1767083178.4867928
+      },
+      "elements_count": 9
+    },
+    {
+      "id": "basic_000083",
+      "theme": "windows_light",
+      "resolution": "1366x768",
+      "operation": {
+        "action": "left_click",
+        "target_element": "icon",
+        "target_bounds": [
+          1019,
+          155,
+          1079,
+          215
+        ],
+        "target_text": "图标3",
+        "params": {},
+        "timestamp": 1767083178.5149515
+      },
+      "elements_count": 9
+    },
+    {
+      "id": "basic_000084",
+      "theme": "macos_dark",
+      "resolution": "1366x768",
+      "operation": {
+        "action": "left_click",
+        "target_element": "icon",
+        "target_bounds": [
+          458,
+          385,
+          518,
+          445
+        ],
+        "target_text": "图标1",
+        "params": {},
+        "timestamp": 1767083178.5259848
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "basic_000085",
+      "theme": "macos_light",
+      "resolution": "3840x2160",
+      "operation": {
+        "action": "left_click",
+        "target_element": "icon",
+        "target_bounds": [
+          2485,
+          1817,
+          2545,
+          1877
+        ],
+        "target_text": "图标2",
+        "params": {},
+        "timestamp": 1767083178.5455074
+      },
+      "elements_count": 9
+    },
+    {
+      "id": "basic_000086",
+      "theme": "windows_light",
+      "resolution": "1920x1080",
+      "operation": {
+        "action": "double_click",
+        "target_element": "icon",
+        "target_bounds": [
+          1107,
+          855,
+          1167,
+          915
+        ],
+        "target_text": "图标2",
+        "params": {},
+        "timestamp": 1767083178.6226397
+      },
+      "elements_count": 6
+    },
+    {
+      "id": "basic_000087",
+      "theme": "windows_dark",
+      "resolution": "1366x768",
+      "operation": {
+        "action": "left_click",
+        "target_element": "icon",
+        "target_bounds": [
+          413,
+          545,
+          473,
+          605
+        ],
+        "target_text": "图标3",
+        "params": {},
+        "timestamp": 1767083178.6410804
+      },
+      "elements_count": 7
+    },
+    {
+      "id": "basic_000088",
+      "theme": "macos_light",
+      "resolution": "1920x1080",
+      "operation": {
+        "action": "double_click",
+        "target_element": "icon",
+        "target_bounds": [
+          402,
+          261,
+          462,
+          321
+        ],
+        "target_text": "图标3",
+        "params": {},
+        "timestamp": 1767083178.6594632
+      },
+      "elements_count": 4
+    },
+    {
+      "id": "basic_000089",
+      "theme": "macos_light",
+      "resolution": "2560x1440",
+      "operation": {
+        "action": "right_click",
+        "target_element": "icon",
+        "target_bounds": [
+          204,
+          1157,
+          264,
+          1217
+        ],
+        "target_text": "图标2",
+        "params": {},
+        "timestamp": 1767083178.6820543
+      },
+      "elements_count": 6
+    },
+    {
+      "id": "basic_000090",
+      "theme": "macos_light",
+      "resolution": "3840x2160",
+      "operation": {
+        "action": "left_click",
+        "target_element": "icon",
+        "target_bounds": [
+          516,
+          122,
+          576,
+          182
+        ],
+        "target_text": "图标5",
+        "params": {},
+        "timestamp": 1767083178.7214875
+      },
+      "elements_count": 6
+    },
+    {
+      "id": "basic_000091",
+      "theme": "macos_dark",
+      "resolution": "3840x2160",
+      "operation": {
+        "action": "right_click",
+        "target_element": "icon",
+        "target_bounds": [
+          2970,
+          1035,
+          3030,
+          1095
+        ],
+        "target_text": "图标3",
+        "params": {},
+        "timestamp": 1767083178.8037417
+      },
+      "elements_count": 4
+    },
+    {
+      "id": "basic_000092",
+      "theme": "windows_light",
+      "resolution": "1920x1080",
+      "operation": {
+        "action": "double_click",
+        "target_element": "icon",
+        "target_bounds": [
+          100,
+          821,
+          160,
+          881
+        ],
+        "target_text": "图标1",
+        "params": {},
+        "timestamp": 1767083178.8768663
+      },
+      "elements_count": 9
+    },
+    {
+      "id": "basic_000093",
+      "theme": "macos_dark",
+      "resolution": "3840x2160",
+      "operation": {
+        "action": "left_click",
+        "target_element": "icon",
+        "target_bounds": [
+          2413,
+          1129,
+          2473,
+          1189
+        ],
+        "target_text": "图标2",
+        "params": {},
+        "timestamp": 1767083178.9140518
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "basic_000094",
+      "theme": "macos_light",
+      "resolution": "1366x768",
+      "operation": {
+        "action": "left_click",
+        "target_element": "button",
+        "target_bounds": [
+          10,
+          733,
+          80,
+          763
+        ],
+        "target_text": "开始",
+        "params": {},
+        "timestamp": 1767083178.9893286
+      },
+      "elements_count": 6
+    },
+    {
+      "id": "basic_000095",
+      "theme": "windows_light",
+      "resolution": "1366x768",
+      "operation": {
+        "action": "left_click",
+        "target_element": "icon",
+        "target_bounds": [
+          434,
+          326,
+          494,
+          386
+        ],
+        "target_text": "图标2",
+        "params": {},
+        "timestamp": 1767083179.0020933
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "basic_000096",
+      "theme": "windows_dark",
+      "resolution": "2560x1440",
+      "operation": {
+        "action": "right_click",
+        "target_element": "icon",
+        "target_bounds": [
+          2251,
+          1006,
+          2311,
+          1066
+        ],
+        "target_text": "图标4",
+        "params": {},
+        "timestamp": 1767083179.018612
+      },
+      "elements_count": 7
+    },
+    {
+      "id": "basic_000097",
+      "theme": "macos_dark",
+      "resolution": "2560x1440",
+      "operation": {
+        "action": "left_click",
+        "target_element": "icon",
+        "target_bounds": [
+          2362,
+          500,
+          2422,
+          560
+        ],
+        "target_text": "图标3",
+        "params": {},
+        "timestamp": 1767083179.0564706
+      },
+      "elements_count": 7
+    },
+    {
+      "id": "basic_000098",
+      "theme": "macos_dark",
+      "resolution": "1366x768",
+      "operation": {
+        "action": "double_click",
+        "target_element": "icon",
+        "target_bounds": [
+          236,
+          208,
+          296,
+          268
+        ],
+        "target_text": "图标1",
+        "params": {},
+        "timestamp": 1767083179.092334
+      },
+      "elements_count": 7
+    },
+    {
+      "id": "basic_000099",
+      "theme": "macos_light",
+      "resolution": "3840x2160",
+      "operation": {
+        "action": "double_click",
+        "target_element": "icon",
+        "target_bounds": [
+          3728,
+          159,
+          3788,
+          219
+        ],
+        "target_text": "图标3",
+        "params": {},
+        "timestamp": 1767083179.1096396
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "basic_000100",
+      "theme": "macos_light",
+      "resolution": "2560x1440",
+      "operation": {
+        "action": "left_click",
+        "target_element": "button",
+        "target_bounds": [
+          10,
+          1405,
+          80,
+          1435
+        ],
+        "target_text": "开始",
+        "params": {},
+        "timestamp": 1767083179.1860573
+      },
+      "elements_count": 4
+    },
+    {
+      "id": "basic_000101",
+      "theme": "macos_dark",
+      "resolution": "3840x2160",
+      "operation": {
+        "action": "left_click",
+        "target_element": "button",
+        "target_bounds": [
+          10,
+          2125,
+          80,
+          2155
+        ],
+        "target_text": "开始",
+        "params": {},
+        "timestamp": 1767083179.2331648
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "basic_000102",
+      "theme": "macos_light",
+      "resolution": "2560x1440",
+      "operation": {
+        "action": "left_click",
+        "target_element": "icon",
+        "target_bounds": [
+          1401,
+          446,
+          1461,
+          506
+        ],
+        "target_text": "图标5",
+        "params": {},
+        "timestamp": 1767083179.307126
+      },
+      "elements_count": 7
+    },
+    {
+      "id": "basic_000103",
+      "theme": "windows_dark",
+      "resolution": "2560x1440",
+      "operation": {
+        "action": "left_click",
+        "target_element": "button",
+        "target_bounds": [
+          10,
+          1405,
+          80,
+          1435
+        ],
+        "target_text": "开始",
+        "params": {},
+        "timestamp": 1767083179.3491397
+      },
+      "elements_count": 9
+    },
+    {
+      "id": "basic_000104",
+      "theme": "windows_dark",
+      "resolution": "2560x1440",
+      "operation": {
+        "action": "right_click",
+        "target_element": "icon",
+        "target_bounds": [
+          844,
+          788,
+          904,
+          848
+        ],
+        "target_text": "图标3",
+        "params": {},
+        "timestamp": 1767083179.3878644
+      },
+      "elements_count": 7
+    },
+    {
+      "id": "basic_000105",
+      "theme": "macos_light",
+      "resolution": "1366x768",
+      "operation": {
+        "action": "left_click",
+        "target_element": "button",
+        "target_bounds": [
+          10,
+          733,
+          80,
+          763
+        ],
+        "target_text": "开始",
+        "params": {},
+        "timestamp": 1767083179.4228718
+      },
+      "elements_count": 4
+    },
+    {
+      "id": "basic_000106",
+      "theme": "windows_dark",
+      "resolution": "3840x2160",
+      "operation": {
+        "action": "double_click",
+        "target_element": "icon",
+        "target_bounds": [
+          2917,
+          644,
+          2977,
+          704
+        ],
+        "target_text": "图标8",
+        "params": {},
+        "timestamp": 1767083179.4405832
+      },
+      "elements_count": 9
+    },
+    {
+      "id": "basic_000107",
+      "theme": "windows_dark",
+      "resolution": "2560x1440",
+      "operation": {
+        "action": "left_click",
+        "target_element": "icon",
+        "target_bounds": [
+          1705,
+          567,
+          1765,
+          627
+        ],
+        "target_text": "图标4",
+        "params": {},
+        "timestamp": 1767083179.5183163
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "basic_000108",
+      "theme": "macos_dark",
+      "resolution": "1920x1080",
+      "operation": {
+        "action": "right_click",
+        "target_element": "icon",
+        "target_bounds": [
+          1323,
+          178,
+          1383,
+          238
+        ],
+        "target_text": "图标1",
+        "params": {},
+        "timestamp": 1767083179.5543451
+      },
+      "elements_count": 4
+    },
+    {
+      "id": "basic_000109",
+      "theme": "macos_light",
+      "resolution": "1366x768",
+      "operation": {
+        "action": "left_click",
+        "target_element": "icon",
+        "target_bounds": [
+          494,
+          122,
+          554,
+          182
+        ],
+        "target_text": "图标2",
+        "params": {},
+        "timestamp": 1767083179.5820332
+      },
+      "elements_count": 6
+    },
+    {
+      "id": "basic_000110",
+      "theme": "windows_dark",
+      "resolution": "2560x1440",
+      "operation": {
+        "action": "double_click",
+        "target_element": "icon",
+        "target_bounds": [
+          447,
+          182,
+          507,
+          242
+        ],
+        "target_text": "图标5",
+        "params": {},
+        "timestamp": 1767083179.592205
+      },
+      "elements_count": 6
+    },
+    {
+      "id": "basic_000111",
+      "theme": "windows_light",
+      "resolution": "2560x1440",
+      "operation": {
+        "action": "left_click",
+        "target_element": "icon",
+        "target_bounds": [
+          1628,
+          453,
+          1688,
+          513
+        ],
+        "target_text": "图标5",
+        "params": {},
+        "timestamp": 1767083179.636373
+      },
+      "elements_count": 6
+    },
+    {
+      "id": "basic_000112",
+      "theme": "windows_light",
+      "resolution": "1920x1080",
+      "operation": {
+        "action": "left_click",
+        "target_element": "button",
+        "target_bounds": [
+          10,
+          1045,
+          80,
+          1075
+        ],
+        "target_text": "开始",
+        "params": {},
+        "timestamp": 1767083179.6716235
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "basic_000113",
+      "theme": "macos_light",
+      "resolution": "3840x2160",
+      "operation": {
+        "action": "left_click",
+        "target_element": "button",
+        "target_bounds": [
+          10,
+          2125,
+          80,
+          2155
+        ],
+        "target_text": "开始",
+        "params": {},
+        "timestamp": 1767083179.6929984
+      },
+      "elements_count": 9
+    },
+    {
+      "id": "basic_000114",
+      "theme": "macos_dark",
+      "resolution": "1920x1080",
+      "operation": {
+        "action": "left_click",
+        "target_element": "button",
+        "target_bounds": [
+          10,
+          1045,
+          80,
+          1075
+        ],
+        "target_text": "开始",
+        "params": {},
+        "timestamp": 1767083179.7753503
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "basic_000115",
+      "theme": "windows_light",
+      "resolution": "3840x2160",
+      "operation": {
+        "action": "double_click",
+        "target_element": "icon",
+        "target_bounds": [
+          1717,
+          1493,
+          1777,
+          1553
+        ],
+        "target_text": "图标3",
+        "params": {},
+        "timestamp": 1767083179.8038244
+      },
+      "elements_count": 4
+    },
+    {
+      "id": "basic_000116",
+      "theme": "windows_dark",
+      "resolution": "3840x2160",
+      "operation": {
+        "action": "left_click",
+        "target_element": "icon",
+        "target_bounds": [
+          671,
+          1719,
+          731,
+          1779
+        ],
+        "target_text": "图标3",
+        "params": {},
+        "timestamp": 1767083179.8850765
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "basic_000117",
+      "theme": "windows_dark",
+      "resolution": "1366x768",
+      "operation": {
+        "action": "left_click",
+        "target_element": "button",
+        "target_bounds": [
+          10,
+          733,
+          80,
+          763
+        ],
+        "target_text": "开始",
+        "params": {},
+        "timestamp": 1767083179.9565384
+      },
+      "elements_count": 9
+    },
+    {
+      "id": "basic_000118",
+      "theme": "windows_light",
+      "resolution": "3840x2160",
+      "operation": {
+        "action": "double_click",
+        "target_element": "icon",
+        "target_bounds": [
+          2970,
+          1258,
+          3030,
+          1318
+        ],
+        "target_text": "图标3",
+        "params": {},
+        "timestamp": 1767083179.986948
+      },
+      "elements_count": 7
+    },
+    {
+      "id": "basic_000119",
+      "theme": "windows_dark",
+      "resolution": "1366x768",
+      "operation": {
+        "action": "left_click",
+        "target_element": "icon",
+        "target_bounds": [
+          988,
+          286,
+          1048,
+          346
+        ],
+        "target_text": "图标4",
+        "params": {},
+        "timestamp": 1767083180.0604994
+      },
+      "elements_count": 6
+    },
+    {
+      "id": "basic_000120",
+      "theme": "windows_dark",
+      "resolution": "1366x768",
+      "operation": {
+        "action": "double_click",
+        "target_element": "icon",
+        "target_bounds": [
+          176,
+          548,
+          236,
+          608
+        ],
+        "target_text": "图标3",
+        "params": {},
+        "timestamp": 1767083180.0686362
+      },
+      "elements_count": 4
+    },
+    {
+      "id": "basic_000121",
+      "theme": "macos_light",
+      "resolution": "1920x1080",
+      "operation": {
+        "action": "double_click",
+        "target_element": "icon",
+        "target_bounds": [
+          168,
+          130,
+          228,
+          190
+        ],
+        "target_text": "图标3",
+        "params": {},
+        "timestamp": 1767083180.0886235
+      },
+      "elements_count": 9
+    },
+    {
+      "id": "basic_000122",
+      "theme": "windows_light",
+      "resolution": "2560x1440",
+      "operation": {
+        "action": "right_click",
+        "target_element": "icon",
+        "target_bounds": [
+          594,
+          626,
+          654,
+          686
+        ],
+        "target_text": "图标5",
+        "params": {},
+        "timestamp": 1767083180.1166108
+      },
+      "elements_count": 6
+    },
+    {
+      "id": "basic_000123",
+      "theme": "windows_dark",
+      "resolution": "3840x2160",
+      "operation": {
+        "action": "left_click",
+        "target_element": "icon",
+        "target_bounds": [
+          571,
+          1647,
+          631,
+          1707
+        ],
+        "target_text": "图标1",
+        "params": {},
+        "timestamp": 1767083180.158426
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "basic_000124",
+      "theme": "windows_light",
+      "resolution": "2560x1440",
+      "operation": {
+        "action": "right_click",
+        "target_element": "icon",
+        "target_bounds": [
+          1589,
+          120,
+          1649,
+          180
+        ],
+        "target_text": "图标4",
+        "params": {},
+        "timestamp": 1767083180.233298
+      },
+      "elements_count": 7
+    },
+    {
+      "id": "basic_000125",
+      "theme": "macos_dark",
+      "resolution": "1366x768",
+      "operation": {
+        "action": "double_click",
+        "target_element": "icon",
+        "target_bounds": [
+          558,
+          313,
+          618,
+          373
+        ],
+        "target_text": "图标5",
+        "params": {},
+        "timestamp": 1767083180.2690315
+      },
+      "elements_count": 9
+    },
+    {
+      "id": "basic_000126",
+      "theme": "macos_dark",
+      "resolution": "1920x1080",
+      "operation": {
+        "action": "left_click",
+        "target_element": "button",
+        "target_bounds": [
+          10,
+          1045,
+          80,
+          1075
+        ],
+        "target_text": "开始",
+        "params": {},
+        "timestamp": 1767083180.2885666
+      },
+      "elements_count": 4
+    },
+    {
+      "id": "basic_000127",
+      "theme": "windows_light",
+      "resolution": "1920x1080",
+      "operation": {
+        "action": "double_click",
+        "target_element": "icon",
+        "target_bounds": [
+          62,
+          550,
+          122,
+          610
+        ],
+        "target_text": "图标4",
+        "params": {},
+        "timestamp": 1767083180.309426
+      },
+      "elements_count": 6
+    },
+    {
+      "id": "basic_000128",
+      "theme": "windows_dark",
+      "resolution": "1920x1080",
+      "operation": {
+        "action": "double_click",
+        "target_element": "icon",
+        "target_bounds": [
+          1352,
+          365,
+          1412,
+          425
+        ],
+        "target_text": "图标2",
+        "params": {},
+        "timestamp": 1767083180.3353727
+      },
+      "elements_count": 4
+    },
+    {
+      "id": "basic_000129",
+      "theme": "macos_light",
+      "resolution": "1920x1080",
+      "operation": {
+        "action": "left_click",
+        "target_element": "button",
+        "target_bounds": [
+          10,
+          1045,
+          80,
+          1075
+        ],
+        "target_text": "开始",
+        "params": {},
+        "timestamp": 1767083180.3513815
+      },
+      "elements_count": 7
+    },
+    {
+      "id": "basic_000130",
+      "theme": "macos_dark",
+      "resolution": "2560x1440",
+      "operation": {
+        "action": "right_click",
+        "target_element": "icon",
+        "target_bounds": [
+          2135,
+          519,
+          2195,
+          579
+        ],
+        "target_text": "图标4",
+        "params": {},
+        "timestamp": 1767083180.3795142
+      },
+      "elements_count": 6
+    },
+    {
+      "id": "basic_000131",
+      "theme": "windows_dark",
+      "resolution": "1366x768",
+      "operation": {
+        "action": "right_click",
+        "target_element": "icon",
+        "target_bounds": [
+          449,
+          421,
+          509,
+          481
+        ],
+        "target_text": "图标3",
+        "params": {},
+        "timestamp": 1767083180.4180233
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "basic_000132",
+      "theme": "windows_dark",
+      "resolution": "1920x1080",
+      "operation": {
+        "action": "right_click",
+        "target_element": "icon",
+        "target_bounds": [
+          1478,
+          577,
+          1538,
+          637
+        ],
+        "target_text": "图标2",
+        "params": {},
+        "timestamp": 1767083180.4324536
+      },
+      "elements_count": 4
+    },
+    {
+      "id": "basic_000133",
+      "theme": "macos_light",
+      "resolution": "1920x1080",
+      "operation": {
+        "action": "double_click",
+        "target_element": "icon",
+        "target_bounds": [
+          400,
+          616,
+          460,
+          676
+        ],
+        "target_text": "图标7",
+        "params": {},
+        "timestamp": 1767083180.4553568
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "basic_000134",
+      "theme": "windows_dark",
+      "resolution": "3840x2160",
+      "operation": {
+        "action": "left_click",
+        "target_element": "button",
+        "target_bounds": [
+          10,
+          2125,
+          80,
+          2155
+        ],
+        "target_text": "开始",
+        "params": {},
+        "timestamp": 1767083180.4812443
+      },
+      "elements_count": 9
+    },
+    {
+      "id": "basic_000135",
+      "theme": "windows_dark",
+      "resolution": "1366x768",
+      "operation": {
+        "action": "double_click",
+        "target_element": "icon",
+        "target_bounds": [
+          835,
+          552,
+          895,
+          612
+        ],
+        "target_text": "图标5",
+        "params": {},
+        "timestamp": 1767083180.5608225
+      },
+      "elements_count": 6
+    },
+    {
+      "id": "basic_000136",
+      "theme": "macos_dark",
+      "resolution": "1920x1080",
+      "operation": {
+        "action": "double_click",
+        "target_element": "icon",
+        "target_bounds": [
+          856,
+          798,
+          916,
+          858
+        ],
+        "target_text": "图标3",
+        "params": {},
+        "timestamp": 1767083180.5748217
+      },
+      "elements_count": 6
+    },
+    {
+      "id": "basic_000137",
+      "theme": "windows_dark",
+      "resolution": "3840x2160",
+      "operation": {
+        "action": "left_click",
+        "target_element": "icon",
+        "target_bounds": [
+          2940,
+          1159,
+          3000,
+          1219
+        ],
+        "target_text": "图标7",
+        "params": {},
+        "timestamp": 1767083180.6060433
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "basic_000138",
+      "theme": "macos_dark",
+      "resolution": "3840x2160",
+      "operation": {
+        "action": "right_click",
+        "target_element": "icon",
+        "target_bounds": [
+          3015,
+          1067,
+          3075,
+          1127
+        ],
+        "target_text": "图标3",
+        "params": {},
+        "timestamp": 1767083180.6829505
+      },
+      "elements_count": 9
+    },
+    {
+      "id": "basic_000139",
+      "theme": "macos_light",
+      "resolution": "1366x768",
+      "operation": {
+        "action": "right_click",
+        "target_element": "icon",
+        "target_bounds": [
+          1240,
+          522,
+          1300,
+          582
+        ],
+        "target_text": "图标4",
+        "params": {},
+        "timestamp": 1767083180.7684546
+      },
+      "elements_count": 6
+    },
+    {
+      "id": "basic_000140",
+      "theme": "windows_light",
+      "resolution": "1366x768",
+      "operation": {
+        "action": "right_click",
+        "target_element": "icon",
+        "target_bounds": [
+          318,
+          253,
+          378,
+          313
+        ],
+        "target_text": "图标2",
+        "params": {},
+        "timestamp": 1767083180.7759128
+      },
+      "elements_count": 6
+    },
+    {
+      "id": "basic_000141",
+      "theme": "macos_dark",
+      "resolution": "1366x768",
+      "operation": {
+        "action": "right_click",
+        "target_element": "icon",
+        "target_bounds": [
+          1061,
+          241,
+          1121,
+          301
+        ],
+        "target_text": "图标1",
+        "params": {},
+        "timestamp": 1767083180.7902167
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "basic_000142",
+      "theme": "windows_light",
+      "resolution": "3840x2160",
+      "operation": {
+        "action": "double_click",
+        "target_element": "icon",
+        "target_bounds": [
+          2784,
+          526,
+          2844,
+          586
+        ],
+        "target_text": "图标6",
+        "params": {},
+        "timestamp": 1767083180.8041265
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "basic_000143",
+      "theme": "windows_light",
+      "resolution": "1920x1080",
+      "operation": {
+        "action": "right_click",
+        "target_element": "icon",
+        "target_bounds": [
+          367,
+          930,
+          427,
+          990
+        ],
+        "target_text": "图标2",
+        "params": {},
+        "timestamp": 1767083180.8874438
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "basic_000144",
+      "theme": "macos_light",
+      "resolution": "1366x768",
+      "operation": {
+        "action": "left_click",
+        "target_element": "icon",
+        "target_bounds": [
+          968,
+          481,
+          1028,
+          541
+        ],
+        "target_text": "图标5",
+        "params": {},
+        "timestamp": 1767083180.9108224
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "basic_000145",
+      "theme": "windows_dark",
+      "resolution": "1366x768",
+      "operation": {
+        "action": "double_click",
+        "target_element": "icon",
+        "target_bounds": [
+          301,
+          155,
+          361,
+          215
+        ],
+        "target_text": "图标3",
+        "params": {},
+        "timestamp": 1767083180.9241285
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "basic_000146",
+      "theme": "windows_dark",
+      "resolution": "3840x2160",
+      "operation": {
+        "action": "right_click",
+        "target_element": "icon",
+        "target_bounds": [
+          1627,
+          914,
+          1687,
+          974
+        ],
+        "target_text": "图标4",
+        "params": {},
+        "timestamp": 1767083180.9432187
+      },
+      "elements_count": 9
+    },
+    {
+      "id": "basic_000147",
+      "theme": "macos_dark",
+      "resolution": "2560x1440",
+      "operation": {
+        "action": "left_click",
+        "target_element": "icon",
+        "target_bounds": [
+          1617,
+          183,
+          1677,
+          243
+        ],
+        "target_text": "图标4",
+        "params": {},
+        "timestamp": 1767083181.0208993
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "basic_000148",
+      "theme": "windows_light",
+      "resolution": "1920x1080",
+      "operation": {
+        "action": "right_click",
+        "target_element": "icon",
+        "target_bounds": [
+          1756,
+          487,
+          1816,
+          547
+        ],
+        "target_text": "图标5",
+        "params": {},
+        "timestamp": 1767083181.0528288
+      },
+      "elements_count": 9
+    },
+    {
+      "id": "basic_000149",
+      "theme": "windows_light",
+      "resolution": "3840x2160",
+      "operation": {
+        "action": "left_click",
+        "target_element": "button",
+        "target_bounds": [
+          10,
+          2125,
+          80,
+          2155
+        ],
+        "target_text": "开始",
+        "params": {},
+        "timestamp": 1767083181.086517
+      },
+      "elements_count": 4
+    },
+    {
+      "id": "basic_000150",
+      "theme": "windows_light",
+      "resolution": "3840x2160",
+      "operation": {
+        "action": "left_click",
+        "target_element": "icon",
+        "target_bounds": [
+          602,
+          215,
+          662,
+          275
+        ],
+        "target_text": "图标7",
+        "params": {},
+        "timestamp": 1767083181.1578317
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "basic_000151",
+      "theme": "windows_dark",
+      "resolution": "2560x1440",
+      "operation": {
+        "action": "left_click",
+        "target_element": "icon",
+        "target_bounds": [
+          1993,
+          626,
+          2053,
+          686
+        ],
+        "target_text": "图标5",
+        "params": {},
+        "timestamp": 1767083181.2401192
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "basic_000152",
+      "theme": "windows_light",
+      "resolution": "1366x768",
+      "operation": {
+        "action": "left_click",
+        "target_element": "icon",
+        "target_bounds": [
+          1205,
+          604,
+          1265,
+          664
+        ],
+        "target_text": "图标1",
+        "params": {},
+        "timestamp": 1767083181.2775292
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "basic_000153",
+      "theme": "macos_light",
+      "resolution": "1920x1080",
+      "operation": {
+        "action": "left_click",
+        "target_element": "icon",
+        "target_bounds": [
+          677,
+          221,
+          737,
+          281
+        ],
+        "target_text": "图标6",
+        "params": {},
+        "timestamp": 1767083181.2928944
+      },
+      "elements_count": 9
+    },
+    {
+      "id": "basic_000154",
+      "theme": "windows_light",
+      "resolution": "3840x2160",
+      "operation": {
+        "action": "left_click",
+        "target_element": "button",
+        "target_bounds": [
+          10,
+          2125,
+          80,
+          2155
+        ],
+        "target_text": "开始",
+        "params": {},
+        "timestamp": 1767083181.321425
+      },
+      "elements_count": 4
+    },
+    {
+      "id": "basic_000155",
+      "theme": "windows_light",
+      "resolution": "1920x1080",
+      "operation": {
+        "action": "right_click",
+        "target_element": "icon",
+        "target_bounds": [
+          75,
+          381,
+          135,
+          441
+        ],
+        "target_text": "图标7",
+        "params": {},
+        "timestamp": 1767083181.3967593
+      },
+      "elements_count": 9
+    },
+    {
+      "id": "basic_000156",
+      "theme": "macos_light",
+      "resolution": "1366x768",
+      "operation": {
+        "action": "left_click",
+        "target_element": "icon",
+        "target_bounds": [
+          322,
+          197,
+          382,
+          257
+        ],
+        "target_text": "图标1",
+        "params": {},
+        "timestamp": 1767083181.4185183
+      },
+      "elements_count": 4
+    },
+    {
+      "id": "basic_000157",
+      "theme": "windows_dark",
+      "resolution": "2560x1440",
+      "operation": {
+        "action": "left_click",
+        "target_element": "button",
+        "target_bounds": [
+          10,
+          1405,
+          80,
+          1435
+        ],
+        "target_text": "开始",
+        "params": {},
+        "timestamp": 1767083181.4282515
+      },
+      "elements_count": 6
+    },
+    {
+      "id": "basic_000158",
+      "theme": "macos_light",
+      "resolution": "3840x2160",
+      "operation": {
+        "action": "right_click",
+        "target_element": "icon",
+        "target_bounds": [
+          2169,
+          1492,
+          2229,
+          1552
+        ],
+        "target_text": "图标1",
+        "params": {},
+        "timestamp": 1767083181.4708722
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "basic_000159",
+      "theme": "macos_light",
+      "resolution": "2560x1440",
+      "operation": {
+        "action": "right_click",
+        "target_element": "icon",
+        "target_bounds": [
+          1156,
+          566,
+          1216,
+          626
+        ],
+        "target_text": "图标1",
+        "params": {},
+        "timestamp": 1767083181.5503545
+      },
+      "elements_count": 7
+    },
+    {
+      "id": "basic_000160",
+      "theme": "macos_light",
+      "resolution": "3840x2160",
+      "operation": {
+        "action": "left_click",
+        "target_element": "button",
+        "target_bounds": [
+          10,
+          2125,
+          80,
+          2155
+        ],
+        "target_text": "开始",
+        "params": {},
+        "timestamp": 1767083181.5963721
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "basic_000161",
+      "theme": "macos_light",
+      "resolution": "1920x1080",
+      "operation": {
+        "action": "double_click",
+        "target_element": "icon",
+        "target_bounds": [
+          1581,
+          409,
+          1641,
+          469
+        ],
+        "target_text": "图标3",
+        "params": {},
+        "timestamp": 1767083181.6703184
+      },
+      "elements_count": 4
+    },
+    {
+      "id": "basic_000162",
+      "theme": "macos_dark",
+      "resolution": "1366x768",
+      "operation": {
+        "action": "double_click",
+        "target_element": "icon",
+        "target_bounds": [
+          1235,
+          466,
+          1295,
+          526
+        ],
+        "target_text": "图标1",
+        "params": {},
+        "timestamp": 1767083181.6860924
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "basic_000163",
+      "theme": "macos_dark",
+      "resolution": "2560x1440",
+      "operation": {
+        "action": "double_click",
+        "target_element": "icon",
+        "target_bounds": [
+          2090,
+          974,
+          2150,
+          1034
+        ],
+        "target_text": "图标4",
+        "params": {},
+        "timestamp": 1767083181.7091248
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "basic_000164",
+      "theme": "windows_light",
+      "resolution": "3840x2160",
+      "operation": {
+        "action": "double_click",
+        "target_element": "icon",
+        "target_bounds": [
+          1437,
+          515,
+          1497,
+          575
+        ],
+        "target_text": "图标5",
+        "params": {},
+        "timestamp": 1767083181.7510118
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "basic_000165",
+      "theme": "macos_light",
+      "resolution": "1920x1080",
+      "operation": {
+        "action": "right_click",
+        "target_element": "icon",
+        "target_bounds": [
+          613,
+          310,
+          673,
+          370
+        ],
+        "target_text": "图标4",
+        "params": {},
+        "timestamp": 1767083181.8265564
+      },
+      "elements_count": 9
+    },
+    {
+      "id": "basic_000166",
+      "theme": "macos_light",
+      "resolution": "1366x768",
+      "operation": {
+        "action": "left_click",
+        "target_element": "icon",
+        "target_bounds": [
+          263,
+          105,
+          323,
+          165
+        ],
+        "target_text": "图标8",
+        "params": {},
+        "timestamp": 1767083181.8507721
+      },
+      "elements_count": 9
+    },
+    {
+      "id": "basic_000167",
+      "theme": "macos_light",
+      "resolution": "3840x2160",
+      "operation": {
+        "action": "right_click",
+        "target_element": "icon",
+        "target_bounds": [
+          1741,
+          1747,
+          1801,
+          1807
+        ],
+        "target_text": "图标4",
+        "params": {},
+        "timestamp": 1767083181.8737733
+      },
+      "elements_count": 7
+    },
+    {
+      "id": "basic_000168",
+      "theme": "macos_light",
+      "resolution": "3840x2160",
+      "operation": {
+        "action": "right_click",
+        "target_element": "icon",
+        "target_bounds": [
+          1348,
+          183,
+          1408,
+          243
+        ],
+        "target_text": "图标3",
+        "params": {},
+        "timestamp": 1767083181.9543931
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "basic_000169",
+      "theme": "windows_light",
+      "resolution": "2560x1440",
+      "operation": {
+        "action": "right_click",
+        "target_element": "icon",
+        "target_bounds": [
+          1142,
+          592,
+          1202,
+          652
+        ],
+        "target_text": "图标5",
+        "params": {},
+        "timestamp": 1767083182.0286481
+      },
+      "elements_count": 9
+    },
+    {
+      "id": "basic_000170",
+      "theme": "macos_light",
+      "resolution": "1366x768",
+      "operation": {
+        "action": "left_click",
+        "target_element": "icon",
+        "target_bounds": [
+          968,
+          607,
+          1028,
+          667
+        ],
+        "target_text": "图标6",
+        "params": {},
+        "timestamp": 1767083182.068188
+      },
+      "elements_count": 7
+    },
+    {
+      "id": "basic_000171",
+      "theme": "windows_dark",
+      "resolution": "1920x1080",
+      "operation": {
+        "action": "right_click",
+        "target_element": "icon",
+        "target_bounds": [
+          1272,
+          849,
+          1332,
+          909
+        ],
+        "target_text": "图标4",
+        "params": {},
+        "timestamp": 1767083182.0821579
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "basic_000172",
+      "theme": "windows_dark",
+      "resolution": "2560x1440",
+      "operation": {
+        "action": "right_click",
+        "target_element": "icon",
+        "target_bounds": [
+          2287,
+          720,
+          2347,
+          780
+        ],
+        "target_text": "图标5",
+        "params": {},
+        "timestamp": 1767083182.1029215
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "basic_000173",
+      "theme": "windows_light",
+      "resolution": "3840x2160",
+      "operation": {
+        "action": "double_click",
+        "target_element": "icon",
+        "target_bounds": [
+          1337,
+          344,
+          1397,
+          404
+        ],
+        "target_text": "图标1",
+        "params": {},
+        "timestamp": 1767083182.1414247
+      },
+      "elements_count": 6
+    },
+    {
+      "id": "basic_000174",
+      "theme": "macos_light",
+      "resolution": "1366x768",
+      "operation": {
+        "action": "left_click",
+        "target_element": "icon",
+        "target_bounds": [
+          529,
+          149,
+          589,
+          209
+        ],
+        "target_text": "图标5",
+        "params": {},
+        "timestamp": 1767083182.2209737
+      },
+      "elements_count": 9
+    },
+    {
+      "id": "basic_000175",
+      "theme": "macos_dark",
+      "resolution": "1366x768",
+      "operation": {
+        "action": "left_click",
+        "target_element": "button",
+        "target_bounds": [
+          10,
+          733,
+          80,
+          763
+        ],
+        "target_text": "开始",
+        "params": {},
+        "timestamp": 1767083182.2366896
+      },
+      "elements_count": 4
+    },
+    {
+      "id": "basic_000176",
+      "theme": "windows_dark",
+      "resolution": "3840x2160",
+      "operation": {
+        "action": "right_click",
+        "target_element": "icon",
+        "target_bounds": [
+          318,
+          1644,
+          378,
+          1704
+        ],
+        "target_text": "图标5",
+        "params": {},
+        "timestamp": 1767083182.2550538
+      },
+      "elements_count": 6
+    },
+    {
+      "id": "basic_000177",
+      "theme": "macos_dark",
+      "resolution": "1366x768",
+      "operation": {
+        "action": "left_click",
+        "target_element": "button",
+        "target_bounds": [
+          10,
+          733,
+          80,
+          763
+        ],
+        "target_text": "开始",
+        "params": {},
+        "timestamp": 1767083182.3460155
+      },
+      "elements_count": 7
+    },
+    {
+      "id": "basic_000178",
+      "theme": "macos_light",
+      "resolution": "2560x1440",
+      "operation": {
+        "action": "right_click",
+        "target_element": "icon",
+        "target_bounds": [
+          1169,
+          745,
+          1229,
+          805
+        ],
+        "target_text": "图标7",
+        "params": {},
+        "timestamp": 1767083182.368153
+      },
+      "elements_count": 9
+    },
+    {
+      "id": "basic_000179",
+      "theme": "windows_light",
+      "resolution": "1920x1080",
+      "operation": {
+        "action": "right_click",
+        "target_element": "icon",
+        "target_bounds": [
+          794,
+          355,
+          854,
+          415
+        ],
+        "target_text": "图标6",
+        "params": {},
+        "timestamp": 1767083182.408298
+      },
+      "elements_count": 7
+    },
+    {
+      "id": "basic_000180",
+      "theme": "macos_dark",
+      "resolution": "1366x768",
+      "operation": {
+        "action": "left_click",
+        "target_element": "icon",
+        "target_bounds": [
+          1217,
+          407,
+          1277,
+          467
+        ],
+        "target_text": "图标3",
+        "params": {},
+        "timestamp": 1767083182.4254138
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "basic_000181",
+      "theme": "macos_dark",
+      "resolution": "2560x1440",
+      "operation": {
+        "action": "right_click",
+        "target_element": "icon",
+        "target_bounds": [
+          1352,
+          190,
+          1412,
+          250
+        ],
+        "target_text": "图标2",
+        "params": {},
+        "timestamp": 1767083182.4430037
+      },
+      "elements_count": 9
+    },
+    {
+      "id": "basic_000182",
+      "theme": "macos_dark",
+      "resolution": "2560x1440",
+      "operation": {
+        "action": "left_click",
+        "target_element": "icon",
+        "target_bounds": [
+          1185,
+          1164,
+          1245,
+          1224
+        ],
+        "target_text": "图标6",
+        "params": {},
+        "timestamp": 1767083182.4843931
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "basic_000183",
+      "theme": "macos_dark",
+      "resolution": "1920x1080",
+      "operation": {
+        "action": "left_click",
+        "target_element": "icon",
+        "target_bounds": [
+          1746,
+          812,
+          1806,
+          872
+        ],
+        "target_text": "图标6",
+        "params": {},
+        "timestamp": 1767083182.5183692
+      },
+      "elements_count": 9
+    },
+    {
+      "id": "basic_000184",
+      "theme": "macos_light",
+      "resolution": "1920x1080",
+      "operation": {
+        "action": "left_click",
+        "target_element": "icon",
+        "target_bounds": [
+          1697,
+          190,
+          1757,
+          250
+        ],
+        "target_text": "图标2",
+        "params": {},
+        "timestamp": 1767083182.5409713
+      },
+      "elements_count": 4
+    },
+    {
+      "id": "basic_000185",
+      "theme": "macos_light",
+      "resolution": "1366x768",
+      "operation": {
+        "action": "left_click",
+        "target_element": "icon",
+        "target_bounds": [
+          1158,
+          258,
+          1218,
+          318
+        ],
+        "target_text": "图标6",
+        "params": {},
+        "timestamp": 1767083182.568927
+      },
+      "elements_count": 9
+    },
+    {
+      "id": "basic_000186",
+      "theme": "windows_dark",
+      "resolution": "3840x2160",
+      "operation": {
+        "action": "left_click",
+        "target_element": "icon",
+        "target_bounds": [
+          2013,
+          1134,
+          2073,
+          1194
+        ],
+        "target_text": "图标8",
+        "params": {},
+        "timestamp": 1767083182.581161
+      },
+      "elements_count": 9
+    },
+    {
+      "id": "basic_000187",
+      "theme": "macos_light",
+      "resolution": "2560x1440",
+      "operation": {
+        "action": "left_click",
+        "target_element": "button",
+        "target_bounds": [
+          10,
+          1405,
+          80,
+          1435
+        ],
+        "target_text": "开始",
+        "params": {},
+        "timestamp": 1767083182.6669242
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "basic_000188",
+      "theme": "windows_dark",
+      "resolution": "1366x768",
+      "operation": {
+        "action": "right_click",
+        "target_element": "icon",
+        "target_bounds": [
+          661,
+          213,
+          721,
+          273
+        ],
+        "target_text": "图标3",
+        "params": {},
+        "timestamp": 1767083182.696375
+      },
+      "elements_count": 4
+    },
+    {
+      "id": "basic_000189",
+      "theme": "macos_light",
+      "resolution": "3840x2160",
+      "operation": {
+        "action": "left_click",
+        "target_element": "button",
+        "target_bounds": [
+          10,
+          2125,
+          80,
+          2155
+        ],
+        "target_text": "开始",
+        "params": {},
+        "timestamp": 1767083182.7182238
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "basic_000190",
+      "theme": "macos_light",
+      "resolution": "1366x768",
+      "operation": {
+        "action": "double_click",
+        "target_element": "icon",
+        "target_bounds": [
+          1137,
+          502,
+          1197,
+          562
+        ],
+        "target_text": "图标1",
+        "params": {},
+        "timestamp": 1767083182.7889583
+      },
+      "elements_count": 9
+    },
+    {
+      "id": "basic_000191",
+      "theme": "windows_dark",
+      "resolution": "1920x1080",
+      "operation": {
+        "action": "double_click",
+        "target_element": "icon",
+        "target_bounds": [
+          1450,
+          709,
+          1510,
+          769
+        ],
+        "target_text": "图标1",
+        "params": {},
+        "timestamp": 1767083182.807697
+      },
+      "elements_count": 7
+    },
+    {
+      "id": "basic_000192",
+      "theme": "windows_light",
+      "resolution": "3840x2160",
+      "operation": {
+        "action": "left_click",
+        "target_element": "button",
+        "target_bounds": [
+          10,
+          2125,
+          80,
+          2155
+        ],
+        "target_text": "开始",
+        "params": {},
+        "timestamp": 1767083182.833046
+      },
+      "elements_count": 4
+    },
+    {
+      "id": "basic_000193",
+      "theme": "macos_dark",
+      "resolution": "3840x2160",
+      "operation": {
+        "action": "double_click",
+        "target_element": "icon",
+        "target_bounds": [
+          2084,
+          1781,
+          2144,
+          1841
+        ],
+        "target_text": "图标4",
+        "params": {},
+        "timestamp": 1767083182.918849
+      },
+      "elements_count": 9
+    },
+    {
+      "id": "basic_000194",
+      "theme": "macos_dark",
+      "resolution": "3840x2160",
+      "operation": {
+        "action": "left_click",
+        "target_element": "button",
+        "target_bounds": [
+          10,
+          2125,
+          80,
+          2155
+        ],
+        "target_text": "开始",
+        "params": {},
+        "timestamp": 1767083183.0002964
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "basic_000195",
+      "theme": "windows_light",
+      "resolution": "3840x2160",
+      "operation": {
+        "action": "left_click",
+        "target_element": "icon",
+        "target_bounds": [
+          1235,
+          1741,
+          1295,
+          1801
+        ],
+        "target_text": "图标1",
+        "params": {},
+        "timestamp": 1767083183.0783224
+      },
+      "elements_count": 9
+    },
+    {
+      "id": "basic_000196",
+      "theme": "windows_light",
+      "resolution": "3840x2160",
+      "operation": {
+        "action": "double_click",
+        "target_element": "icon",
+        "target_bounds": [
+          3651,
+          1298,
+          3711,
+          1358
+        ],
+        "target_text": "图标2",
+        "params": {},
+        "timestamp": 1767083183.1583726
+      },
+      "elements_count": 4
+    },
+    {
+      "id": "basic_000197",
+      "theme": "macos_dark",
+      "resolution": "1920x1080",
+      "operation": {
+        "action": "left_click",
+        "target_element": "button",
+        "target_bounds": [
+          10,
+          1045,
+          80,
+          1075
+        ],
+        "target_text": "开始",
+        "params": {},
+        "timestamp": 1767083183.2277915
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "basic_000198",
+      "theme": "macos_light",
+      "resolution": "1366x768",
+      "operation": {
+        "action": "right_click",
+        "target_element": "icon",
+        "target_bounds": [
+          406,
+          535,
+          466,
+          595
+        ],
+        "target_text": "图标3",
+        "params": {},
+        "timestamp": 1767083183.2516296
+      },
+      "elements_count": 4
+    },
+    {
+      "id": "basic_000199",
+      "theme": "windows_dark",
+      "resolution": "1366x768",
+      "operation": {
+        "action": "left_click",
+        "target_element": "icon",
+        "target_bounds": [
+          643,
+          553,
+          703,
+          613
+        ],
+        "target_text": "图标3",
+        "params": {},
+        "timestamp": 1767083183.2654996
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "basic_000200",
+      "theme": "macos_dark",
+      "resolution": "2560x1440",
+      "operation": {
+        "action": "left_click",
+        "target_element": "icon",
+        "target_bounds": [
+          1444,
+          711,
+          1504,
+          771
+        ],
+        "target_text": "图标4",
+        "params": {},
+        "timestamp": 1767083183.2839112
+      },
+      "elements_count": 7
+    },
+    {
+      "id": "basic_000201",
+      "theme": "windows_dark",
+      "resolution": "3840x2160",
+      "operation": {
+        "action": "right_click",
+        "target_element": "icon",
+        "target_bounds": [
+          2726,
+          389,
+          2786,
+          449
+        ],
+        "target_text": "图标2",
+        "params": {},
+        "timestamp": 1767083183.3273954
+      },
+      "elements_count": 7
+    },
+    {
+      "id": "basic_000202",
+      "theme": "macos_light",
+      "resolution": "3840x2160",
+      "operation": {
+        "action": "right_click",
+        "target_element": "icon",
+        "target_bounds": [
+          974,
+          1094,
+          1034,
+          1154
+        ],
+        "target_text": "图标2",
+        "params": {},
+        "timestamp": 1767083183.403074
+      },
+      "elements_count": 4
+    },
+    {
+      "id": "basic_000203",
+      "theme": "windows_dark",
+      "resolution": "2560x1440",
+      "operation": {
+        "action": "left_click",
+        "target_element": "icon",
+        "target_bounds": [
+          1807,
+          938,
+          1867,
+          998
+        ],
+        "target_text": "图标1",
+        "params": {},
+        "timestamp": 1767083183.4780183
+      },
+      "elements_count": 7
+    },
+    {
+      "id": "basic_000204",
+      "theme": "macos_dark",
+      "resolution": "2560x1440",
+      "operation": {
+        "action": "left_click",
+        "target_element": "icon",
+        "target_bounds": [
+          2034,
+          1148,
+          2094,
+          1208
+        ],
+        "target_text": "图标1",
+        "params": {},
+        "timestamp": 1767083183.5191865
+      },
+      "elements_count": 6
+    },
+    {
+      "id": "basic_000205",
+      "theme": "macos_dark",
+      "resolution": "1366x768",
+      "operation": {
+        "action": "left_click",
+        "target_element": "icon",
+        "target_bounds": [
+          1113,
+          423,
+          1173,
+          483
+        ],
+        "target_text": "图标5",
+        "params": {},
+        "timestamp": 1767083183.5506456
+      },
+      "elements_count": 6
+    },
+    {
+      "id": "basic_000206",
+      "theme": "macos_dark",
+      "resolution": "1366x768",
+      "operation": {
+        "action": "left_click",
+        "target_element": "icon",
+        "target_bounds": [
+          1008,
+          147,
+          1068,
+          207
+        ],
+        "target_text": "图标1",
+        "params": {},
+        "timestamp": 1767083183.568522
+      },
+      "elements_count": 4
+    },
+    {
+      "id": "basic_000207",
+      "theme": "windows_light",
+      "resolution": "1920x1080",
+      "operation": {
+        "action": "right_click",
+        "target_element": "icon",
+        "target_bounds": [
+          1354,
+          103,
+          1414,
+          163
+        ],
+        "target_text": "图标1",
+        "params": {},
+        "timestamp": 1767083183.5850377
+      },
+      "elements_count": 4
+    },
+    {
+      "id": "basic_000208",
+      "theme": "windows_dark",
+      "resolution": "1366x768",
+      "operation": {
+        "action": "left_click",
+        "target_element": "button",
+        "target_bounds": [
+          10,
+          733,
+          80,
+          763
+        ],
+        "target_text": "开始",
+        "params": {},
+        "timestamp": 1767083183.6013575
+      },
+      "elements_count": 4
+    },
+    {
+      "id": "basic_000209",
+      "theme": "windows_dark",
+      "resolution": "3840x2160",
+      "operation": {
+        "action": "double_click",
+        "target_element": "icon",
+        "target_bounds": [
+          858,
+          1036,
+          918,
+          1096
+        ],
+        "target_text": "图标2",
+        "params": {},
+        "timestamp": 1767083183.6221948
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "basic_000210",
+      "theme": "windows_light",
+      "resolution": "1366x768",
+      "operation": {
+        "action": "left_click",
+        "target_element": "icon",
+        "target_bounds": [
+          833,
+          513,
+          893,
+          573
+        ],
+        "target_text": "图标6",
+        "params": {},
+        "timestamp": 1767083183.6949043
+      },
+      "elements_count": 9
+    },
+    {
+      "id": "basic_000211",
+      "theme": "windows_light",
+      "resolution": "2560x1440",
+      "operation": {
+        "action": "right_click",
+        "target_element": "icon",
+        "target_bounds": [
+          2406,
+          648,
+          2466,
+          708
+        ],
+        "target_text": "图标8",
+        "params": {},
+        "timestamp": 1767083183.7101076
+      },
+      "elements_count": 9
+    },
+    {
+      "id": "basic_000212",
+      "theme": "windows_light",
+      "resolution": "1920x1080",
+      "operation": {
+        "action": "left_click",
+        "target_element": "button",
+        "target_bounds": [
+          10,
+          1045,
+          80,
+          1075
+        ],
+        "target_text": "开始",
+        "params": {},
+        "timestamp": 1767083183.7537124
+      },
+      "elements_count": 6
+    },
+    {
+      "id": "basic_000213",
+      "theme": "windows_dark",
+      "resolution": "2560x1440",
+      "operation": {
+        "action": "double_click",
+        "target_element": "icon",
+        "target_bounds": [
+          177,
+          1136,
+          237,
+          1196
+        ],
+        "target_text": "图标2",
+        "params": {},
+        "timestamp": 1767083183.7762792
+      },
+      "elements_count": 6
+    },
+    {
+      "id": "basic_000214",
+      "theme": "windows_light",
+      "resolution": "1366x768",
+      "operation": {
+        "action": "right_click",
+        "target_element": "icon",
+        "target_bounds": [
+          216,
+          214,
+          276,
+          274
+        ],
+        "target_text": "图标1",
+        "params": {},
+        "timestamp": 1767083183.8069503
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "basic_000215",
+      "theme": "windows_dark",
+      "resolution": "1366x768",
+      "operation": {
+        "action": "right_click",
+        "target_element": "icon",
+        "target_bounds": [
+          650,
+          359,
+          710,
+          419
+        ],
+        "target_text": "图标1",
+        "params": {},
+        "timestamp": 1767083183.8329403
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "basic_000216",
+      "theme": "macos_dark",
+      "resolution": "3840x2160",
+      "operation": {
+        "action": "double_click",
+        "target_element": "icon",
+        "target_bounds": [
+          3459,
+          1543,
+          3519,
+          1603
+        ],
+        "target_text": "图标1",
+        "params": {},
+        "timestamp": 1767083183.8466108
+      },
+      "elements_count": 6
+    },
+    {
+      "id": "basic_000217",
+      "theme": "macos_dark",
+      "resolution": "2560x1440",
+      "operation": {
+        "action": "double_click",
+        "target_element": "icon",
+        "target_bounds": [
+          947,
+          1196,
+          1007,
+          1256
+        ],
+        "target_text": "图标3",
+        "params": {},
+        "timestamp": 1767083183.9292147
+      },
+      "elements_count": 6
+    },
+    {
+      "id": "basic_000218",
+      "theme": "windows_dark",
+      "resolution": "3840x2160",
+      "operation": {
+        "action": "left_click",
+        "target_element": "icon",
+        "target_bounds": [
+          911,
+          1826,
+          971,
+          1886
+        ],
+        "target_text": "图标3",
+        "params": {},
+        "timestamp": 1767083183.9703643
+      },
+      "elements_count": 7
+    },
+    {
+      "id": "basic_000219",
+      "theme": "macos_light",
+      "resolution": "3840x2160",
+      "operation": {
+        "action": "double_click",
+        "target_element": "icon",
+        "target_bounds": [
+          3412,
+          1574,
+          3472,
+          1634
+        ],
+        "target_text": "图标3",
+        "params": {},
+        "timestamp": 1767083184.071635
+      },
+      "elements_count": 4
+    },
+    {
+      "id": "basic_000220",
+      "theme": "windows_dark",
+      "resolution": "1920x1080",
+      "operation": {
+        "action": "double_click",
+        "target_element": "icon",
+        "target_bounds": [
+          395,
+          584,
+          455,
+          644
+        ],
+        "target_text": "图标1",
+        "params": {},
+        "timestamp": 1767083184.163693
+      },
+      "elements_count": 4
+    },
+    {
+      "id": "basic_000221",
+      "theme": "windows_dark",
+      "resolution": "3840x2160",
+      "operation": {
+        "action": "left_click",
+        "target_element": "button",
+        "target_bounds": [
+          10,
+          2125,
+          80,
+          2155
+        ],
+        "target_text": "开始",
+        "params": {},
+        "timestamp": 1767083184.198321
+      },
+      "elements_count": 4
+    },
+    {
+      "id": "basic_000222",
+      "theme": "macos_dark",
+      "resolution": "1920x1080",
+      "operation": {
+        "action": "double_click",
+        "target_element": "icon",
+        "target_bounds": [
+          1405,
+          419,
+          1465,
+          479
+        ],
+        "target_text": "图标2",
+        "params": {},
+        "timestamp": 1767083184.2831192
+      },
+      "elements_count": 4
+    },
+    {
+      "id": "basic_000223",
+      "theme": "macos_dark",
+      "resolution": "1920x1080",
+      "operation": {
+        "action": "double_click",
+        "target_element": "icon",
+        "target_bounds": [
+          1255,
+          219,
+          1315,
+          279
+        ],
+        "target_text": "图标2",
+        "params": {},
+        "timestamp": 1767083184.3114274
+      },
+      "elements_count": 6
+    },
+    {
+      "id": "basic_000224",
+      "theme": "macos_dark",
+      "resolution": "1366x768",
+      "operation": {
+        "action": "double_click",
+        "target_element": "icon",
+        "target_bounds": [
+          370,
+          598,
+          430,
+          658
+        ],
+        "target_text": "图标3",
+        "params": {},
+        "timestamp": 1767083184.340291
+      },
+      "elements_count": 4
+    },
+    {
+      "id": "basic_000225",
+      "theme": "macos_dark",
+      "resolution": "2560x1440",
+      "operation": {
+        "action": "double_click",
+        "target_element": "icon",
+        "target_bounds": [
+          91,
+          407,
+          151,
+          467
+        ],
+        "target_text": "图标5",
+        "params": {},
+        "timestamp": 1767083184.359705
+      },
+      "elements_count": 6
+    },
+    {
+      "id": "basic_000226",
+      "theme": "windows_dark",
+      "resolution": "1920x1080",
+      "operation": {
+        "action": "double_click",
+        "target_element": "icon",
+        "target_bounds": [
+          1440,
+          267,
+          1500,
+          327
+        ],
+        "target_text": "图标3",
+        "params": {},
+        "timestamp": 1767083184.3990326
+      },
+      "elements_count": 6
+    },
+    {
+      "id": "basic_000227",
+      "theme": "macos_light",
+      "resolution": "2560x1440",
+      "operation": {
+        "action": "double_click",
+        "target_element": "icon",
+        "target_bounds": [
+          717,
+          248,
+          777,
+          308
+        ],
+        "target_text": "图标2",
+        "params": {},
+        "timestamp": 1767083184.4307263
+      },
+      "elements_count": 7
+    },
+    {
+      "id": "basic_000228",
+      "theme": "macos_light",
+      "resolution": "2560x1440",
+      "operation": {
+        "action": "double_click",
+        "target_element": "icon",
+        "target_bounds": [
+          251,
+          909,
+          311,
+          969
+        ],
+        "target_text": "图标2",
+        "params": {},
+        "timestamp": 1767083184.4715998
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "basic_000229",
+      "theme": "macos_light",
+      "resolution": "1366x768",
+      "operation": {
+        "action": "double_click",
+        "target_element": "icon",
+        "target_bounds": [
+          694,
+          474,
+          754,
+          534
+        ],
+        "target_text": "图标1",
+        "params": {},
+        "timestamp": 1767083184.5105503
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "basic_000230",
+      "theme": "windows_dark",
+      "resolution": "1366x768",
+      "operation": {
+        "action": "left_click",
+        "target_element": "icon",
+        "target_bounds": [
+          1078,
+          354,
+          1138,
+          414
+        ],
+        "target_text": "图标2",
+        "params": {},
+        "timestamp": 1767083184.5314546
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "basic_000231",
+      "theme": "macos_light",
+      "resolution": "2560x1440",
+      "operation": {
+        "action": "double_click",
+        "target_element": "icon",
+        "target_bounds": [
+          236,
+          793,
+          296,
+          853
+        ],
+        "target_text": "图标4",
+        "params": {},
+        "timestamp": 1767083184.5507033
+      },
+      "elements_count": 9
+    },
+    {
+      "id": "basic_000232",
+      "theme": "windows_light",
+      "resolution": "1920x1080",
+      "operation": {
+        "action": "right_click",
+        "target_element": "icon",
+        "target_bounds": [
+          1020,
+          366,
+          1080,
+          426
+        ],
+        "target_text": "图标7",
+        "params": {},
+        "timestamp": 1767083184.590791
+      },
+      "elements_count": 9
+    },
+    {
+      "id": "basic_000233",
+      "theme": "windows_dark",
+      "resolution": "2560x1440",
+      "operation": {
+        "action": "left_click",
+        "target_element": "icon",
+        "target_bounds": [
+          2187,
+          177,
+          2247,
+          237
+        ],
+        "target_text": "图标4",
+        "params": {},
+        "timestamp": 1767083184.6217856
+      },
+      "elements_count": 9
+    },
+    {
+      "id": "basic_000234",
+      "theme": "macos_light",
+      "resolution": "3840x2160",
+      "operation": {
+        "action": "double_click",
+        "target_element": "icon",
+        "target_bounds": [
+          2640,
+          818,
+          2700,
+          878
+        ],
+        "target_text": "图标4",
+        "params": {},
+        "timestamp": 1767083184.673546
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "basic_000235",
+      "theme": "macos_light",
+      "resolution": "2560x1440",
+      "operation": {
+        "action": "left_click",
+        "target_element": "button",
+        "target_bounds": [
+          10,
+          1405,
+          80,
+          1435
+        ],
+        "target_text": "开始",
+        "params": {},
+        "timestamp": 1767083184.758892
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "basic_000236",
+      "theme": "macos_light",
+      "resolution": "2560x1440",
+      "operation": {
+        "action": "right_click",
+        "target_element": "icon",
+        "target_bounds": [
+          1093,
+          1155,
+          1153,
+          1215
+        ],
+        "target_text": "图标3",
+        "params": {},
+        "timestamp": 1767083184.797135
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "basic_000237",
+      "theme": "windows_light",
+      "resolution": "2560x1440",
+      "operation": {
+        "action": "double_click",
+        "target_element": "icon",
+        "target_bounds": [
+          2284,
+          1053,
+          2344,
+          1113
+        ],
+        "target_text": "图标2",
+        "params": {},
+        "timestamp": 1767083184.8339863
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "basic_000238",
+      "theme": "windows_dark",
+      "resolution": "1920x1080",
+      "operation": {
+        "action": "double_click",
+        "target_element": "icon",
+        "target_bounds": [
+          1121,
+          493,
+          1181,
+          553
+        ],
+        "target_text": "图标4",
+        "params": {},
+        "timestamp": 1767083184.8801172
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "basic_000239",
+      "theme": "macos_light",
+      "resolution": "2560x1440",
+      "operation": {
+        "action": "left_click",
+        "target_element": "button",
+        "target_bounds": [
+          10,
+          1405,
+          80,
+          1435
+        ],
+        "target_text": "开始",
+        "params": {},
+        "timestamp": 1767083184.9083614
+      },
+      "elements_count": 9
+    },
+    {
+      "id": "basic_000240",
+      "theme": "windows_light",
+      "resolution": "1366x768",
+      "operation": {
+        "action": "left_click",
+        "target_element": "icon",
+        "target_bounds": [
+          765,
+          483,
+          825,
+          543
+        ],
+        "target_text": "图标3",
+        "params": {},
+        "timestamp": 1767083184.947787
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "basic_000241",
+      "theme": "windows_dark",
+      "resolution": "1920x1080",
+      "operation": {
+        "action": "left_click",
+        "target_element": "icon",
+        "target_bounds": [
+          1198,
+          508,
+          1258,
+          568
+        ],
+        "target_text": "图标2",
+        "params": {},
+        "timestamp": 1767083184.9533365
+      },
+      "elements_count": 4
+    },
+    {
+      "id": "basic_000242",
+      "theme": "windows_light",
+      "resolution": "2560x1440",
+      "operation": {
+        "action": "left_click",
+        "target_element": "icon",
+        "target_bounds": [
+          416,
+          964,
+          476,
+          1024
+        ],
+        "target_text": "图标6",
+        "params": {},
+        "timestamp": 1767083184.9838376
+      },
+      "elements_count": 7
+    },
+    {
+      "id": "basic_000243",
+      "theme": "windows_light",
+      "resolution": "1366x768",
+      "operation": {
+        "action": "double_click",
+        "target_element": "icon",
+        "target_bounds": [
+          154,
+          339,
+          214,
+          399
+        ],
+        "target_text": "图标4",
+        "params": {},
+        "timestamp": 1767083185.0205956
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "basic_000244",
+      "theme": "windows_dark",
+      "resolution": "2560x1440",
+      "operation": {
+        "action": "left_click",
+        "target_element": "icon",
+        "target_bounds": [
+          2092,
+          626,
+          2152,
+          686
+        ],
+        "target_text": "图标2",
+        "params": {},
+        "timestamp": 1767083185.0364974
+      },
+      "elements_count": 4
+    },
+    {
+      "id": "basic_000245",
+      "theme": "macos_dark",
+      "resolution": "1366x768",
+      "operation": {
+        "action": "double_click",
+        "target_element": "icon",
+        "target_bounds": [
+          655,
+          59,
+          715,
+          119
+        ],
+        "target_text": "图标1",
+        "params": {},
+        "timestamp": 1767083185.072458
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "basic_000246",
+      "theme": "windows_dark",
+      "resolution": "1366x768",
+      "operation": {
+        "action": "left_click",
+        "target_element": "icon",
+        "target_bounds": [
+          622,
+          319,
+          682,
+          379
+        ],
+        "target_text": "图标1",
+        "params": {},
+        "timestamp": 1767083185.0877638
+      },
+      "elements_count": 7
+    },
+    {
+      "id": "basic_000247",
+      "theme": "macos_dark",
+      "resolution": "1366x768",
+      "operation": {
+        "action": "double_click",
+        "target_element": "icon",
+        "target_bounds": [
+          1136,
+          392,
+          1196,
+          452
+        ],
+        "target_text": "图标6",
+        "params": {},
+        "timestamp": 1767083185.099218
+      },
+      "elements_count": 8
+    },
+    {
+      "id": "basic_000248",
+      "theme": "macos_dark",
+      "resolution": "1920x1080",
+      "operation": {
+        "action": "right_click",
+        "target_element": "icon",
+        "target_bounds": [
+          1305,
+          816,
+          1365,
+          876
+        ],
+        "target_text": "图标2",
+        "params": {},
+        "timestamp": 1767083185.120055
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "basic_000249",
+      "theme": "macos_dark",
+      "resolution": "2560x1440",
+      "operation": {
+        "action": "left_click",
+        "target_element": "icon",
+        "target_bounds": [
+          1162,
+          1064,
+          1222,
+          1124
+        ],
+        "target_text": "图标3",
+        "params": {},
+        "timestamp": 1767083185.145574
+      },
+      "elements_count": 7
+    }
+  ]
+}

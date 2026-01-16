@@ -1,0 +1,21 @@
+# AI智能桌面操作员项目依赖
+PyYAML>=6.0
+numpy>=1.21.0
+opencv-python>=4.5.0
+Pillow>=8.3.0
+tensorflow>=2.8.0
+PyQt6>=6.3.0
+torch>=1.12.0
+torchvision>=0.13.0
+requests>=2.25.0
+openai>=1.0.0
+pyautogui>=0.9.52
+keyboard>=0.13.5
+mouse>=0.6.1
+scikit-learn>=1.0.0
+pandas>=1.3.0
+matplotlib>=3.4.0
+seaborn>=0.11.0
+selenium>=4.15.0
+psutil>=5.9.0
+pyperclip>=1.8.2

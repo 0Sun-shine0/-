@@ -1,0 +1,71 @@
+# AI智能桌面操作员项目配置文件
+# DeepSeek API配置
+# 请通过环境变量 `DEEPSEEK_API_KEY` 提供，不要在此文件中写入明文密钥
+DEEPSEEK_API_URL: "https://api.deepseek.com/v1"
+DEEPSEEK_MODEL: "deepseek-reasoner"
+MAX_TOKENS: 6000
+
+# 屏幕分析配置
+SCREEN_CAPTURE_INTERVAL: 0.5
+SCREEN_REGION: null
+SCREEN_RESIZE: [640, 480]
+
+# 动作配置
+AVAILABLE_ACTIONS:
+  - 'left_click'           # 左键单击
+  - 'left_double_click'    # 左键双击
+  - 'left_click_and_hold'  # 左键按住
+  - 'left_long_press'      # 左键长按
+  - 'right_click'          # 右键单击
+  - 'right_double_click'   # 右键双击
+  - 'right_click_and_hold' # 右键按住
+  - 'right_long_press'     # 右键长按
+  - 'middle_click'         # 中键点击
+  - 'double_click'         # 双击
+  - 'drag_start'           # 开始拖拽
+  - 'drag_end'             # 结束拖拽
+  - 'scroll_pixels'        # 滚动指定像素量
+  - 'smooth_scroll'        # 平滑滚动
+  - 'horizontal_scroll'    # 水平滚动
+  - 'keyboard_input'       # 键盘输入
+  - 'paste_via_clipboard'  # 通过剪贴板粘贴大块文本
+  - 'hotkey_press'         # 快捷键
+  - 'window_focus'         # 窗口聚焦
+  - 'window_minimize'      # 最小化窗口
+  - 'window_maximize'      # 最大化窗口
+  - 'window_close'         # 关闭窗口
+  - 'copy_selection'       # 复制选择
+  - 'paste_content'        # 粘贴内容
+  - 'undo_action'          # 撤销操作
+  - 'redo_action'          # 重做操作
+  - 'save_file'            # 保存文件
+  - 'open_file'            # 打开文件
+  - 'search_text'          # 搜索文本
+  - 'navigate_back'        # 后退
+  - 'navigate_forward'     # 前进
+  - 'refresh_page'         # 刷新页面
+  - 'switch_tab'           # 切换标签页
+  - 'new_tab'              # 新建标签页
+  - 'close_tab'            # 关闭标签页
+
+# 模型训练配置
+TRAIN_BATCH_SIZE: 32
+TRAIN_EPOCHS: 100
+LEARNING_RATE: 0.001
+VALIDATION_SPLIT: 0.2
+
+# 数据集配置
+DATASET_SIZE: 10000
+AUGMENTATION_FACTOR: 5
+
+# GUI配置
+UI_REFRESH_RATE: 30
+THEME: "dark"
+
+# 日志配置
+LOG_LEVEL: "INFO"
+LOG_FORMAT: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+
+# 性能配置
+MAX_MEMORY_USAGE: 4096
+MAX_CPU_USAGE: 0.8

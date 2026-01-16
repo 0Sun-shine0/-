@@ -1,0 +1,108 @@
+{
+  "sample_id": "basic_000164",
+  "image_path": "samples\\basic_000164\\screenshot.png",
+  "operation": {
+    "action": "double_click",
+    "target_element": "icon",
+    "target_bounds": [
+      1437,
+      515,
+      1497,
+      575
+    ],
+    "target_text": "图标5",
+    "params": {},
+    "timestamp": 1767083181.7510118
+  },
+  "elements": [
+    {
+      "type": "button",
+      "bounds": [
+        10,
+        2125,
+        80,
+        2155
+      ],
+      "text": "开始",
+      "action": "open_start_menu"
+    },
+    {
+      "type": "icon",
+      "bounds": [
+        3390,
+        74,
+        3450,
+        134
+      ],
+      "text": "图标1",
+      "action": "double_click"
+    },
+    {
+      "type": "icon",
+      "bounds": [
+        1057,
+        1634,
+        1117,
+        1694
+      ],
+      "text": "图标2",
+      "action": "double_click"
+    },
+    {
+      "type": "icon",
+      "bounds": [
+        474,
+        1984,
+        534,
+        2044
+      ],
+      "text": "图标3",
+      "action": "double_click"
+    },
+    {
+      "type": "icon",
+      "bounds": [
+        2793,
+        1808,
+        2853,
+        1868
+      ],
+      "text": "图标4",
+      "action": "double_click"
+    },
+    {
+      "type": "icon",
+      "bounds": [
+        1437,
+        515,
+        1497,
+        575
+      ],
+      "text": "图标5",
+      "action": "double_click"
+    },
+    {
+      "type": "icon",
+      "bounds": [
+        294,
+        1585,
+        354,
+        1645
+      ],
+      "text": "图标6",
+      "action": "double_click"
+    },
+    {
+      "type": "icon",
+      "bounds": [
+        2874,
+        226,
+        2934,
+        286
+      ],
+      "text": "图标7",
+      "action": "double_click"
+    }
+  ],
+  "created_at": "2025-12-30T16:26:21.822469"
+}

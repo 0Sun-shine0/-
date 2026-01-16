@@ -1,0 +1,75 @@
+{
+  "sample_id": "basic_000080",
+  "image_path": "samples\\basic_000080\\screenshot.png",
+  "operation": {
+    "action": "right_click",
+    "target_element": "icon",
+    "target_bounds": [
+      782,
+      615,
+      842,
+      675
+    ],
+    "target_text": "图标1",
+    "params": {},
+    "timestamp": 1767083178.4627686
+  },
+  "elements": [
+    {
+      "type": "button",
+      "bounds": [
+        10,
+        733,
+        80,
+        763
+      ],
+      "text": "开始",
+      "action": "open_start_menu"
+    },
+    {
+      "type": "icon",
+      "bounds": [
+        782,
+        615,
+        842,
+        675
+      ],
+      "text": "图标1",
+      "action": "double_click"
+    },
+    {
+      "type": "icon",
+      "bounds": [
+        259,
+        351,
+        319,
+        411
+      ],
+      "text": "图标2",
+      "action": "double_click"
+    },
+    {
+      "type": "icon",
+      "bounds": [
+        615,
+        235,
+        675,
+        295
+      ],
+      "text": "图标3",
+      "action": "double_click"
+    },
+    {
+      "type": "icon",
+      "bounds": [
+        800,
+        319,
+        860,
+        379
+      ],
+      "text": "图标4",
+      "action": "double_click"
+    }
+  ],
+  "created_at": "2025-12-30T16:26:18.473864"
+}

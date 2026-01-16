@@ -1,0 +1,1524 @@
+{
+  "name": "text_editor_operations_v1",
+  "created_at": "2025-12-30T16:26:26.436057",
+  "num_samples": 83,
+  "app_type": "text_editor",
+  "samples": [
+    {
+      "id": "text_editor_000000",
+      "app_name": "Notepad++",
+      "operation": {
+        "action": "click_toolbar",
+        "target_element": "sidebar",
+        "target_bounds": [
+          0,
+          70,
+          200,
+          900
+        ],
+        "target_text": "",
+        "params": {},
+        "timestamp": 1767083186.4360576
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "text_editor_000001",
+      "app_name": "VSCode",
+      "operation": {
+        "action": "click_editor",
+        "target_element": "toolbar",
+        "target_bounds": [
+          0,
+          30,
+          1600,
+          70
+        ],
+        "target_text": "",
+        "params": {},
+        "timestamp": 1767083186.4510455
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "text_editor_000002",
+      "app_name": "Word",
+      "operation": {
+        "action": "type_text",
+        "target_element": "toolbar",
+        "target_bounds": [
+          0,
+          30,
+          1600,
+          70
+        ],
+        "target_text": "",
+        "params": {
+          "text": "document content"
+        },
+        "timestamp": 1767083186.4627452
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "text_editor_000003",
+      "app_name": "Word",
+      "operation": {
+        "action": "click_editor",
+        "target_element": "toolbar",
+        "target_bounds": [
+          0,
+          30,
+          1600,
+          70
+        ],
+        "target_text": "",
+        "params": {},
+        "timestamp": 1767083186.4714086
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "text_editor_000004",
+      "app_name": "Sublime",
+      "operation": {
+        "action": "click_menu",
+        "target_element": "editor",
+        "target_bounds": [
+          200,
+          70,
+          1600,
+          900
+        ],
+        "target_text": "# Welcome to Code Editor\nprint('Hello World')",
+        "params": {},
+        "timestamp": 1767083186.4868279
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "text_editor_000005",
+      "app_name": "VSCode",
+      "operation": {
+        "action": "click_sidebar",
+        "target_element": "editor",
+        "target_bounds": [
+          200,
+          70,
+          1600,
+          900
+        ],
+        "target_text": "# Welcome to Code Editor\nprint('Hello World')",
+        "params": {},
+        "timestamp": 1767083186.5027509
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "text_editor_000006",
+      "app_name": "Notepad++",
+      "operation": {
+        "action": "click_toolbar",
+        "target_element": "toolbar",
+        "target_bounds": [
+          0,
+          30,
+          1600,
+          70
+        ],
+        "target_text": "",
+        "params": {},
+        "timestamp": 1767083186.5187454
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "text_editor_000007",
+      "app_name": "VSCode",
+      "operation": {
+        "action": "click_sidebar",
+        "target_element": "editor",
+        "target_bounds": [
+          200,
+          70,
+          1600,
+          900
+        ],
+        "target_text": "# Welcome to Code Editor\nprint('Hello World')",
+        "params": {},
+        "timestamp": 1767083186.5340514
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "text_editor_000008",
+      "app_name": "VSCode",
+      "operation": {
+        "action": "click_editor",
+        "target_element": "menu",
+        "target_bounds": [
+          0,
+          0,
+          1600,
+          30
+        ],
+        "target_text": "文件 编辑 视图 帮助",
+        "params": {},
+        "timestamp": 1767083186.5520854
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "text_editor_000009",
+      "app_name": "VSCode",
+      "operation": {
+        "action": "click_editor",
+        "target_element": "menu",
+        "target_bounds": [
+          0,
+          0,
+          1600,
+          30
+        ],
+        "target_text": "文件 编辑 视图 帮助",
+        "params": {},
+        "timestamp": 1767083186.5632293
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "text_editor_000010",
+      "app_name": "Word",
+      "operation": {
+        "action": "click_toolbar",
+        "target_element": "toolbar",
+        "target_bounds": [
+          0,
+          30,
+          1600,
+          70
+        ],
+        "target_text": "",
+        "params": {},
+        "timestamp": 1767083186.5817275
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "text_editor_000011",
+      "app_name": "VSCode",
+      "operation": {
+        "action": "click_editor",
+        "target_element": "menu",
+        "target_bounds": [
+          0,
+          0,
+          1600,
+          30
+        ],
+        "target_text": "文件 编辑 视图 帮助",
+        "params": {},
+        "timestamp": 1767083186.5966947
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "text_editor_000012",
+      "app_name": "Notepad++",
+      "operation": {
+        "action": "type_text",
+        "target_element": "editor",
+        "target_bounds": [
+          200,
+          70,
+          1600,
+          900
+        ],
+        "target_text": "# Welcome to Code Editor\nprint('Hello World')",
+        "params": {
+          "text": "document content"
+        },
+        "timestamp": 1767083186.6119094
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "text_editor_000013",
+      "app_name": "VSCode",
+      "operation": {
+        "action": "click_sidebar",
+        "target_element": "menu",
+        "target_bounds": [
+          0,
+          0,
+          1600,
+          30
+        ],
+        "target_text": "文件 编辑 视图 帮助",
+        "params": {},
+        "timestamp": 1767083186.6276677
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "text_editor_000014",
+      "app_name": "Word",
+      "operation": {
+        "action": "click_menu",
+        "target_element": "menu",
+        "target_bounds": [
+          0,
+          0,
+          1600,
+          30
+        ],
+        "target_text": "文件 编辑 视图 帮助",
+        "params": {},
+        "timestamp": 1767083186.6400578
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "text_editor_000015",
+      "app_name": "Notepad++",
+      "operation": {
+        "action": "click_toolbar",
+        "target_element": "menu",
+        "target_bounds": [
+          0,
+          0,
+          1600,
+          30
+        ],
+        "target_text": "文件 编辑 视图 帮助",
+        "params": {},
+        "timestamp": 1767083186.648765
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "text_editor_000016",
+      "app_name": "Notepad++",
+      "operation": {
+        "action": "click_menu",
+        "target_element": "sidebar",
+        "target_bounds": [
+          0,
+          70,
+          200,
+          900
+        ],
+        "target_text": "",
+        "params": {},
+        "timestamp": 1767083186.6691475
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "text_editor_000017",
+      "app_name": "VSCode",
+      "operation": {
+        "action": "click_menu",
+        "target_element": "toolbar",
+        "target_bounds": [
+          0,
+          30,
+          1600,
+          70
+        ],
+        "target_text": "",
+        "params": {},
+        "timestamp": 1767083186.68086
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "text_editor_000018",
+      "app_name": "Sublime",
+      "operation": {
+        "action": "click_menu",
+        "target_element": "toolbar",
+        "target_bounds": [
+          0,
+          30,
+          1600,
+          70
+        ],
+        "target_text": "",
+        "params": {},
+        "timestamp": 1767083186.6968315
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "text_editor_000019",
+      "app_name": "VSCode",
+      "operation": {
+        "action": "click_toolbar",
+        "target_element": "toolbar",
+        "target_bounds": [
+          0,
+          30,
+          1600,
+          70
+        ],
+        "target_text": "",
+        "params": {},
+        "timestamp": 1767083186.7181654
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "text_editor_000020",
+      "app_name": "Word",
+      "operation": {
+        "action": "click_menu",
+        "target_element": "editor",
+        "target_bounds": [
+          200,
+          70,
+          1600,
+          900
+        ],
+        "target_text": "# Welcome to Code Editor\nprint('Hello World')",
+        "params": {},
+        "timestamp": 1767083186.727866
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "text_editor_000021",
+      "app_name": "Word",
+      "operation": {
+        "action": "click_toolbar",
+        "target_element": "toolbar",
+        "target_bounds": [
+          0,
+          30,
+          1600,
+          70
+        ],
+        "target_text": "",
+        "params": {},
+        "timestamp": 1767083186.7421587
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "text_editor_000022",
+      "app_name": "Word",
+      "operation": {
+        "action": "type_text",
+        "target_element": "menu",
+        "target_bounds": [
+          0,
+          0,
+          1600,
+          30
+        ],
+        "target_text": "文件 编辑 视图 帮助",
+        "params": {
+          "text": "document content"
+        },
+        "timestamp": 1767083186.7517111
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "text_editor_000023",
+      "app_name": "Notepad++",
+      "operation": {
+        "action": "click_toolbar",
+        "target_element": "toolbar",
+        "target_bounds": [
+          0,
+          30,
+          1600,
+          70
+        ],
+        "target_text": "",
+        "params": {},
+        "timestamp": 1767083186.7701795
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "text_editor_000024",
+      "app_name": "VSCode",
+      "operation": {
+        "action": "click_toolbar",
+        "target_element": "editor",
+        "target_bounds": [
+          200,
+          70,
+          1600,
+          900
+        ],
+        "target_text": "# Welcome to Code Editor\nprint('Hello World')",
+        "params": {},
+        "timestamp": 1767083186.7877622
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "text_editor_000025",
+      "app_name": "Word",
+      "operation": {
+        "action": "click_editor",
+        "target_element": "editor",
+        "target_bounds": [
+          200,
+          70,
+          1600,
+          900
+        ],
+        "target_text": "# Welcome to Code Editor\nprint('Hello World')",
+        "params": {},
+        "timestamp": 1767083186.8003888
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "text_editor_000026",
+      "app_name": "Notepad++",
+      "operation": {
+        "action": "click_editor",
+        "target_element": "editor",
+        "target_bounds": [
+          200,
+          70,
+          1600,
+          900
+        ],
+        "target_text": "# Welcome to Code Editor\nprint('Hello World')",
+        "params": {},
+        "timestamp": 1767083186.8105752
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "text_editor_000027",
+      "app_name": "Notepad++",
+      "operation": {
+        "action": "click_toolbar",
+        "target_element": "sidebar",
+        "target_bounds": [
+          0,
+          70,
+          200,
+          900
+        ],
+        "target_text": "",
+        "params": {},
+        "timestamp": 1767083186.8263805
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "text_editor_000028",
+      "app_name": "Sublime",
+      "operation": {
+        "action": "type_text",
+        "target_element": "editor",
+        "target_bounds": [
+          200,
+          70,
+          1600,
+          900
+        ],
+        "target_text": "# Welcome to Code Editor\nprint('Hello World')",
+        "params": {
+          "text": "test code"
+        },
+        "timestamp": 1767083186.8398426
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "text_editor_000029",
+      "app_name": "Notepad++",
+      "operation": {
+        "action": "click_toolbar",
+        "target_element": "toolbar",
+        "target_bounds": [
+          0,
+          30,
+          1600,
+          70
+        ],
+        "target_text": "",
+        "params": {},
+        "timestamp": 1767083186.8537831
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "text_editor_000030",
+      "app_name": "Notepad++",
+      "operation": {
+        "action": "click_toolbar",
+        "target_element": "sidebar",
+        "target_bounds": [
+          0,
+          70,
+          200,
+          900
+        ],
+        "target_text": "",
+        "params": {},
+        "timestamp": 1767083186.8753874
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "text_editor_000031",
+      "app_name": "Sublime",
+      "operation": {
+        "action": "click_menu",
+        "target_element": "sidebar",
+        "target_bounds": [
+          0,
+          70,
+          200,
+          900
+        ],
+        "target_text": "",
+        "params": {},
+        "timestamp": 1767083186.8845294
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "text_editor_000032",
+      "app_name": "Word",
+      "operation": {
+        "action": "type_text",
+        "target_element": "toolbar",
+        "target_bounds": [
+          0,
+          30,
+          1600,
+          70
+        ],
+        "target_text": "",
+        "params": {
+          "text": "test code"
+        },
+        "timestamp": 1767083186.9014177
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "text_editor_000033",
+      "app_name": "Notepad++",
+      "operation": {
+        "action": "click_editor",
+        "target_element": "editor",
+        "target_bounds": [
+          200,
+          70,
+          1600,
+          900
+        ],
+        "target_text": "# Welcome to Code Editor\nprint('Hello World')",
+        "params": {},
+        "timestamp": 1767083186.9180615
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "text_editor_000034",
+      "app_name": "Word",
+      "operation": {
+        "action": "click_sidebar",
+        "target_element": "menu",
+        "target_bounds": [
+          0,
+          0,
+          1600,
+          30
+        ],
+        "target_text": "文件 编辑 视图 帮助",
+        "params": {},
+        "timestamp": 1767083186.9291787
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "text_editor_000035",
+      "app_name": "Sublime",
+      "operation": {
+        "action": "type_text",
+        "target_element": "sidebar",
+        "target_bounds": [
+          0,
+          70,
+          200,
+          900
+        ],
+        "target_text": "",
+        "params": {
+          "text": "test code"
+        },
+        "timestamp": 1767083186.9464047
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "text_editor_000036",
+      "app_name": "Notepad++",
+      "operation": {
+        "action": "click_menu",
+        "target_element": "menu",
+        "target_bounds": [
+          0,
+          0,
+          1600,
+          30
+        ],
+        "target_text": "文件 编辑 视图 帮助",
+        "params": {},
+        "timestamp": 1767083186.9568694
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "text_editor_000037",
+      "app_name": "Notepad++",
+      "operation": {
+        "action": "click_sidebar",
+        "target_element": "sidebar",
+        "target_bounds": [
+          0,
+          70,
+          200,
+          900
+        ],
+        "target_text": "",
+        "params": {},
+        "timestamp": 1767083186.9724789
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "text_editor_000038",
+      "app_name": "VSCode",
+      "operation": {
+        "action": "click_editor",
+        "target_element": "editor",
+        "target_bounds": [
+          200,
+          70,
+          1600,
+          900
+        ],
+        "target_text": "# Welcome to Code Editor\nprint('Hello World')",
+        "params": {},
+        "timestamp": 1767083186.9876237
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "text_editor_000039",
+      "app_name": "Sublime",
+      "operation": {
+        "action": "click_toolbar",
+        "target_element": "sidebar",
+        "target_bounds": [
+          0,
+          70,
+          200,
+          900
+        ],
+        "target_text": "",
+        "params": {},
+        "timestamp": 1767083186.997988
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "text_editor_000040",
+      "app_name": "Notepad++",
+      "operation": {
+        "action": "click_menu",
+        "target_element": "toolbar",
+        "target_bounds": [
+          0,
+          30,
+          1600,
+          70
+        ],
+        "target_text": "",
+        "params": {},
+        "timestamp": 1767083187.0185618
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "text_editor_000041",
+      "app_name": "Notepad++",
+      "operation": {
+        "action": "click_toolbar",
+        "target_element": "toolbar",
+        "target_bounds": [
+          0,
+          30,
+          1600,
+          70
+        ],
+        "target_text": "",
+        "params": {},
+        "timestamp": 1767083187.0325902
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "text_editor_000042",
+      "app_name": "Word",
+      "operation": {
+        "action": "click_sidebar",
+        "target_element": "sidebar",
+        "target_bounds": [
+          0,
+          70,
+          200,
+          900
+        ],
+        "target_text": "",
+        "params": {},
+        "timestamp": 1767083187.0472286
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "text_editor_000043",
+      "app_name": "Word",
+      "operation": {
+        "action": "click_toolbar",
+        "target_element": "sidebar",
+        "target_bounds": [
+          0,
+          70,
+          200,
+          900
+        ],
+        "target_text": "",
+        "params": {},
+        "timestamp": 1767083187.0574808
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "text_editor_000044",
+      "app_name": "VSCode",
+      "operation": {
+        "action": "click_toolbar",
+        "target_element": "sidebar",
+        "target_bounds": [
+          0,
+          70,
+          200,
+          900
+        ],
+        "target_text": "",
+        "params": {},
+        "timestamp": 1767083187.080148
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "text_editor_000045",
+      "app_name": "Notepad++",
+      "operation": {
+        "action": "click_editor",
+        "target_element": "sidebar",
+        "target_bounds": [
+          0,
+          70,
+          200,
+          900
+        ],
+        "target_text": "",
+        "params": {},
+        "timestamp": 1767083187.0883253
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "text_editor_000046",
+      "app_name": "Notepad++",
+      "operation": {
+        "action": "type_text",
+        "target_element": "sidebar",
+        "target_bounds": [
+          0,
+          70,
+          200,
+          900
+        ],
+        "target_text": "",
+        "params": {
+          "text": "test code"
+        },
+        "timestamp": 1767083187.1091487
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "text_editor_000047",
+      "app_name": "Notepad++",
+      "operation": {
+        "action": "click_menu",
+        "target_element": "menu",
+        "target_bounds": [
+          0,
+          0,
+          1600,
+          30
+        ],
+        "target_text": "文件 编辑 视图 帮助",
+        "params": {},
+        "timestamp": 1767083187.1250083
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "text_editor_000048",
+      "app_name": "VSCode",
+      "operation": {
+        "action": "click_menu",
+        "target_element": "menu",
+        "target_bounds": [
+          0,
+          0,
+          1600,
+          30
+        ],
+        "target_text": "文件 编辑 视图 帮助",
+        "params": {},
+        "timestamp": 1767083187.140032
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "text_editor_000049",
+      "app_name": "Notepad++",
+      "operation": {
+        "action": "click_menu",
+        "target_element": "sidebar",
+        "target_bounds": [
+          0,
+          70,
+          200,
+          900
+        ],
+        "target_text": "",
+        "params": {},
+        "timestamp": 1767083187.1567523
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "text_editor_000050",
+      "app_name": "Word",
+      "operation": {
+        "action": "type_text",
+        "target_element": "sidebar",
+        "target_bounds": [
+          0,
+          70,
+          200,
+          900
+        ],
+        "target_text": "",
+        "params": {
+          "text": "test code"
+        },
+        "timestamp": 1767083187.1689324
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "text_editor_000051",
+      "app_name": "VSCode",
+      "operation": {
+        "action": "type_text",
+        "target_element": "editor",
+        "target_bounds": [
+          200,
+          70,
+          1600,
+          900
+        ],
+        "target_text": "# Welcome to Code Editor\nprint('Hello World')",
+        "params": {
+          "text": "Hello World"
+        },
+        "timestamp": 1767083187.1850252
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "text_editor_000052",
+      "app_name": "VSCode",
+      "operation": {
+        "action": "click_editor",
+        "target_element": "toolbar",
+        "target_bounds": [
+          0,
+          30,
+          1600,
+          70
+        ],
+        "target_text": "",
+        "params": {},
+        "timestamp": 1767083187.2002642
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "text_editor_000053",
+      "app_name": "Word",
+      "operation": {
+        "action": "click_toolbar",
+        "target_element": "sidebar",
+        "target_bounds": [
+          0,
+          70,
+          200,
+          900
+        ],
+        "target_text": "",
+        "params": {},
+        "timestamp": 1767083187.2071626
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "text_editor_000054",
+      "app_name": "Notepad++",
+      "operation": {
+        "action": "click_menu",
+        "target_element": "toolbar",
+        "target_bounds": [
+          0,
+          30,
+          1600,
+          70
+        ],
+        "target_text": "",
+        "params": {},
+        "timestamp": 1767083187.2283578
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "text_editor_000055",
+      "app_name": "Notepad++",
+      "operation": {
+        "action": "click_toolbar",
+        "target_element": "toolbar",
+        "target_bounds": [
+          0,
+          30,
+          1600,
+          70
+        ],
+        "target_text": "",
+        "params": {},
+        "timestamp": 1767083187.2416637
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "text_editor_000056",
+      "app_name": "Word",
+      "operation": {
+        "action": "click_toolbar",
+        "target_element": "toolbar",
+        "target_bounds": [
+          0,
+          30,
+          1600,
+          70
+        ],
+        "target_text": "",
+        "params": {},
+        "timestamp": 1767083187.2578444
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "text_editor_000057",
+      "app_name": "VSCode",
+      "operation": {
+        "action": "click_editor",
+        "target_element": "sidebar",
+        "target_bounds": [
+          0,
+          70,
+          200,
+          900
+        ],
+        "target_text": "",
+        "params": {},
+        "timestamp": 1767083187.2683253
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "text_editor_000058",
+      "app_name": "Sublime",
+      "operation": {
+        "action": "click_toolbar",
+        "target_element": "toolbar",
+        "target_bounds": [
+          0,
+          30,
+          1600,
+          70
+        ],
+        "target_text": "",
+        "params": {},
+        "timestamp": 1767083187.2864048
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "text_editor_000059",
+      "app_name": "Notepad++",
+      "operation": {
+        "action": "click_editor",
+        "target_element": "menu",
+        "target_bounds": [
+          0,
+          0,
+          1600,
+          30
+        ],
+        "target_text": "文件 编辑 视图 帮助",
+        "params": {},
+        "timestamp": 1767083187.301151
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "text_editor_000060",
+      "app_name": "Notepad++",
+      "operation": {
+        "action": "click_menu",
+        "target_element": "toolbar",
+        "target_bounds": [
+          0,
+          30,
+          1600,
+          70
+        ],
+        "target_text": "",
+        "params": {},
+        "timestamp": 1767083187.314002
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "text_editor_000061",
+      "app_name": "Sublime",
+      "operation": {
+        "action": "click_editor",
+        "target_element": "toolbar",
+        "target_bounds": [
+          0,
+          30,
+          1600,
+          70
+        ],
+        "target_text": "",
+        "params": {},
+        "timestamp": 1767083187.3292181
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "text_editor_000062",
+      "app_name": "VSCode",
+      "operation": {
+        "action": "click_sidebar",
+        "target_element": "toolbar",
+        "target_bounds": [
+          0,
+          30,
+          1600,
+          70
+        ],
+        "target_text": "",
+        "params": {},
+        "timestamp": 1767083187.3424313
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "text_editor_000063",
+      "app_name": "Sublime",
+      "operation": {
+        "action": "click_menu",
+        "target_element": "toolbar",
+        "target_bounds": [
+          0,
+          30,
+          1600,
+          70
+        ],
+        "target_text": "",
+        "params": {},
+        "timestamp": 1767083187.3597322
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "text_editor_000064",
+      "app_name": "Sublime",
+      "operation": {
+        "action": "type_text",
+        "target_element": "menu",
+        "target_bounds": [
+          0,
+          0,
+          1600,
+          30
+        ],
+        "target_text": "文件 编辑 视图 帮助",
+        "params": {
+          "text": "test code"
+        },
+        "timestamp": 1767083187.3769813
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "text_editor_000065",
+      "app_name": "Notepad++",
+      "operation": {
+        "action": "click_sidebar",
+        "target_element": "editor",
+        "target_bounds": [
+          200,
+          70,
+          1600,
+          900
+        ],
+        "target_text": "# Welcome to Code Editor\nprint('Hello World')",
+        "params": {},
+        "timestamp": 1767083187.3906543
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "text_editor_000066",
+      "app_name": "VSCode",
+      "operation": {
+        "action": "click_toolbar",
+        "target_element": "menu",
+        "target_bounds": [
+          0,
+          0,
+          1600,
+          30
+        ],
+        "target_text": "文件 编辑 视图 帮助",
+        "params": {},
+        "timestamp": 1767083187.404914
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "text_editor_000067",
+      "app_name": "Word",
+      "operation": {
+        "action": "click_sidebar",
+        "target_element": "toolbar",
+        "target_bounds": [
+          0,
+          30,
+          1600,
+          70
+        ],
+        "target_text": "",
+        "params": {},
+        "timestamp": 1767083187.4195318
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "text_editor_000068",
+      "app_name": "Notepad++",
+      "operation": {
+        "action": "click_menu",
+        "target_element": "menu",
+        "target_bounds": [
+          0,
+          0,
+          1600,
+          30
+        ],
+        "target_text": "文件 编辑 视图 帮助",
+        "params": {},
+        "timestamp": 1767083187.4261534
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "text_editor_000069",
+      "app_name": "VSCode",
+      "operation": {
+        "action": "click_menu",
+        "target_element": "toolbar",
+        "target_bounds": [
+          0,
+          30,
+          1600,
+          70
+        ],
+        "target_text": "",
+        "params": {},
+        "timestamp": 1767083187.4456744
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "text_editor_000070",
+      "app_name": "Notepad++",
+      "operation": {
+        "action": "click_menu",
+        "target_element": "editor",
+        "target_bounds": [
+          200,
+          70,
+          1600,
+          900
+        ],
+        "target_text": "# Welcome to Code Editor\nprint('Hello World')",
+        "params": {},
+        "timestamp": 1767083187.456926
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "text_editor_000071",
+      "app_name": "Notepad++",
+      "operation": {
+        "action": "click_editor",
+        "target_element": "sidebar",
+        "target_bounds": [
+          0,
+          70,
+          200,
+          900
+        ],
+        "target_text": "",
+        "params": {},
+        "timestamp": 1767083187.4707956
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "text_editor_000072",
+      "app_name": "Word",
+      "operation": {
+        "action": "click_sidebar",
+        "target_element": "sidebar",
+        "target_bounds": [
+          0,
+          70,
+          200,
+          900
+        ],
+        "target_text": "",
+        "params": {},
+        "timestamp": 1767083187.4816122
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "text_editor_000073",
+      "app_name": "Word",
+      "operation": {
+        "action": "click_toolbar",
+        "target_element": "editor",
+        "target_bounds": [
+          200,
+          70,
+          1600,
+          900
+        ],
+        "target_text": "# Welcome to Code Editor\nprint('Hello World')",
+        "params": {},
+        "timestamp": 1767083187.50149
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "text_editor_000074",
+      "app_name": "Word",
+      "operation": {
+        "action": "click_sidebar",
+        "target_element": "menu",
+        "target_bounds": [
+          0,
+          0,
+          1600,
+          30
+        ],
+        "target_text": "文件 编辑 视图 帮助",
+        "params": {},
+        "timestamp": 1767083187.518716
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "text_editor_000075",
+      "app_name": "VSCode",
+      "operation": {
+        "action": "type_text",
+        "target_element": "sidebar",
+        "target_bounds": [
+          0,
+          70,
+          200,
+          900
+        ],
+        "target_text": "",
+        "params": {
+          "text": "Hello World"
+        },
+        "timestamp": 1767083187.5263844
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "text_editor_000076",
+      "app_name": "Sublime",
+      "operation": {
+        "action": "click_editor",
+        "target_element": "editor",
+        "target_bounds": [
+          200,
+          70,
+          1600,
+          900
+        ],
+        "target_text": "# Welcome to Code Editor\nprint('Hello World')",
+        "params": {},
+        "timestamp": 1767083187.5466464
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "text_editor_000077",
+      "app_name": "VSCode",
+      "operation": {
+        "action": "click_sidebar",
+        "target_element": "menu",
+        "target_bounds": [
+          0,
+          0,
+          1600,
+          30
+        ],
+        "target_text": "文件 编辑 视图 帮助",
+        "params": {},
+        "timestamp": 1767083187.554179
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "text_editor_000078",
+      "app_name": "Word",
+      "operation": {
+        "action": "click_menu",
+        "target_element": "menu",
+        "target_bounds": [
+          0,
+          0,
+          1600,
+          30
+        ],
+        "target_text": "文件 编辑 视图 帮助",
+        "params": {},
+        "timestamp": 1767083187.5752032
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "text_editor_000079",
+      "app_name": "Word",
+      "operation": {
+        "action": "click_menu",
+        "target_element": "editor",
+        "target_bounds": [
+          200,
+          70,
+          1600,
+          900
+        ],
+        "target_text": "# Welcome to Code Editor\nprint('Hello World')",
+        "params": {},
+        "timestamp": 1767083187.585298
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "text_editor_000080",
+      "app_name": "VSCode",
+      "operation": {
+        "action": "click_menu",
+        "target_element": "editor",
+        "target_bounds": [
+          200,
+          70,
+          1600,
+          900
+        ],
+        "target_text": "# Welcome to Code Editor\nprint('Hello World')",
+        "params": {},
+        "timestamp": 1767083187.60286
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "text_editor_000081",
+      "app_name": "Word",
+      "operation": {
+        "action": "click_toolbar",
+        "target_element": "editor",
+        "target_bounds": [
+          200,
+          70,
+          1600,
+          900
+        ],
+        "target_text": "# Welcome to Code Editor\nprint('Hello World')",
+        "params": {},
+        "timestamp": 1767083187.6195045
+      },
+      "elements_count": 5
+    },
+    {
+      "id": "text_editor_000082",
+      "app_name": "VSCode",
+      "operation": {
+        "action": "click_sidebar",
+        "target_element": "editor",
+        "target_bounds": [
+          200,
+          70,
+          1600,
+          900
+        ],
+        "target_text": "# Welcome to Code Editor\nprint('Hello World')",
+        "params": {},
+        "timestamp": 1767083187.6352267
+      },
+      "elements_count": 5
+    }
+  ]
+}

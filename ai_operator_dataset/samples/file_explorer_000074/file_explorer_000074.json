@@ -1,0 +1,108 @@
+{
+  "sample_id": "file_explorer_000074",
+  "image_path": "samples\\file_explorer_000074\\screenshot.png",
+  "operation": {
+    "action": "click_sidebar",
+    "target_element": "file",
+    "target_bounds": [
+      220,
+      130,
+      600,
+      160
+    ],
+    "target_text": "文件3.txt",
+    "params": {},
+    "timestamp": 1767083188.7833297
+  },
+  "elements": [
+    {
+      "type": "input",
+      "bounds": [
+        50,
+        10,
+        1500,
+        45
+      ],
+      "text": "C:\\Users\\Documents",
+      "action": "click_input"
+    },
+    {
+      "type": "sidebar",
+      "bounds": [
+        0,
+        50,
+        200,
+        850
+      ],
+      "text": "",
+      "action": "click_sidebar"
+    },
+    {
+      "type": "list",
+      "bounds": [
+        200,
+        50,
+        1600,
+        850
+      ],
+      "text": "",
+      "action": "click_file"
+    },
+    {
+      "type": "file",
+      "bounds": [
+        220,
+        70,
+        600,
+        100
+      ],
+      "text": "文件1.txt",
+      "action": "click_file"
+    },
+    {
+      "type": "file",
+      "bounds": [
+        220,
+        100,
+        600,
+        130
+      ],
+      "text": "文件2.txt",
+      "action": "click_file"
+    },
+    {
+      "type": "file",
+      "bounds": [
+        220,
+        130,
+        600,
+        160
+      ],
+      "text": "文件3.txt",
+      "action": "click_file"
+    },
+    {
+      "type": "file",
+      "bounds": [
+        220,
+        160,
+        600,
+        190
+      ],
+      "text": "文件4.txt",
+      "action": "click_file"
+    },
+    {
+      "type": "file",
+      "bounds": [
+        220,
+        190,
+        600,
+        220
+      ],
+      "text": "文件5.txt",
+      "action": "click_file"
+    }
+  ],
+  "created_at": "2025-12-30T16:26:28.799180"
+}
