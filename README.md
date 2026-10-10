@@ -73,8 +73,15 @@ scripts/
 └── export_onnx.py           # 导出 ONNX
 
 tests/
-└── test_desktop_pipeline.py # ★ 32 项单测（含生成器因果性与坐标头回归测试）
+├── test_desktop_pipeline.py # 数据集 / 模型 / 生成器回归测试
+└── test_app_integration.py  # ★ 配置加载、统一推理入口、GUI 能否真正启动
 ```
+
+> 根目录原本还有 8 个早期脚手架脚本（`prepare_dataset.py`、`model_evaluation.py`、
+> `model_finetuning.py`、`enhanced_training.py`、`ai_operator_complete.py`、
+> `desktop_automation_main.py`、`improved_desktop_automation.py`、`ai_operator_integration.py`）。
+> 它们都基于已被替换的旧接口（`EnhancedCNN(14)`、把 `actions` 头当成 `[x, y, 12类概率]`），
+> 引用的 checkpoint 也不存在，运行只会输出随机结果，**已全部删除**（git 历史中仍可找回）。
 
 ## 安装
 
@@ -91,12 +98,26 @@ ResNet50 的 ImageNet 预训练权重已缓存在 `~/.cache/torch/hub/checkpoint
 
 ## 配置 API 密钥
 
+三种方式，任选其一（**项目根目录的 `.env` 会被自动加载**）：
+
 ```powershell
-$env:DEEPSEEK_API_KEY = "your_api_key_here"      # 当前会话
-setx DEEPSEEK_API_KEY "your_api_key_here"        # 永久
+# 方式一：项目根目录的 .env（推荐，已在 .gitignore 中）
+#   .env 内容示例：  DEEPSEEK_API_KEY=sk-xxxxxxxx
+
+# 方式二：当前会话
+$env:DEEPSEEK_API_KEY = "your_api_key_here"
+
+# 方式三：永久
+setx DEEPSEEK_API_KEY "your_api_key_here"
 ```
 
-不要把密钥写进代码或提交 `.env`（见文首警告）。
+优先级：**非空的环境变量 > `.env`**。若环境变量存在但为空（Windows 上
+`$env:KEY=""` 会留下一个已定义的空变量），则视为未设置，继续回落到 `.env`。
+
+> 密钥是**可选**的：没有密钥时 GUI 仍能正常启动，屏幕分析（本地模型）完全可用，
+> 只有 DeepSeek 相关的"自然语言任务理解"会走兜底分支。界面上会明确标注状态。
+>
+> 不要把密钥写进代码或提交 `.env`（见文首警告）。
 
 ---
 
@@ -288,10 +309,43 @@ setx DEEPSEEK_API_KEY "your_api_key_here"        # 永久
 ### 第 3 步 图形界面 / 其他模式
 
 ```powershell
-python -m ai_operator.main --mode gui        # PyQt6 界面
-python -m ai_operator.main --mode test       # 简单自检
-python -m ai_operator.main --mode workflow --topic "人工智能发展趋势" --requirements "{\"length\": \"1000字\"}"
+.venv\Scripts\python.exe -m ai_operator.main --mode gui    # PyQt6 界面
+.venv\Scripts\python.exe -m ai_operator.main --mode test   # 自检
 ```
+
+**图形界面**（现已接入训练成果）：
+
+- 启动时自动扫描 `models/`，默认加载最佳模型；右侧"模型配置"下拉框可切换其他已训练模型，
+  每项都带关键指标（如 `desktop_v3_coord（12类, 准确率100%, 坐标8px）`）。
+- 点"捕获屏幕"→ 全分辨率截图 → 用已加载模型预测 → 结果显示**动作名 + 中文说明 + 置信度 +
+  真实屏幕像素坐标 + Top-3 候选**（以前显示的是一串类别整数索引，无法判断模型预测了什么）。
+- 没有可用模型时，界面会明确写出"未加载屏幕分析模型"并给出训练命令，
+  而不是静默使用随机权重（那会让界面看起来在工作、实际全是噪声）。
+- 没有 DeepSeek 密钥时界面照常启动，只在"模型配置"区标注状态。
+
+**自检** `--mode test` 会逐项报告：配置路径、DeepSeek 密钥是否可用、屏幕分析模型
+（名称/类别数/输入尺寸/坐标头类型/训练指标）、数据处理器。它不会因为缺少
+密钥或模型而失败，而是如实说明缺什么。
+
+**写作工作流** `--mode workflow`：
+
+```powershell
+# 注意 PowerShell 会吞掉内层双引号，JSON 参数必须写成 '{\"k\": \"v\"}' 这种形式
+.venv\Scripts\python.exe -m ai_operator.main --mode workflow `
+    --topic "人工智能发展趋势" `
+    --requirements '{\"length\": \"1000字\", \"tone\": \"专业\"}'
+```
+
+> 这条命令以前是**跑不通的**：`WritingWorkflow` 调用了
+> `keyboard_controller.press_shortcut()` 与 `press_key()`，而控制器提供的
+> 其实是 `hotkey(*keys)` 与 `press(key)`，一执行就 `AttributeError`（已修复，
+> 并加了全仓库静态检查防止再犯）。README 原先给出的双引号写法在 PowerShell 下
+> 也会被吞掉引号、导致 JSON 解析失败，上面是实测可用的写法。
+
+> 一致性说明：GUI 与 `scripts/demo_desktop_agent.py` 现在共用
+> `ai_operator/models/inference.py` 的 `ScreenPredictor`。已验证 GUI 的预测结果与
+> 评估 CSV **逐样本完全一致**（79/79 动作相同、坐标偏差 0.00 px），
+> 因此界面上看到的数字与 README 中的指标是同一套。
 
 ### 第 4 步 导出 ONNX（可选，部署用）
 
@@ -511,33 +565,40 @@ v3 也一样：第 3 轮就达到 100% 准确率并保存，而第 7 轮的坐�
 
 ## 已知问题 / 后续计划
 
+本次"项目完善"修掉的集成类缺陷（都已加回归测试）：
+
+| 缺陷 | 后果 | 现在 |
+|---|---|---|
+| GUI 用 `EnhancedCNN(34)` 随机初始化、**从不加载权重** | 界面"在工作"，输出全是噪声；34 类与训练好的 12/13 类也对不上 | 自动扫描 `models/`，默认加载最佳模型，下拉框可切换 |
+| GUI 把 OpenCV 的 **numpy 数组**直接喂给模型 | `TypeError: conv2d() received numpy.ndarray` | 统一由 `ScreenPredictor` 做预处理 |
+| `predict()` 对坐标再套一次 `sigmoid`，并乘上模型输入尺寸(224) | 对空间坐标头模型，坐标被压向 0.5；"像素坐标"毫无意义 | 统一走 `decode_points`，返回真实屏幕像素 |
+| 缺 API key 时 `DeepSeekAgent` 急切构造 client | **GUI 连窗口都打不开** | 惰性构造，界面正常启动并标注"未配置密钥" |
+| 项目自带 `.env` 却**无任何代码读取** | 用户按直觉写 `.env` 无效 | 启动时自动加载；非空环境变量优先 |
+| 8 个根目录旧脚本用已废弃接口 | 运行输出垃圾 | 已删除 |
+
+仍待处理：
+
 1. **`.env` 密钥必须人工吊销**（见文首；历史清理脚本已就绪）。
-2. `ai_operator_integration.py` / `desktop_automation_main.py` / `model_finetuning.py` 等旧脚本仍按老接口
-   解析模型输出（把 `actions` 头当成 `[x, y, 12类概率]`），与当前模型定义（`actions` 是分类 logits、
-   坐标在 `mouse_positions`）不一致，且 `ai_operator_dataset/models/ai_operator_model.pth` 并不存在。
-   **演示请统一使用 `scripts/demo_desktop_agent.py`。**
-3. `prepare_dataset.py` 的 `train_model()` 把整份标注直接传给 `DataProcessor._action_to_vector()`，
-   取不到嵌套的 `operation.*` 字段，会让所有标签退化成同一个常量；`model_evaluation.py` 也曾因此
-   报出 accuracy = 1.0 的假结果。真实训练链路已迁到 `ai_operator/data/desktop_dataset.py` +
-   `scripts/train_ai_operator.py`。
-4. `ai_operator_dataset/model_evaluation_results.json` 里的满分指标来自上述 bug，不可信。
-5. `enhanced_training.py` / `model_finetuning.py` 里的 `EnhancedCNN` 与 `model_evaluation.py` 的
-   坐标解析逻辑仍是旧接口（对 `mouse_positions` 直接 `sigmoid`）。新代码请用
-   `ai_operator.models.cnn_model.decode_points()`，它会根据 `spatial_coord` 自动选择正确的解码方式。
-6. `scripts/export_onnx.py` 的 opset 默认值已从 11 提到 18（原因见上文）。
+   另外自检发现该密钥对应账户**余额不足**（调用返回 `402 Insufficient Balance`），
+   所以即使密钥有效，DeepSeek 相关功能也需要先充值。
+2. `scripts/export_onnx.py` 的 opset 默认值已从 11 提到 18（原因见上文）。
    若显式传 `--opset 11`，会看到 `axes_input_to_attribute` / `Failed to convert` 报错文本，
    那是 ONNX 版本转换器的内部行为，**不影响导出结果**（模型会保留在 18）。
-7. `dataset_creator.create_app_specific_dataset()` 的 `num_samples` 会被
+3. `dataset_creator.create_app_specific_dataset()` 的 `num_samples` 会被
    `basic/app` 的比例整除后取整，实际产出可能略少于请求数量（如请求 80 得到 79）。
    这不会影响训练，但如果你依赖精确样本数，请以生成清单里的实际数字为准。
-8. **不要用 PowerShell 的 `Set-Content`/`Out-File` 直接改写仓库里的 UTF-8 文件**：
-   Windows PowerShell 5.1 默认按 ANSI(GBK) 写出，会把中文全部变成乱码。
-   需要改文件请用编辑器/`edit` 工具，或显式 `-Encoding utf8`。
-   （本次开发中 README 就被这样破坏过一次，靠 git 才恢复回来。）
-9. `--augment-shift` 平移增强在本合成数据集上是负收益，默认关闭。
+4. **不要用 PowerShell 的 `Set-Content`/`Out-File` 直接改写仓库里的 UTF-8 文件**：
+   Windows PowerShell 5.1 默认按 ANSI(GBK) 写出，会把中文全部变成乱码；而
+   `-Encoding UTF8` 又会**写入 BOM**（本次重构时 demo 脚本就被加了 BOM，已清理）。
+   需要改文件请用编辑器/`edit` 工具。
+5. `--augment-shift` 平移增强在本合成数据集上是负收益，默认关闭。
    若要启用，请先用 `--monitor coord` 做 A/B 对比再决定。
-10. 仓库里已不再跟踪 `__pycache__/*.pyc`（本次已用 `git rm --cached` 清理），
-    `.gitignore` 也已覆盖 `/models/`、`ai_operator_dataset_v2/v3/`、`reports/live_*.png`。
+6. `ai_operator/models/training_pipeline.py` 与 `ai_operator/main.py --mode train` 走的是
+   早期"单个 JSON 数据集"的旧训练路径（不支持 `--spatial-coord`、不做数据增强）。
+   真实训练请用 `scripts/train_ai_operator.py`；该模块保留是因为 `tests/test_training_pipeline.py`
+   仍在覆盖它，且它对小规模 JSON 数据仍有参考价值。
+7. 仓库里已不再跟踪 `__pycache__/*.pyc`，`.gitignore` 也已覆盖 `/models/`、
+   `ai_operator_dataset_v2/v3/`、`reports/live_*.png`。
 
 ## 注意事项
 
