@@ -65,6 +65,7 @@ scripts/
 ├── build_dataset_from_creator.py  # ★ 用已修复的生成器产出数据集 v3 + 因果性审计
 ├── train_ai_operator.py     # ★ 真正可用的训练脚本
 ├── demo_desktop_agent.py    # ★ 演示脚本（eval / image / live 三种模式）
+├── make_demo_gif.py         # ★ 把预测结果做成演示 GIF
 ├── repair_screenshots.py    # ★ 修复 v1 数据集里的空白截图
 ├── purge_env_from_git_history.ps1  # ★ 从 git 历史中清除 .env
 ├── train_example.py         # 合成数据冒烟训练
@@ -72,7 +73,7 @@ scripts/
 └── export_onnx.py           # 导出 ONNX
 
 tests/
-└── test_desktop_pipeline.py # ★ 29 项单测（含生成器因果性与坐标头回归测试）
+└── test_desktop_pipeline.py # ★ 32 项单测（含生成器因果性与坐标头回归测试）
 ```
 
 ## 安装
@@ -247,6 +248,42 @@ setx DEEPSEEK_API_KEY "your_api_key_here"        # 永久
 > `--min-confidence` 用于过滤低置信度预测。
 > 注意 `--mode live` 会把当时的屏幕内容存成 `reports/live_*.png`（已在 `.gitignore` 中忽略），
 > 不需要的话直接删掉即可。
+
+### 演示 GIF
+
+```powershell
+# 用 eval 产出的逐样本预测生成一张动图（默认输出 reports/demo.gif）
+.venv\Scripts\python.exe scripts\make_demo_gif.py
+
+# 调整尺寸 / 每应用样本数 / 放大倍数
+.venv\Scripts\python.exe scripts\make_demo_gif.py --scale 560 --per-app 1 --zoom-divisor 2
+```
+
+![演示 GIF](reports/demo.gif)
+
+**这张 GIF 是什么、不是什么**（画面上也标注了同样的说明）：
+
+- 它**不是**"智能体自主完成任务"的录屏。当前模型是**单步、静态截图**预测器：
+  输入一张截图，输出"该执行哪个动作 + 点哪里"。它没有时间维度、不会多步规划。
+  圆环从画面中心飞向落点只是**视觉引导**，不是模型走出来的轨迹。
+- 每张截图里的**白色箭头是数据集自带的光标**（位置=标注目标中心，即标准答案）；
+  **黄圈才是模型预测的落点**，两者之差就是误差。
+- 画面是**以目标为中心的 1/3 放大区域**，右上角小图给出全屏位置。
+  不放大不行：4K 截图整屏缩到 640px 后，图标只有十几像素，根本看不清。
+
+实现上有三个细节是踩坑之后才对的：
+
+1. **不能整个屏幕直接缩放**：3840×2160 缩到 640 宽后光标与图标都糊成小块。
+   改为按目标裁剪 1/N 再放大。注意面板里光标的视觉大小恒为 `42.9×N` 像素
+   （与屏幕分辨率无关，因为光标本身按屏宽等比生成），所以 N 越大光标越夸张、
+   越会遮住目标；`--zoom-divisor` 默认 3 是折中值。
+2. **不要用 ✓/✗ 这类符号**：中文字体里没有对应字形，PIL 会渲染成豆腐块（□）。
+   改用"动作正确/动作错误"汉字。已加测试固化。
+3. **预测标记需要深色描边**：纯黄色圆环在浅色主题（240,240,240 背景）上对比度不足，
+   先画粗深色再叠亮色，浅色/深色主题下都清晰。
+
+另外 `optimize=True` 会**合并相邻完全相同的帧**并把时长累加（本例 50 帧存成 47 帧，
+总时长仍为 16.7s），这是正常行为，不是丢帧。
 
 ### 第 3 步 图形界面 / 其他模式
 
