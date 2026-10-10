@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env pwsh
+#!/usr/bin/env pwsh
 <#
 .SYNOPSIS
     从 git 全部历史中彻底删除 .env（含已泄露的 API 密钥）。
@@ -34,7 +34,11 @@
 param(
     [switch]$Execute,
     [string]$Remote = "origin",
-    [string]$PathToRemove = ".env"
+    [string]$PathToRemove = ".env",
+    # 只重写历史、不推送。用于"先清除历史、验证无误后再手动推送"的分步流程。
+    # 注意不能靠 -Remote "" 来跳过：PowerShell 的 -File 参数绑定会把空字符串
+    # 当成"缺少参数"而直接报错。
+    [switch]$NoPush
 )
 
 $ErrorActionPreference = "Stop"
@@ -71,10 +75,12 @@ $backupTag = "backup-before-purge-$(Get-Date -Format 'yyyyMMdd-HHmmss')"
 if (-not $Execute) {
     Write-Step "演练模式（未做任何修改）"
     Write-Host "将执行的操作："
-    Write-Host "  1. git tag $backupTag --all            # 备份标签（可随时回退）"
+    Write-Host "  1. 为每个本地分支创建备份标签 $backupTag-<分支名>（可随时回退）"
     Write-Host "  2. git filter-branch --index-filter 'git rm --cached --ignore-unmatch $PathToRemove' --prune-empty -- --all"
     Write-Host "  3. 清理 refs/original、reflog、gc"
-    if ($Remote) {
+    if ($NoPush) {
+        Write-Host "  4. （-NoPush）只重写本地历史，不推送"
+    } elseif ($Remote) {
         Write-Host "  4. git push $Remote --force --all 与 --tags"
     }
     Write-Host "`n确认无误后重跑并加上 -Execute。"
@@ -84,9 +90,19 @@ if (-not $Execute) {
 
 # ---------------------------------------------------------------------------
 Write-Step "① 创建备份标签"
-git tag $backupTag --all 2>$null
-if ($LASTEXITCODE -ne 0) { Write-Warn "备份标签创建失败（可能已存在），继续" }
-else { Write-Host "已创建备份标签: $backupTag（回退: git reset --hard $backupTag）" }
+# 为每个本地分支各打一个标签。
+# 注意不能用 `git tag <name> --all`：git tag 不接受 --all 来"给所有引用打标签"，
+# 那会直接报 `error: unknown option 'all'`（早先版本就因此中止）。
+# 由于后续会 expire reflog + gc，只有标签能可靠保住旧提交。
+$backupBranches = git for-each-ref --format='%(refname:short)' refs/heads
+if (-not $backupBranches) { throw "没有找到任何本地分支，中止" }
+foreach ($b in $backupBranches) {
+    $tagName = "$backupTag-$b"
+    git tag -f $tagName $b 2>$null
+    if ($LASTEXITCODE -ne 0) { throw "创建备份标签失败: $tagName（中止，未做任何修改）" }
+    Write-Host "  已创建: $tagName -> $b"
+}
+Write-Host "回退方式: git reset --hard <上面对应的标签名>"
 
 Write-Step "② 重写历史"
 $filter = if (Get-Command git-filter-repo -ErrorAction SilentlyContinue) {
@@ -122,7 +138,12 @@ $keyLeft = git rev-list --objects --all |
 if ($keyLeft) { Write-Warn "历史中仍能匹配到密钥字符串，请人工复查" }
 else { Write-Host "干净：历史中已匹配不到 sk- 密钥" }
 
-if ($Remote) {
+if ($NoPush) {
+    Write-Step "⑤ 跳过推送（-NoPush）"
+    Write-Host "历史已在本地重写完成。确认无误后可自行推送，例如："
+    Write-Host "  git push $Remote --force --all"
+    Write-Host "  git push $Remote --force --tags"
+} elseif ($Remote) {
     Write-Step "⑤ force push 到 $Remote"
     Write-Warn "这一步会覆盖远端历史，协作者必须重新 clone 或 hard reset。"
     git push $Remote --force --all
