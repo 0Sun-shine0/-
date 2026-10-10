@@ -1,0 +1,101 @@
+{
+  "split": "test",
+  "num_samples": 79,
+  "draw_cursor": false,
+  "action_top1": 1.0,
+  "action_top3": 1.0,
+  "majority_baseline": 0.45569620253164556,
+  "majority_action": "double_click",
+  "random_baseline": 0.08333333333333333,
+  "coord_mean_err_px": 12.778597151595132,
+  "coord_median_err_px": 9.512584684220895,
+  "app_level_accuracy": 0.9113924050632911,
+  "app_level_detail": [
+    {
+      "app": "basic",
+      "label": "桌面 (basic)",
+      "total": 40,
+      "correct": 40,
+      "acc": 1.0
+    },
+    {
+      "app": "file_explorer",
+      "label": "文件资源管理器",
+      "total": 13,
+      "correct": 12,
+      "acc": 0.9230769230769231
+    },
+    {
+      "app": "text_editor",
+      "label": "文本编辑器",
+      "total": 13,
+      "correct": 13,
+      "acc": 1.0
+    },
+    {
+      "app": "web_browser",
+      "label": "浏览器",
+      "total": 13,
+      "correct": 7,
+      "acc": 0.5384615384615384
+    }
+  ],
+  "causal_dataset": true,
+  "per_app_majority_action": {
+    "basic": "double_click",
+    "file_explorer": "click_file",
+    "text_editor": "click_toolbar",
+    "web_browser": "click_tab"
+  },
+  "per_class": {
+    "double_click": {
+      "total": 36,
+      "correct": 36
+    },
+    "click_file": {
+      "total": 10,
+      "correct": 10
+    },
+    "click_toolbar": {
+      "total": 7,
+      "correct": 7
+    },
+    "left_click": {
+      "total": 5,
+      "correct": 5
+    },
+    "click_sidebar": {
+      "total": 5,
+      "correct": 5
+    },
+    "click_tab": {
+      "total": 5,
+      "correct": 5
+    },
+    "click_address_bar": {
+      "total": 3,
+      "correct": 3
+    },
+    "type_text": {
+      "total": 3,
+      "correct": 3
+    },
+    "click_menu": {
+      "total": 2,
+      "correct": 2
+    },
+    "scroll_list": {
+      "total": 1,
+      "correct": 1
+    },
+    "click_link": {
+      "total": 1,
+      "correct": 1
+    },
+    "scroll_page": {
+      "total": 1,
+      "correct": 1
+    }
+  },
+  "top_confusions": []
+}
