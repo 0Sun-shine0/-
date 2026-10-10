@@ -7,8 +7,12 @@
 """
 import argparse
 import os
+import sys
 import numpy as np
 import torch
+
+# ensure project root is on sys.path so scripts can be run from scripts/
+sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
 
 try:
     import onnxruntime as ort
