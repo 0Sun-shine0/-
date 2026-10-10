@@ -1,0 +1,95 @@
+{
+  "note": "朴素闭环，用于演示退化现象",
+  "steps": [
+    {
+      "step": 1,
+      "cursor": [
+        1920,
+        1080
+      ],
+      "pred_action": "scroll_page",
+      "pred_point": [
+        1900,
+        1084
+      ],
+      "moved_px": 20.396078054371138,
+      "widget_kind": null,
+      "effect": "该位置没有控件"
+    },
+    {
+      "step": 2,
+      "cursor": [
+        1900,
+        1084
+      ],
+      "pred_action": "double_click",
+      "pred_point": [
+        1909,
+        1078
+      ],
+      "moved_px": 10.816653826391969,
+      "widget_kind": null,
+      "effect": "该位置没有控件"
+    },
+    {
+      "step": 3,
+      "cursor": [
+        1909,
+        1078
+      ],
+      "pred_action": "double_click",
+      "pred_point": [
+        1907,
+        1078
+      ],
+      "moved_px": 2.0,
+      "widget_kind": null,
+      "effect": "该位置没有控件"
+    },
+    {
+      "step": 4,
+      "cursor": [
+        1907,
+        1078
+      ],
+      "pred_action": "double_click",
+      "pred_point": [
+        1910,
+        1076
+      ],
+      "moved_px": 3.605551275463989,
+      "widget_kind": null,
+      "effect": "该位置没有控件"
+    },
+    {
+      "step": 5,
+      "cursor": [
+        1910,
+        1076
+      ],
+      "pred_action": "double_click",
+      "pred_point": [
+        1903,
+        1078
+      ],
+      "moved_px": 7.280109889280518,
+      "widget_kind": null,
+      "effect": "该位置没有控件"
+    },
+    {
+      "step": 6,
+      "cursor": [
+        1903,
+        1078
+      ],
+      "pred_action": "double_click",
+      "pred_point": [
+        1912,
+        1076
+      ],
+      "moved_px": 9.219544457292887,
+      "widget_kind": null,
+      "effect": "该位置没有控件"
+    }
+  ]
+}

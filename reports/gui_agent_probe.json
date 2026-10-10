@@ -1,0 +1,130 @@
+{
+  "surface": "Qt DemoWindow（无烘烤光标）",
+  "window": [
+    1600,
+    900
+  ],
+  "mean_cursor_follow_px": 70.88208580137402,
+  "mean_cursor_follow_ratio": 0.018458876510774484,
+  "trials": [
+    {
+      "cursor": [
+        384.0,
+        216.0
+      ],
+      "cursor_frac": [
+        0.1,
+        0.1
+      ],
+      "pred_action": "double_click",
+      "pred_point": [
+        436,
+        202
+      ],
+      "distance_px": 53.85164807134504,
+      "widget_kind": null
+    },
+    {
+      "cursor": [
+        1152.0,
+        648.0
+      ],
+      "cursor_frac": [
+        0.3,
+        0.3
+      ],
+      "pred_action": "double_click",
+      "pred_point": [
+        1175,
+        655
+      ],
+      "distance_px": 24.041630560342615,
+      "widget_kind": null
+    },
+    {
+      "cursor": [
+        1920.0,
+        1080.0
+      ],
+      "cursor_frac": [
+        0.5,
+        0.5
+      ],
+      "pred_action": "scroll_page",
+      "pred_point": [
+        1900,
+        1084
+      ],
+      "distance_px": 20.396078054371138,
+      "widget_kind": null
+    },
+    {
+      "cursor": [
+        2688.0,
+        1512.0
+      ],
+      "cursor_frac": [
+        0.7,
+        0.7
+      ],
+      "pred_action": "double_click",
+      "pred_point": [
+        2767,
+        1507
+      ],
+      "distance_px": 79.1580697086532,
+      "widget_kind": null
+    },
+    {
+      "cursor": [
+        3456.0,
+        1944.0
+      ],
+      "cursor_frac": [
+        0.9,
+        0.9
+      ],
+      "pred_action": "double_click",
+      "pred_point": [
+        3279,
+        1930
+      ],
+      "distance_px": 177.55280904564702,
+      "widget_kind": null
+    },
+    {
+      "cursor": [
+        1920.0,
+        1944.0
+      ],
+      "cursor_frac": [
+        0.5,
+        0.9
+      ],
+      "pred_action": "double_click",
+      "pred_point": [
+        1917,
+        1888
+      ],
+      "distance_px": 56.08029957123981,
+      "widget_kind": null
+    },
+    {
+      "cursor": [
+        3456.0,
+        216.0
+      ],
+      "cursor_frac": [
+        0.9,
+        0.1
+      ],
+      "pred_action": "double_click",
+      "pred_point": [
+        3376,
+        245
+      ],
+      "distance_px": 85.09406559801923,
+      "widget_kind": null
+    }
+  ]
+}

@@ -1,0 +1,533 @@
+{
+  "model": "desktop_v3_coord",
+  "window": {
+    "toolkit": "PyQt6",
+    "platform": "offscreen",
+    "sizing": "每个样本使用其截图原始分辨率",
+    "geometry_source": "样本自身标注的 elements[].bounds"
+  },
+  "note": "点击经 Qt 事件系统投递到真实控件；不接触真实屏幕与鼠标",
+  "metrics": {
+    "action_matches_label": 1.0,
+    "click_hits_widget": 0.875,
+    "action_grounded_in_widget": 0.8125,
+    "effect_signal": 10,
+    "effect_focus": 3,
+    "effect_none": 1,
+    "effect_no_widget": 2
+  },
+  "steps": [
+    {
+      "sample_id": "basic_000000",
+      "app": "basic",
+      "resolution": "3840x2160",
+      "gt_action": "double_click",
+      "gt_target_bounds": [
+        2343,
+        1637,
+        2403,
+        1697
+      ],
+      "gt_target_size_px": [
+        60,
+        60
+      ],
+      "pred_action": "double_click",
+      "confidence": 0.9172079563140869,
+      "pred_point_px": [
+        2392,
+        1672
+      ],
+      "point_to_target_px": 0.0,
+      "point_to_target_ratio": 0.0,
+      "widget_kind_at_point": "icon",
+      "widget_class": "QPushButton",
+      "expected_action_for_widget": "double_click",
+      "action_matches_label": true,
+      "action_grounded_in_widget": true,
+      "click_executed": true,
+      "effect_kind": "signal",
+      "effect": "icon 被点击"
+    },
+    {
+      "sample_id": "file_explorer_000000",
+      "app": "file_explorer",
+      "resolution": "1600x900",
+      "gt_action": "click_file",
+      "gt_target_bounds": [
+        220,
+        160,
+        600,
+        190
+      ],
+      "gt_target_size_px": [
+        380,
+        30
+      ],
+      "pred_action": "click_file",
+      "confidence": 0.936845064163208,
+      "pred_point_px": [
+        402,
+        173
+      ],
+      "point_to_target_px": 0.0,
+      "point_to_target_ratio": 0.0,
+      "widget_kind_at_point": "file",
+      "widget_class": "QPushButton",
+      "expected_action_for_widget": "click_file",
+      "action_matches_label": true,
+      "action_grounded_in_widget": true,
+      "click_executed": true,
+      "effect_kind": "signal",
+      "effect": "file 被点击"
+    },
+    {
+      "sample_id": "text_editor_000000",
+      "app": "text_editor",
+      "resolution": "1600x900",
+      "gt_action": "click_menu",
+      "gt_target_bounds": [
+        0,
+        0,
+        1600,
+        30
+      ],
+      "gt_target_size_px": [
+        1600,
+        30
+      ],
+      "pred_action": "click_menu",
+      "confidence": 0.9761911630630493,
+      "pred_point_px": [
+        795,
+        37
+      ],
+      "point_to_target_px": 7.0,
+      "point_to_target_ratio": 0.004375,
+      "widget_kind_at_point": "toolbar",
+      "widget_class": "QPushButton",
+      "expected_action_for_widget": "click_toolbar",
+      "action_matches_label": true,
+      "action_grounded_in_widget": false,
+      "click_executed": true,
+      "effect_kind": "signal",
+      "effect": "toolbar 被点击"
+    },
+    {
+      "sample_id": "web_browser_000000",
+      "app": "web_browser",
+      "resolution": "1600x900",
+      "gt_action": "click_toolbar",
+      "gt_target_bounds": [
+        50,
+        85,
+        1550,
+        110
+      ],
+      "gt_target_size_px": [
+        1500,
+        25
+      ],
+      "pred_action": "click_toolbar",
+      "confidence": 0.9813812971115112,
+      "pred_point_px": [
+        802,
+        91
+      ],
+      "point_to_target_px": 0.0,
+      "point_to_target_ratio": 0.0,
+      "widget_kind_at_point": "toolbar",
+      "widget_class": "QPushButton",
+      "expected_action_for_widget": "click_toolbar",
+      "action_matches_label": true,
+      "action_grounded_in_widget": true,
+      "click_executed": true,
+      "effect_kind": "signal",
+      "effect": "toolbar 被点击"
+    },
+    {
+      "sample_id": "basic_000001",
+      "app": "basic",
+      "resolution": "2560x1440",
+      "gt_action": "left_click",
+      "gt_target_bounds": [
+        10,
+        1405,
+        80,
+        1435
+      ],
+      "gt_target_size_px": [
+        70,
+        30
+      ],
+      "pred_action": "left_click",
+      "confidence": 0.9286843538284302,
+      "pred_point_px": [
+        108,
+        1379
+      ],
+      "point_to_target_px": 38.2099463490856,
+      "point_to_target_ratio": 0.014925760292611561,
+      "widget_kind_at_point": null,
+      "widget_class": "DemoWindow",
+      "expected_action_for_widget": null,
+      "action_matches_label": true,
+      "action_grounded_in_widget": false,
+      "click_executed": false,
+      "effect_kind": "no_widget",
+      "effect": "该位置没有控件"
+    },
+    {
+      "sample_id": "file_explorer_000001",
+      "app": "file_explorer",
+      "resolution": "1600x900",
+      "gt_action": "click_address_bar",
+      "gt_target_bounds": [
+        50,
+        10,
+        1500,
+        45
+      ],
+      "gt_target_size_px": [
+        1450,
+        35
+      ],
+      "pred_action": "click_address_bar",
+      "confidence": 0.9948976635932922,
+      "pred_point_px": [
+        772,
+        39
+      ],
+      "point_to_target_px": 0.0,
+      "point_to_target_ratio": 0.0,
+      "widget_kind_at_point": "input",
+      "widget_class": "QWidget",
+      "expected_action_for_widget": "click_address_bar",
+      "action_matches_label": true,
+      "action_grounded_in_widget": true,
+      "click_executed": true,
+      "effect_kind": "none",
+      "effect": "无可见变化（控件已处于该状态，如已聚焦/已选中的标签页）"
+    },
+    {
+      "sample_id": "text_editor_000001",
+      "app": "text_editor",
+      "resolution": "1600x900",
+      "gt_action": "click_sidebar",
+      "gt_target_bounds": [
+        0,
+        70,
+        200,
+        900
+      ],
+      "gt_target_size_px": [
+        200,
+        830
+      ],
+      "pred_action": "click_sidebar",
+      "confidence": 0.9168664216995239,
+      "pred_point_px": [
+        97,
+        478
+      ],
+      "point_to_target_px": 0.0,
+      "point_to_target_ratio": 0.0,
+      "widget_kind_at_point": "sidebar",
+      "widget_class": "QListWidget",
+      "expected_action_for_widget": "click_sidebar",
+      "action_matches_label": true,
+      "action_grounded_in_widget": true,
+      "click_executed": true,
+      "effect_kind": "focus",
+      "effect": "焦点转移到 sidebar"
+    },
+    {
+      "sample_id": "web_browser_000001",
+      "app": "web_browser",
+      "resolution": "1600x900",
+      "gt_action": "click_link",
+      "gt_target_bounds": [
+        100,
+        300,
+        300,
+        320
+      ],
+      "gt_target_size_px": [
+        200,
+        20
+      ],
+      "pred_action": "click_link",
+      "confidence": 0.9744879007339478,
+      "pred_point_px": [
+        196,
+        317
+      ],
+      "point_to_target_px": 0.0,
+      "point_to_target_ratio": 0.0,
+      "widget_kind_at_point": "link",
+      "widget_class": "QPushButton",
+      "expected_action_for_widget": "click_link",
+      "action_matches_label": true,
+      "action_grounded_in_widget": true,
+      "click_executed": true,
+      "effect_kind": "signal",
+      "effect": "link 被点击"
+    },
+    {
+      "sample_id": "basic_000002",
+      "app": "basic",
+      "resolution": "1920x1080",
+      "gt_action": "double_click",
+      "gt_target_bounds": [
+        1513,
+        679,
+        1573,
+        739
+      ],
+      "gt_target_size_px": [
+        60,
+        60
+      ],
+      "pred_action": "double_click",
+      "confidence": 0.9222395420074463,
+      "pred_point_px": [
+        1534,
+        700
+      ],
+      "point_to_target_px": 0.0,
+      "point_to_target_ratio": 0.0,
+      "widget_kind_at_point": "icon",
+      "widget_class": "QPushButton",
+      "expected_action_for_widget": "double_click",
+      "action_matches_label": true,
+      "action_grounded_in_widget": true,
+      "click_executed": true,
+      "effect_kind": "signal",
+      "effect": "icon 被点击"
+    },
+    {
+      "sample_id": "file_explorer_000002",
+      "app": "file_explorer",
+      "resolution": "1600x900",
+      "gt_action": "scroll_list",
+      "gt_target_bounds": [
+        200,
+        50,
+        1600,
+        850
+      ],
+      "gt_target_size_px": [
+        1400,
+        800
+      ],
+      "pred_action": "scroll_list",
+      "confidence": 0.9888152480125427,
+      "pred_point_px": [
+        908,
+        456
+      ],
+      "point_to_target_px": 0.0,
+      "point_to_target_ratio": 0.0,
+      "widget_kind_at_point": "list",
+      "widget_class": "QListWidget",
+      "expected_action_for_widget": "scroll_list",
+      "action_matches_label": true,
+      "action_grounded_in_widget": true,
+      "click_executed": true,
+      "effect_kind": "focus",
+      "effect": "焦点转移到 list"
+    },
+    {
+      "sample_id": "text_editor_000002",
+      "app": "text_editor",
+      "resolution": "1600x900",
+      "gt_action": "type_text",
+      "gt_target_bounds": [
+        200,
+        70,
+        1600,
+        900
+      ],
+      "gt_target_size_px": [
+        1400,
+        830
+      ],
+      "pred_action": "type_text",
+      "confidence": 0.9873760938644409,
+      "pred_point_px": [
+        898,
+        491
+      ],
+      "point_to_target_px": 0.0,
+      "point_to_target_ratio": 0.0,
+      "widget_kind_at_point": "editor",
+      "widget_class": "QPlainTextEdit",
+      "expected_action_for_widget": "type_text",
+      "action_matches_label": true,
+      "action_grounded_in_widget": true,
+      "click_executed": true,
+      "effect_kind": "focus",
+      "effect": "焦点转移到 editor"
+    },
+    {
+      "sample_id": "web_browser_000002",
+      "app": "web_browser",
+      "resolution": "1600x900",
+      "gt_action": "click_tab",
+      "gt_target_bounds": [
+        50,
+        50,
+        200,
+        80
+      ],
+      "gt_target_size_px": [
+        150,
+        30
+      ],
+      "pred_action": "click_tab",
+      "confidence": 0.9761205315589905,
+      "pred_point_px": [
+        132,
+        57
+      ],
+      "point_to_target_px": 0.0,
+      "point_to_target_ratio": 0.0,
+      "widget_kind_at_point": "tab",
+      "widget_class": "QTabBar",
+      "expected_action_for_widget": "click_tab",
+      "action_matches_label": true,
+      "action_grounded_in_widget": true,
+      "click_executed": true,
+      "effect_kind": "signal",
+      "effect": "标签页切换到 2"
+    },
+    {
+      "sample_id": "basic_000003",
+      "app": "basic",
+      "resolution": "2560x1440",
+      "gt_action": "double_click",
+      "gt_target_bounds": [
+        729,
+        1073,
+        789,
+        1133
+      ],
+      "gt_target_size_px": [
+        60,
+        60
+      ],
+      "pred_action": "double_click",
+      "confidence": 0.9071296453475952,
+      "pred_point_px": [
+        804,
+        1114
+      ],
+      "point_to_target_px": 15.0,
+      "point_to_target_ratio": 0.005859375,
+      "widget_kind_at_point": null,
+      "widget_class": "DemoWindow",
+      "expected_action_for_widget": null,
+      "action_matches_label": true,
+      "action_grounded_in_widget": false,
+      "click_executed": false,
+      "effect_kind": "no_widget",
+      "effect": "该位置没有控件"
+    },
+    {
+      "sample_id": "file_explorer_000003",
+      "app": "file_explorer",
+      "resolution": "1600x900",
+      "gt_action": "click_file",
+      "gt_target_bounds": [
+        220,
+        130,
+        600,
+        160
+      ],
+      "gt_target_size_px": [
+        380,
+        30
+      ],
+      "pred_action": "click_file",
+      "confidence": 0.9306349158287048,
+      "pred_point_px": [
+        413,
+        147
+      ],
+      "point_to_target_px": 0.0,
+      "point_to_target_ratio": 0.0,
+      "widget_kind_at_point": "file",
+      "widget_class": "QPushButton",
+      "expected_action_for_widget": "click_file",
+      "action_matches_label": true,
+      "action_grounded_in_widget": true,
+      "click_executed": true,
+      "effect_kind": "signal",
+      "effect": "file 被点击"
+    },
+    {
+      "sample_id": "text_editor_000003",
+      "app": "text_editor",
+      "resolution": "1600x900",
+      "gt_action": "click_toolbar",
+      "gt_target_bounds": [
+        0,
+        30,
+        1600,
+        70
+      ],
+      "gt_target_size_px": [
+        1600,
+        40
+      ],
+      "pred_action": "click_toolbar",
+      "confidence": 0.9754319190979004,
+      "pred_point_px": [
+        802,
+        49
+      ],
+      "point_to_target_px": 0.0,
+      "point_to_target_ratio": 0.0,
+      "widget_kind_at_point": "toolbar",
+      "widget_class": "QPushButton",
+      "expected_action_for_widget": "click_toolbar",
+      "action_matches_label": true,
+      "action_grounded_in_widget": true,
+      "click_executed": true,
+      "effect_kind": "signal",
+      "effect": "toolbar 被点击"
+    },
+    {
+      "sample_id": "web_browser_000003",
+      "app": "web_browser",
+      "resolution": "1600x900",
+      "gt_action": "click_tab",
+      "gt_target_bounds": [
+        50,
+        50,
+        200,
+        80
+      ],
+      "gt_target_size_px": [
+        150,
+        30
+      ],
+      "pred_action": "click_tab",
+      "confidence": 0.9761205315589905,
+      "pred_point_px": [
+        132,
+        57
+      ],
+      "point_to_target_px": 0.0,
+      "point_to_target_ratio": 0.0,
+      "widget_kind_at_point": "tab",
+      "widget_class": "QTabBar",
+      "expected_action_for_widget": "click_tab",
+      "action_matches_label": true,
+      "action_grounded_in_widget": true,
+      "click_executed": true,
+      "effect_kind": "signal",
+      "effect": "标签页切换到 2"
+    }
+  ]
+}
