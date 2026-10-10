@@ -1,4 +1,4 @@
-#!/usr/bin/env pwsh
+﻿#!/usr/bin/env pwsh
 <#
 .SYNOPSIS
     从 git 全部历史中彻底删除 .env（含已泄露的 API 密钥）。
