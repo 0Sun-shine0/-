@@ -89,20 +89,31 @@ if (-not $Execute) {
 }
 
 # ---------------------------------------------------------------------------
-Write-Step "① 创建备份标签"
+Write-Step "① 记录重写前的提交 SHA 并打备份标签"
 # 为每个本地分支各打一个标签。
 # 注意不能用 `git tag <name> --all`：git tag 不接受 --all 来"给所有引用打标签"，
 # 那会直接报 `error: unknown option 'all'`（早先版本就因此中止）。
-# 由于后续会 expire reflog + gc，只有标签能可靠保住旧提交。
+#
+# ⚠️ 重要限制：filter-branch 用了 `--tag-name-filter cat`，它会把**所有标签**
+# 一并重写到重写后的提交上。所以这些"备份标签"最终指向的是**净化后**的历史，
+# 并不是重写前状态的快照。真正的原始 SHA 只有下面的文本文件记录得下来，
+# 而对应对象在 `gc --prune=now` 之后即不可恢复。
+# 因此本步提供的不是"回退能力"，只是**留痕**；请把重写视为不可逆操作。
 $backupBranches = git for-each-ref --format='%(refname:short)' refs/heads
 if (-not $backupBranches) { throw "没有找到任何本地分支，中止" }
+$shaLog = Join-Path $repoRoot "$backupTag-original-shas.txt"
+$shaLines = @("# 重写前的引用快照  $(Get-Date -Format o)", "# 注意：重写 + gc 之后，这些提交通常已不可恢复")
 foreach ($b in $backupBranches) {
     $tagName = "$backupTag-$b"
     git tag -f $tagName $b 2>$null
     if ($LASTEXITCODE -ne 0) { throw "创建备份标签失败: $tagName（中止，未做任何修改）" }
-    Write-Host "  已创建: $tagName -> $b"
+    $sha = git rev-parse $b
+    $shaLines += "$sha`t$b"
+    Write-Host "  已创建: $tagName -> $b ($($sha.Substring(0,7)))"
 }
-Write-Host "回退方式: git reset --hard <上面对应的标签名>"
+$shaLines | Set-Content -Path $shaLog -Encoding UTF8
+Write-Host "重写前的 SHA 已记录到: $shaLog"
+Write-Warn "注意：重写不可逆（备份标签也会被一并重写），此文件仅为留痕。"
 
 Write-Step "② 重写历史"
 $filter = if (Get-Command git-filter-repo -ErrorAction SilentlyContinue) {
