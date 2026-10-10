@@ -172,11 +172,11 @@ class WritingWorkflow:
         print("开始编辑阶段")
         
         # 全选文档内容
-        self.keyboard_controller.press_shortcut(['ctrl', 'a'])
+        self.keyboard_controller.hotkey('ctrl', 'a')
         time.sleep(0.5)
         
         # 复制内容以便AI分析
-        self.keyboard_controller.press_shortcut(['ctrl', 'c'])
+        self.keyboard_controller.hotkey('ctrl', 'c')
         time.sleep(0.5)
         
         # 使用DeepSeek进行内容编辑
@@ -192,7 +192,7 @@ class WritingWorkflow:
         edited_content = self.deepseek_agent.process_task(edit_prompt)
         
         # 清除当前内容并粘贴编辑后的内容
-        self.keyboard_controller.press_key('delete')
+        self.keyboard_controller.press('delete')
         time.sleep(0.2)
         
         if isinstance(edited_content, dict):
@@ -217,7 +217,7 @@ class WritingWorkflow:
         print("开始格式化阶段")
         
         # 全选文档
-        self.keyboard_controller.press_shortcut(['ctrl', 'a'])
+        self.keyboard_controller.hotkey('ctrl', 'a')
         time.sleep(0.5)
         
         # 应用基本格式（根据要求）
@@ -246,9 +246,9 @@ class WritingWorkflow:
         print("开始审查阶段")
         
         # 获取最终文档内容
-        self.keyboard_controller.press_shortcut(['ctrl', 'a'])
+        self.keyboard_controller.hotkey('ctrl', 'a')
         time.sleep(0.2)
-        self.keyboard_controller.press_shortcut(['ctrl', 'c'])
+        self.keyboard_controller.hotkey('ctrl', 'c')
         time.sleep(0.2)
         
         # 使用AI进行最终审查
@@ -295,10 +295,10 @@ class WritingWorkflow:
         """打开文本编辑器"""
         # 模拟打开文本编辑器（如Word、记事本等）
         # 这里简化为打开记事本
-        self.keyboard_controller.press_shortcut(['win', 'r'])
+        self.keyboard_controller.hotkey('win', 'r')
         time.sleep(0.5)
         self.keyboard_controller.type_text('notepad')
-        self.keyboard_controller.press_key('enter')
+        self.keyboard_controller.press('enter')
         time.sleep(2)  # 等待程序打开
     
     def _apply_heading_formats(self):

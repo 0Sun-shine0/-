@@ -11,6 +11,7 @@ from .core.config import Config
 from .ui.main_window import MainWindow
 from .agents.deepseek_agent import DeepSeekAgent
 from .models.cnn_model import EnhancedCNN
+from .models.inference import ScreenPredictor
 from .models.training_pipeline import TrainingPipeline
 from .workflows.writing_workflow import WritingWorkflow
 from .data.data_processor import DataProcessor
@@ -86,26 +87,50 @@ def run_writing_workflow(topic: str, requirements: dict):
 
 
 def run_simple_test():
-    """运行简单测试"""
+    """自检：环境、DeepSeek 可用性、屏幕分析模型、数据处理器。"""
     config = Config()
-    
-    print("=== AI智能桌面操作员 - 简单测试 ===")
-    print(f"配置加载成功: {config is not None}")
-    
-    # 测试DeepSeek智能体
+
+    print("=== AI智能桌面操作员 - 自检 ===")
+    print(f"[1/4] 配置加载            : OK（项目根目录 {config.PROJECT_ROOT.parent}）")
+
+    # DeepSeek：缺少密钥不再是致命错误，这里如实报告
     agent = DeepSeekAgent(config)
-    test_result = agent.process_task("你好，请简单介绍一下自己。")
-    print(f"DeepSeek响应: {test_result}")
-    
-    # 测试CNN模型
-    cnn_model = EnhancedCNN(len(config.AVAILABLE_ACTIONS))
-    print(f"CNN模型初始化: {cnn_model is not None}")
-    
-    # 测试数据处理器
+    if agent.is_available():
+        print("[2/4] DeepSeek 智能体     : 已配置密钥")
+        test_result = agent.process_task("你好，请简单介绍一下自己。")
+        keys = ", ".join(sorted(test_result.keys())[:4]) if isinstance(test_result, dict) else "非字典"
+        print(f"      试调用返回字段      : {keys}")
+    else:
+        print("[2/4] DeepSeek 智能体     : 未配置密钥 —— 任务理解不可用")
+        print("      设置方式            : 环境变量 DEEPSEEK_API_KEY，或项目根目录 .env（KEY=VALUE）")
+
+    # 屏幕分析模型：以前这里只是 `EnhancedCNN(34)` 随机初始化后打印一句"初始化成功"，
+    # 打印成功并不代表可用。现在改为真正加载已训练模型。
+    try:
+        predictor = ScreenPredictor.load()
+        info = predictor.info
+        print(f"[3/4] 屏幕分析模型        : {info.name}"
+              f"（{info.num_actions} 类，{info.input_size}px 输入，"
+              f"{'空间坐标头' if info.spatial_coord else '全局池化坐标头'}）")
+        acc = info.metrics.get("best_acc")
+        coord = info.metrics.get("best_coord_mae_px")
+        if isinstance(acc, (int, float)) or isinstance(coord, (int, float)):
+            detail = []
+            if isinstance(acc, (int, float)):
+                detail.append(f"验证准确率 {acc:.1%}")
+            if isinstance(coord, (int, float)):
+                detail.append(f"坐标误差 {coord:.0f}px")
+            print(f"      训练指标            : {', '.join(detail)}")
+    except FileNotFoundError as e:
+        print("[3/4] 屏幕分析模型        : 未找到可用模型")
+        for line in str(e).splitlines()[1:]:
+            print(f"      {line}")
+
+    # 数据处理器
     processor = DataProcessor(config)
-    print(f"数据处理器初始化: {processor is not None}")
-    
-    print("简单测试完成！")
+    print(f"[4/4] 数据处理器          : {'OK' if processor is not None else '失败'}")
+
+    print("\n自检完成。")
 
 
 def main():

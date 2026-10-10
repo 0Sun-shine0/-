@@ -52,65 +52,39 @@ except Exception:  # pragma: no cover
     pass
 
 from ai_operator.data.desktop_dataset import (  # noqa: E402
-    IMAGENET_MEAN,
-    IMAGENET_STD,
     DesktopSample,
     DesktopScreenshotDataset,
     action_zh,
     load_label_map,
     scan_split,
 )
-from ai_operator.models.cnn_model import (  # noqa: E402
-    EnhancedCNN,
-    decode_points,
-    spatial_coord_from_state,
-)
+from ai_operator.models.cnn_model import decode_points  # noqa: E402
+from ai_operator.models.inference import ScreenPredictor  # noqa: E402
 
 
 # --------------------------------------------------------------------------- #
 # 模型装载与单张推理
+#
+# 这里不再自己实现"读 checkpoint + 判断坐标头 + 预处理 + 解码坐标"，
+# 而是复用 ai_operator/models/inference.py 的 ScreenPredictor —— 与 GUI 走同一份代码。
+# 之前两边各写一份，结果 GUI 那份漏了加载权重、又把坐标多套了一次 sigmoid，
+# 界面显示与评估指标完全对不上。
 # --------------------------------------------------------------------------- #
-def load_model(model_path: Path, num_actions: int, input_size: int, device: torch.device) -> EnhancedCNN:
-    if not model_path.exists():
-        raise FileNotFoundError(
-            f"找不到模型 {model_path}。请先运行: python scripts/train_ai_operator.py"
-        )
-    state = torch.load(model_path, map_location="cpu")
-    if isinstance(state, dict) and "model_state" in state:
-        state = state["model_state"]
-    # 从权重里自动判断该用哪种坐标头，避免用户手动对齐训练/评估配置
-    spatial = spatial_coord_from_state(state)
-    model = EnhancedCNN(num_actions, screen_size=(input_size, input_size),
-                        pretrained=False, spatial_coord=spatial)
-    model.load_state_dict(state)
-    model.to(device).eval()
-    print(f"坐标头: {'空间 soft-argmax' if spatial else '全局池化 + 线性（定位能力有限）'}")
-    return model
+def load_model(model_path: Path, num_actions: int, input_size: int,
+               device: torch.device, label_map_path: Optional[Path] = None) -> ScreenPredictor:
+    """加载模型，返回统一的推理器。
 
-
-def image_to_tensor(pil_image, input_size: int, train: bool = False) -> torch.Tensor:
-    """PIL 图片 -> (1, 3, S, S) 的 ImageNet 归一化张量（与训练时完全一致）。"""
-    from ai_operator.data.desktop_dataset import _array_to_tensor  # 内部复用，保证预处理一致
-
-    arr = np.asarray(pil_image.convert("RGB").resize((input_size, input_size)), dtype=np.uint8)
-    return _array_to_tensor(arr, IMAGENET_MEAN, IMAGENET_STD, train).unsqueeze(0)
-
-
-@torch.no_grad()
-def predict(model: EnhancedCNN, tensor: torch.Tensor, device: torch.device,
-            topk: int = 3) -> Dict[str, object]:
-    """返回动作 top-k 概率与归一化预测点。"""
-    logits = model(tensor.to(device), return_segmentation=False)
-    probs = torch.softmax(logits["actions"], dim=1)[0]
-    point = decode_points(model, logits["mouse_positions"])[0]
-    k = min(topk, probs.numel())
-    values, indices = probs.topk(k)
-    return {
-        "action_idx": int(indices[0].item()),
-        "confidence": float(values[0].item()),
-        "topk": [(int(i.item()), float(v.item())) for i, v in zip(indices, values)],
-        "point": (float(point[0].item()), float(point[1].item())),
-    }
+    ``num_actions`` 参数保留是为了兼容旧签名，实际类别数以 label_map 为准。
+    """
+    if label_map_path is None:
+        label_map_path = Path(model_path).parent / "label_map.json"
+    predictor = ScreenPredictor.from_checkpoint(
+        Path(model_path), Path(label_map_path), input_size=input_size, device=device
+    )
+    info = predictor.info
+    print(f"坐标头: {'空间 soft-argmax' if info.spatial_coord else '全局池化 + 线性（定位能力有限）'}"
+          f" | 类别数: {info.num_actions} | 输入: {info.input_size}")
+    return predictor
 
 
 # --------------------------------------------------------------------------- #
@@ -197,10 +171,14 @@ def build_train_hash_set(data_root: Path, split: str = "train") -> set:
     return hashes
 
 
-def evaluate_split(model, samples: List[DesktopSample], label_map: Dict[str, int],
+def evaluate_split(predictor: ScreenPredictor, samples: List[DesktopSample],
+                   label_map: Dict[str, int],
                    input_size: int, device: torch.device, batch_size: int,
                    seen_hashes: Optional[set] = None,
                    draw_cursor: bool = False) -> List[Dict[str, object]]:
+    # 批量评估刻意不走 ScreenPredictor.predict（那是单张推理路径），
+    # 直接对底层模型做批处理以提升吞吐；但坐标解码仍统一用 decode_points。
+    model = predictor.model
     dataset = DesktopScreenshotDataset(samples, label_map, input_size, train=False, preload=True,
                                        verbose=False, draw_cursor=draw_cursor)
     from torch.utils.data import DataLoader
@@ -444,7 +422,8 @@ def mode_eval(args: argparse.Namespace) -> int:
         print(f"[错误] {data_root}/{args.split} 下没有样本")
         return 1
 
-    model = load_model(Path(args.model), len(label_map), args.input_size, device)
+    predictor = load_model(Path(args.model), len(label_map), args.input_size, device,
+                      label_map_path=Path(args.label_map))
     print(f"模型: {args.model} | 类别数: {len(label_map)} | 输入: {args.input_size} | 设备: {device}")
 
     seen_hashes = None
@@ -455,7 +434,7 @@ def mode_eval(args: argparse.Namespace) -> int:
     train_samples = scan_split(data_root, "train", with_image_size=False)
 
     print(f"在 {args.split} 划分上评估 {len(samples)} 个样本 ...")
-    rows = evaluate_split(model, samples, label_map, args.input_size, device,
+    rows = evaluate_split(predictor, samples, label_map, args.input_size, device,
                           args.batch_size, seen_hashes, draw_cursor=args.draw_cursor)
 
     accuracy = sum(r["correct"] for r in rows) / len(rows)
@@ -601,13 +580,22 @@ def mode_eval(args: argparse.Namespace) -> int:
 # --------------------------------------------------------------------------- #
 # image 模式
 # --------------------------------------------------------------------------- #
-def _predict_pil(model, pil_image, input_size, device, label_map, topk=3):
-    idx_to_action = {v: k for k, v in label_map.items()}
-    tensor = image_to_tensor(pil_image, input_size)
-    result = predict(model, tensor, device, topk)
-    result["pred_action"] = idx_to_action[result["action_idx"]]
-    result["topk_named"] = [(idx_to_action[i], p) for i, p in result["topk"]]
-    return result
+def _predict_pil(predictor: ScreenPredictor, pil_image, input_size, device, label_map, topk=3):
+    """单张 PIL 图像的预测（复用统一推理器）。
+
+    返回的键名保持与旧实现兼容：``action_idx`` / ``confidence`` /
+    ``topk``（形如 ``[(索引, 概率)]``） / ``point``，另外补充 ``pred_action``
+    与带名字的 ``topk_named`` 供展示使用。
+    """
+    result = predictor.predict(pil_image, topk=topk)
+    return {
+        "action_idx": result["action_index"],
+        "pred_action": result["action"],
+        "confidence": result["confidence"],
+        "topk": [(item["index"], item["confidence"]) for item in result["topk"]],
+        "topk_named": [(item["action"], item["confidence"]) for item in result["topk"]],
+        "point": result["point"],
+    }
 
 
 def mode_image(args: argparse.Namespace) -> int:
@@ -621,12 +609,13 @@ def mode_image(args: argparse.Namespace) -> int:
     label_map = load_label_map(args.label_map)
     device = torch.device(args.device if args.device != "auto" else
                           ("cuda" if torch.cuda.is_available() else "cpu"))
-    model = load_model(Path(args.model), len(label_map), args.input_size, device)
+    predictor = load_model(Path(args.model), len(label_map), args.input_size, device,
+                      label_map_path=Path(args.label_map))
 
     with Image.open(path) as im:
         im = im.convert("RGB")
         w, h = im.size
-        result = _predict_pil(model, im, args.input_size, device, label_map)
+        result = _predict_pil(predictor, im, args.input_size, device, label_map)
         annotated = annotate(im, None, (result["point"][0] * w, result["point"][1] * h),
                              [f"{path.name}  ({w}x{h})",
                               f"Pred: {result['pred_action']} ({action_zh(result['pred_action'])}) {result['confidence']:.1%}",
@@ -661,7 +650,8 @@ def mode_live(args: argparse.Namespace) -> int:
     label_map = load_label_map(args.label_map)
     device = torch.device(args.device if args.device != "auto" else
                           ("cuda" if torch.cuda.is_available() else "cpu"))
-    model = load_model(Path(args.model), len(label_map), args.input_size, device)
+    predictor = load_model(Path(args.model), len(label_map), args.input_size, device,
+                      label_map_path=Path(args.label_map))
 
     report_dir = Path(args.report_dir)
     report_dir.mkdir(parents=True, exist_ok=True)
@@ -677,7 +667,7 @@ def mode_live(args: argparse.Namespace) -> int:
             count += 1
             pil_image = pyautogui.screenshot()
             screen_w, screen_h = pil_image.size
-            result = _predict_pil(model, pil_image, args.input_size, device, label_map)
+            result = _predict_pil(predictor, pil_image, args.input_size, device, label_map)
 
             x = int(result["point"][0] * screen_w)
             y = int(result["point"][1] * screen_h)

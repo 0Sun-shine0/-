@@ -1,5 +1,7 @@
 import sys
 import json
+import logging
+from pathlib import Path
 from PyQt6.QtWidgets import (QApplication, QMainWindow, QWidget, QVBoxLayout, 
                              QHBoxLayout, QLabel, QPushButton, QTextEdit, 
                              QComboBox, QSlider, QGroupBox, QScrollArea)
@@ -7,17 +9,19 @@ from PyQt6.QtCore import Qt, QTimer, QThread, pyqtSignal
 from PyQt6.QtGui import QPixmap, QImage
 import cv2
 import numpy as np
-from PIL import ImageGrab
+from PIL import Image, ImageGrab
 import io
 
 from ..core.config import Config
 from ..agents.deepseek_agent import DeepSeekAgent
-from ..models.cnn_model import EnhancedCNN
+from ..models.inference import ScreenPredictor, discover_models
 from ..automation.mouse_controller import AdvancedMouseController
 from ..automation.keyboard_controller import KeyboardController
 from ..automation.web_controller import WebController, MultiAppController, DataProcessor
 from ..automation.workflow_manager import WorkflowManager, SmartDecisionEngine, Task
 from ..automation.advanced_content_generator import AdvancedContentGenerator, SmartErrorHandler, PerformanceMonitor
+
+logger = logging.getLogger(__name__)
 
 
 class TaskWorker(QThread):
@@ -48,7 +52,16 @@ class MainWindow(QMainWindow):
         super().__init__()
         self.config = Config()
         self.deepseek_agent = DeepSeekAgent(self.config)
-        self.cnn_model = EnhancedCNN(len(self.config.AVAILABLE_ACTIONS))
+
+        # 屏幕分析模型。
+        # 以前这里是 `EnhancedCNN(len(config.AVAILABLE_ACTIONS))` —— 随机初始化、
+        # **从不加载任何权重**，所以界面上显示的永远是无意义的随机输出；
+        # 类别数（34）也与训练好的模型（12/13 类）对不上。
+        # 现在改为扫描 models/ 下的可用模型，默认加载最佳的那个。
+        self.available_models = []
+        self.predictor = None
+        self._discover_models()
+
         self.mouse_controller = AdvancedMouseController()
         self.keyboard_controller = KeyboardController()
         
@@ -69,7 +82,54 @@ class MainWindow(QMainWindow):
         
         self.setup_ui()
         self.setup_timers()
-        
+        # 界面控件就绪后再加载模型：加载结果需要写到状态栏与模型下拉框里
+        self.load_predictor(self.model_combo.currentData() if self.available_models else None)
+
+    def _discover_models(self):
+        """扫描 models/ 目录，找出可用的训练模型（checkpoint + label_map 齐备）。"""
+        models_dir = Path(self.config.PROJECT_ROOT).parent / "models"
+        try:
+            self.available_models = discover_models(models_dir)
+        except Exception as e:
+            logger.warning("扫描模型目录失败: %s", e)
+            self.available_models = []
+        return self.available_models
+
+    def load_predictor(self, name=None):
+        """加载指定（或默认最佳）模型，并把结果显示在状态栏。
+
+        失败时给出可执行的提示，而不是静默使用随机权重 —— 那会让界面看起来
+        "在工作"、实际输出全是噪声，是最难排查的一类问题。
+        """
+        try:
+            self.predictor = ScreenPredictor.load(name=name)
+            info = self.predictor.info
+            self.status_label.setText(
+                f"模型已加载：{info.name}（{info.num_actions} 类，"
+                f"{'空间坐标头' if info.spatial_coord else '全局池化坐标头'}）"
+            )
+            self.append_history(f"已加载模型 {info.name}")
+            return True
+        except Exception as e:
+            self.predictor = None
+            first_line = str(e).splitlines()[0]
+            self.status_label.setText(f"未加载屏幕分析模型：{first_line}")
+            self.prediction_text.setPlainText(
+                "屏幕分析模型不可用。\n\n"
+                f"原因：{first_line}\n\n"
+                "训练一个模型：\n"
+                "  python scripts/build_dataset_v2.py --out ai_operator_dataset_v2\n"
+                "  python scripts/train_ai_operator.py --data-root ai_operator_dataset_v2 "
+                "--out-dir models/desktop_v2 --spatial-coord --monitor coord\n\n"
+                "（DeepSeek 相关功能不受影响，仍可正常使用。）"
+            )
+            return False
+
+    def append_history(self, text):
+        """往操作历史里追加一行（带时间戳）。"""
+        from datetime import datetime
+        if hasattr(self, "history_text"):
+            self.history_text.append(f"[{datetime.now().strftime('%H:%M:%S')}] {text}")
     def setup_ui(self):
         """设置用户界面"""
         self.setWindowTitle("AI智能桌面操作员")
@@ -181,9 +241,31 @@ class MainWindow(QMainWindow):
         model_combo_layout = QHBoxLayout()
         model_combo_layout.addWidget(QLabel("模型:"))
         self.model_combo = QComboBox()
-        self.model_combo.addItems(["EnhancedCNN", "Transformer", "Hybrid"])
+        # 以前这里是硬编码的 ["EnhancedCNN", "Transformer", "Hybrid"]，纯装饰、
+        # 选中后没有任何效果。现在列出真实可用的已训练模型，切换即重新加载。
+        if self.available_models:
+            for info in self.available_models:
+                self.model_combo.addItem(info.display, info.name)
+        else:
+            self.model_combo.addItem("未找到已训练模型", None)
+            self.model_combo.setEnabled(False)
+        self.model_combo.currentIndexChanged.connect(
+            lambda _: self.load_predictor(self.model_combo.currentData())
+            if self.model_combo.currentData() else None
+        )
         model_combo_layout.addWidget(self.model_combo)
         model_layout.addLayout(model_combo_layout)
+
+        # DeepSeek 可用性提示（缺少 API key 时给出明确说明，而不是等到报错）
+        self.agent_status_label = QLabel()
+        if self.deepseek_agent.is_available():
+            self.agent_status_label.setText("DeepSeek：已配置密钥")
+            self.agent_status_label.setStyleSheet("color: #4caf50;")
+        else:
+            self.agent_status_label.setText(
+                "DeepSeek：未配置密钥（任务理解不可用，屏幕分析不受影响）")
+            self.agent_status_label.setStyleSheet("color: #ff9800;")
+        model_layout.addWidget(self.agent_status_label)
         
         # 置信度阈值
         confidence_layout = QHBoxLayout()
@@ -237,58 +319,68 @@ class MainWindow(QMainWindow):
         self.capture_timer.timeout.connect(self.capture_screen)
         
     def capture_screen(self):
-        """捕获屏幕"""
+        """捕获屏幕 -> 显示缩略图 -> 用已加载模型做预测。
+
+        之前这里有个坐标系错误：抓屏后先把画面缩到 600x400 **用于显示**，
+        然后又把这个缩略图直接送进模型，于是预测坐标是在缩略图空间里的，
+        与真实屏幕对不上；而且传进去的是 numpy 数组，nn.Module 会直接抛
+        ``TypeError: conv2d() received numpy.ndarray``。
+
+        现在的流程：全分辨率截图 -> 一份缩略图给界面显示，一份原始 PIL 图像
+        交给模型 -> 模型返回归一化坐标 -> 乘真实分辨率得到屏幕像素坐标。
+        """
         try:
-            # 使用PIL截取屏幕
             screenshot = ImageGrab.grab()
             screenshot = screenshot.convert('RGB')
-            
-            # 转换为OpenCV格式
-            frame = np.array(screenshot)
-            frame = cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
-            
-            # 调整大小以适应显示
+            screen_w, screen_h = screenshot.size
+
+            # ---- 供界面显示的缩略图（不影响模型输入）----
+            frame = cv2.cvtColor(np.array(screenshot), cv2.COLOR_RGB2BGR)
             height, width = frame.shape[:2]
-            scale = min(600/width, 400/height)
-            new_width = int(width * scale)
-            new_height = int(height * scale)
-            frame = cv2.resize(frame, (new_width, new_height))
-            
-            # 转换为QPixmap并显示
-            rgb_image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+            scale = min(600 / width, 400 / height)
+            display = cv2.resize(frame, (int(width * scale), int(height * scale)))
+            rgb_image = cv2.cvtColor(display, cv2.COLOR_BGR2RGB)
             h, w, ch = rgb_image.shape
-            bytes_per_line = ch * w
-            qt_image = QImage(rgb_image.data, w, h, bytes_per_line, QImage.Format.Format_RGB888)
-            pixmap = QPixmap.fromImage(qt_image)
-            self.screen_label.setPixmap(pixmap)
-            
-            # 使用CNN模型进行预测
-            prediction = self.cnn_model.predict(frame)
-            self.update_prediction_display(prediction)
-            
+            qt_image = QImage(rgb_image.data, w, h, ch * w, QImage.Format.Format_RGB888)
+            self.screen_label.setPixmap(QPixmap.fromImage(qt_image))
+
+            # ---- 模型预测：用原始分辨率的 PIL 图像 ----
+            if self.predictor is None:
+                return
+            result = self.predictor.predict(screenshot, screen_size=(screen_w, screen_h))
+            self.update_prediction_display(result)
+
         except Exception as e:
             self.status_label.setText(f"捕获屏幕失败: {str(e)}")
-            
-            # 即使捕获失败，也要提供一个默认的预测结果
-            # 以便AI可以继续处理任务
-            default_prediction = {
-                'top_actions': [{'action': 0, 'confidence': 0.1}],
-                'top_applications': [{'app': 0, 'confidence': 0.1}],
-                'bounding_boxes': [0, 0, 0, 0],
-                'mouse_position': [0, 0],
-                'segmentation_map': np.zeros((10, 10)),
-                'confidence_scores': {
-                    'action_max': 0.1,
-                    'app_max': 0.1
-                }
-            }
-            self.update_prediction_display(default_prediction)
-            
+
     def update_prediction_display(self, prediction):
-        """更新预测结果显示"""
+        """把预测结果以人可读的形式显示出来。
+
+        原实现直接 ``json.dumps`` 整个字典，界面上看到的是一堆类别整数索引，
+        用户无法判断模型到底预测了什么动作。
+        """
         try:
-            prediction_str = json.dumps(prediction, indent=2, ensure_ascii=False)
-            self.prediction_text.setPlainText(prediction_str)
+            if not isinstance(prediction, dict) or "action" not in prediction:
+                self.prediction_text.setPlainText(json.dumps(prediction, indent=2, ensure_ascii=False))
+                return
+
+            point_px = prediction.get("point_px")
+            nx, ny = prediction.get("point", (0.0, 0.0))
+            lines = [
+                f"模型      : {prediction.get('model', '-')}",
+                f"预测动作  : {prediction['action']}（{prediction.get('action_zh', '')}）",
+                f"置信度    : {prediction['confidence']:.1%}",
+            ]
+            if point_px:
+                lines.append(f"点击位置  : ({point_px[0]}, {point_px[1]}) 像素")
+            lines.append(f"归一化坐标: ({nx:.4f}, {ny:.4f})")
+            lines.append("")
+            lines.append("Top-3 候选:")
+            for item in prediction.get("topk", []):
+                lines.append(
+                    f"  {item['action']:<20} {item['confidence']:>6.1%}  {item.get('action_zh', '')}"
+                )
+            self.prediction_text.setPlainText("\n".join(lines))
         except Exception as e:
             self.prediction_text.setPlainText(f"显示预测结果失败: {str(e)}")
             
