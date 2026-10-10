@@ -59,7 +59,12 @@ def main():
     parser.add_argument('--num-actions', type=int, default=None, help='如果不指定，将尝试从 checkpoint 推断')
     parser.add_argument('--screen-h', type=int, default=224)
     parser.add_argument('--screen-w', type=int, default=224)
-    parser.add_argument('--opset', type=int, default=11)
+    parser.add_argument('--opset', type=int, default=18,
+                        help='ONNX opset 版本。默认 18：当前 torch 只内置了 opset 18 的实现，'
+                             '请求更低版本会触发 ONNX 的自动降级转换，打印出吓人的 '
+                             'axes_input_to_attribute / Failed to convert 报错文本'
+                             '（转换其实失败但模型会保留在 18，导出结果仍可用）。'
+                             '若目标运行时较老，可显式指定更低值')
     args = parser.parse_args()
 
     if not os.path.exists(args.checkpoint):
