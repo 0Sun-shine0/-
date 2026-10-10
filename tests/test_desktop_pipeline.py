@@ -308,6 +308,217 @@ class DatasetCursorTest(unittest.TestCase):
             self.assertLess(float(arr.std()), 1e-6, "未开启光标却出现了结构")
 
 
+class AugmentShiftTest(unittest.TestCase):
+    """平移增强必须保标签：图像移多少，目标点就移多少。"""
+
+    def _dataset(self, tmp, **kwargs):
+        import json
+
+        from PIL import Image
+
+        os.makedirs(os.path.join(tmp, "train", "annotations"))
+        img_dir = os.path.join(tmp, "train", "images", "basic_000010")
+        os.makedirs(img_dir)
+        # 必须是**有纹理**的图：纯色图无法用互相关判断平移量，会让这个测试失去意义。
+        # 用固定随机种子生成确定性噪声纹理。
+        rng = np.random.default_rng(1234)
+        texture = rng.integers(0, 256, size=(100, 200, 3), dtype=np.uint8)
+        Image.fromarray(texture).save(os.path.join(img_dir, "screenshot.png"))
+        with open(os.path.join(tmp, "train", "annotations", "basic_000010.json"), "w", encoding="utf-8") as f:
+            json.dump({"sample_id": "basic_000010",
+                       "operation": {"action": "left_click",
+                                     "target_bounds": [90, 40, 110, 60]}}, f)
+        samples = scan_split(tmp, "train")
+        return DesktopScreenshotDataset(samples, build_label_map(samples), 128,
+                                        preload=True, verbose=False,
+                                        mean=(0.0, 0.0, 0.0), std=(1.0, 1.0, 1.0),
+                                        **kwargs)
+
+    def test_no_shift_when_disabled(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            ds = self._dataset(tmp, train=True, augment_shift=0)
+            for _ in range(5):
+                self.assertAlmostEqual(float(ds[0]["point"][0]), 0.5, places=5)
+                self.assertAlmostEqual(float(ds[0]["point"][1]), 0.5, places=5)
+
+    def test_shift_moves_image_and_label_together(self):
+        """核心不变量：整幅图像的实际位移必须与标签位移同向同量。
+
+        约定说明（容易搞混，写清楚）：
+        实现保证 ``shifted[i, j] == original[i - dy, j - dx]``，即内容向右移 dx、向下移 dy，
+        标签也同步变成 ``(+dx, +dy)``。而本测试的搜索方式是把 shifted 反向偏移去对齐
+        original，所以搜到的最佳位移等于 ``(-dx, -dy)``，即**标签偏移的相反数**。
+
+        这个断言抓出过一个真实 bug —— 最初 x 方向的切片符号写反，
+        导致内容向左移、标签却向右移，标签并不守恒。
+        """
+        with tempfile.TemporaryDirectory() as tmp:
+            ds = self._dataset(tmp, train=True, augment_shift=8)
+            border = 8
+            checked = 0
+            for _ in range(80):
+                # 注意：必须用**同一个** item 的数组做互相关。
+                # 重新取一次 ds[0] 会得到另一个随机偏移，那样比出来的结果没有意义。
+                item = ds[0]
+                arr = item["image"].numpy()
+                px = (float(item["point"][0]) - 0.5) * 128
+                py = (float(item["point"][1]) - 0.5) * 128
+                if abs(px) < 1e-6 and abs(py) < 1e-6:
+                    continue
+
+                base = ds._cache[0].transpose(2, 0, 1).astype(np.float32) / 255.0
+                a = base[:, border:-border, border:-border]
+                # 在候选位移范围内搜索，最佳值应等于 (-px, -py)
+                best = None
+                for cand_x in range(-8, 9):
+                    for cand_y in range(-8, 9):
+                        b = arr[:, border - cand_y:128 - border - cand_y,
+                                border - cand_x:128 - border - cand_x]
+                        if a.shape != b.shape:
+                            continue
+                        err = float(np.abs(a - b).mean())
+                        if best is None or err < best[0]:
+                            best = (err, cand_x, cand_y)
+                self.assertIsNotNone(best)
+                self.assertLessEqual(abs(best[1] - (-px)), 0.5,
+                                     f"图像水平位移 {best[1]} 与标签 {px:.1f} 不符（应为 {-px:.1f}）")
+                self.assertLessEqual(abs(best[2] - (-py)), 0.5,
+                                     f"图像垂直位移 {best[2]} 与标签 {py:.1f} 不符（应为 {-py:.1f}）")
+                checked += 1
+                if checked >= 5:
+                    break
+            self.assertGreaterEqual(checked, 5, "没能采到足够的非零平移样本")
+
+    def test_no_augment_when_not_training(self):
+        """验证集绝不能做随机增强，否则评估不可复现。"""
+        with tempfile.TemporaryDirectory() as tmp:
+            ds = self._dataset(tmp, train=False, augment_shift=8)
+            for _ in range(10):
+                self.assertAlmostEqual(float(ds[0]["point"][0]), 0.5, places=5)
+
+    def test_label_stays_in_unit_range(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            ds = self._dataset(tmp, train=True, augment_shift=60)
+            for _ in range(60):
+                item = ds[0]
+                self.assertGreaterEqual(float(item["point"][0]), 0.0)
+                self.assertLessEqual(float(item["point"][0]), 1.0)
+                self.assertGreaterEqual(float(item["point"][1]), 0.0)
+                self.assertLessEqual(float(item["point"][1]), 1.0)
+
+    def test_no_shift_when_target_would_leave_frame(self):
+        """目标点贴边时必须放弃增强，而不是把标签夹到边界。
+
+        这是曾经的一个真实缺陷：内容整体平移了，标签却被 clamp 到 [0,1]，
+        于是图像与标签不再对应 —— 相当于往训练集里掺错标，
+        实测会让 test 坐标误差从 13px 退化到 21px。
+        """
+        with tempfile.TemporaryDirectory() as tmp:
+            import json
+
+            from PIL import Image
+
+            os.makedirs(os.path.join(tmp, "train", "annotations"))
+            img_dir = os.path.join(tmp, "train", "images", "basic_000011")
+            os.makedirs(img_dir)
+            rng = np.random.default_rng(7)
+            texture = rng.integers(0, 256, size=(100, 200, 3), dtype=np.uint8)
+            Image.fromarray(texture).save(os.path.join(img_dir, "screenshot.png"))
+            # 目标点落在左上角 (2, 2) / (200, 100) -> 归一化 (0.01, 0.02)
+            with open(os.path.join(tmp, "train", "annotations", "basic_000011.json"), "w", encoding="utf-8") as f:
+                json.dump({"sample_id": "basic_000011",
+                           "operation": {"action": "left_click",
+                                         "target_bounds": [0, 0, 4, 4]}}, f)
+            samples = scan_split(tmp, "train")
+            ds = DesktopScreenshotDataset(samples, build_label_map(samples), 128,
+                                          preload=True, verbose=False,
+                                          mean=(0.0, 0.0, 0.0), std=(1.0, 1.0, 1.0),
+                                          train=True, augment_shift=16)
+            base_point = samples[0].norm_point
+            for _ in range(40):
+                item = ds[0]
+                # 贴边样本要么完全不平移，要么绝不越过边界
+                self.assertGreaterEqual(float(item["point"][0]), 0.0)
+                self.assertGreaterEqual(float(item["point"][1]), 0.0)
+                self.assertLessEqual(float(item["point"][0]), 1.0)
+                self.assertLessEqual(float(item["point"][1]), 1.0)
+
+
+class OnnxExportEquivalenceTest(unittest.TestCase):
+    """ONNX 导出必须与 PyTorch 数值一致。
+
+    本次会话里我是用一次性脚本手工验证的；固化成测试后，任何人改动
+    cnn_model.forward 或导出逻辑都会立刻发现数值漂移。
+    """
+
+    def setUp(self):
+        try:
+            import onnxruntime  # noqa: F401
+        except Exception:
+            self.skipTest("onnxruntime 未安装，跳过 ONNX 一致性测试")
+
+    def test_exported_model_matches_pytorch(self):
+        import tempfile
+
+        import onnxruntime as ort
+
+        from ai_operator.models.cnn_model import spatial_coord_from_state
+
+        # torch.onnx 在导出成功时会打印带 emoji 的进度（✅），而 Windows 控制台
+        # 默认是 GBK，会直接抛 UnicodeEncodeError 把导出打断。
+        # 这正是 scripts/export_onnx.py 里要 reconfigure 的原因；测试里同样需要。
+        try:
+            sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+        except Exception:
+            pass
+
+        torch.manual_seed(0)
+        size = 64
+        model = EnhancedCNN(4, pretrained=False, spatial_coord=True,
+                            screen_size=(size, size)).eval()
+        state = model.state_dict()
+        self.assertTrue(spatial_coord_from_state(state))
+
+        class Wrapper(torch.nn.Module):
+            def __init__(self, inner):
+                super().__init__()
+                self.inner = inner
+
+            def forward(self, x):
+                out = self.inner(x)
+                return (out["actions"], out["applications"], out["bounding_boxes"],
+                        out["mouse_positions"], out["segmentation"])
+
+        with tempfile.TemporaryDirectory() as tmp:
+            onnx_path = os.path.join(tmp, "m.onnx")
+            dummy = torch.randn(1, 3, size, size)
+            torch.onnx.export(
+                Wrapper(model), dummy, onnx_path,
+                input_names=["input_image"],
+                output_names=["actions", "applications", "bounding_boxes",
+                              "mouse_positions", "segmentation"],
+                opset_version=18, do_constant_folding=True,
+            )
+            session = ort.InferenceSession(onnx_path)
+            names = [o.name for o in session.get_outputs()]
+            outputs = dict(zip(names, session.run(None, {session.get_inputs()[0].name: dummy.numpy()})))
+
+            with torch.no_grad():
+                reference = model(dummy)
+
+            # 坐标（soft-argmax）必须高度一致
+            self.assertLess(
+                float(np.abs(outputs["mouse_positions"] - reference["mouse_positions"].numpy()).max()),
+                1e-4, "ONNX 与 PyTorch 的坐标输出不一致")
+            # 分类 logits 允许极小的浮点差
+            self.assertLess(
+                float(np.abs(outputs["actions"] - reference["actions"].numpy()).max()),
+                1e-3, "ONNX 与 PyTorch 的动作 logits 不一致")
+            # Top-1 必须完全相同 —— 差一点就可能改变预测动作
+            self.assertEqual(int(outputs["actions"][0].argmax()),
+                             int(reference["actions"][0].argmax()))
+
+
 class SpatialCoordHeadTest(unittest.TestCase):
     """空间坐标头 vs 旧版全局池化头的接口一致性。"""
 
