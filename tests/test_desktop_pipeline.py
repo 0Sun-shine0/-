@@ -13,9 +13,11 @@ import os
 import sys
 import tempfile
 import unittest
+from pathlib import Path
 
 import numpy as np
 import torch
+from PIL import Image
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 if ROOT not in sys.path:
@@ -517,6 +519,85 @@ class OnnxExportEquivalenceTest(unittest.TestCase):
             # Top-1 必须完全相同 —— 差一点就可能改变预测动作
             self.assertEqual(int(outputs["actions"][0].argmax()),
                              int(reference["actions"][0].argmax()))
+
+
+class DemoGifTest(unittest.TestCase):
+    """演示 GIF 生成器的关键不变量。
+
+    这里守的是两个实际踩过的坑：字体缺字形导致画面出现豆腐块（□），
+    以及"只挑最好看的样本"导致演示失真。
+    """
+
+    @classmethod
+    def setUpClass(cls):
+        scripts_dir = os.path.join(ROOT, "scripts")
+        if scripts_dir not in sys.path:
+            sys.path.insert(0, scripts_dir)
+
+    def test_caption_avoids_glyphs_missing_from_cjk_font(self):
+        """标题行不得使用中文字体里缺失的符号。
+
+        ✓/✗ 在 msyh 里没有对应字形，PIL 会画成豆腐块；这类符号一旦混进
+        GIF 就会在画面上留下明显的方块。
+        """
+        from make_demo_gif import caption_lines
+
+        row = {"sample_id": "web_browser_000001", "gt_action": "click_tab",
+               "pred_action": "click_tab", "confidence": "0.98", "correct": "1",
+               "err_px": "4.2", "image_w": "1600", "image_h": "900"}
+        text = " ".join(line[0] for line in caption_lines(row))
+        for bad in ("\u2713", "\u2717", "\u2714", "\u2718"):  # ✓ ✗ ✔ ✘
+            self.assertNotIn(bad, text, f"标题里出现了字体缺失的符号 {bad!r}，会渲染成豆腐块")
+        self.assertIn("动作正确", text)
+
+        row["correct"] = "0"
+        text = " ".join(line[0] for line in caption_lines(row))
+        self.assertIn("动作错误", text)
+
+    def test_pick_samples_includes_best_and_worst(self):
+        """每应用必须同时挑出误差最小与最大的样本，避免演示只挑好样本。"""
+        from make_demo_gif import pick_samples
+
+        rows = []
+        for app, errs in (("basic", [1.0, 5.0, 50.0]), ("web_browser", [2.0, 3.0, 9.0])):
+            for i, err in enumerate(errs):
+                rows.append({"sample_id": f"{app}_{i:06d}", "err_px": str(err),
+                             "confidence": "0.9", "correct": "1",
+                             "gt_action": "left_click", "pred_action": "left_click",
+                             "image_w": "1600", "image_h": "900"})
+
+        picked = pick_samples(rows, per_app=2)
+        self.assertEqual(len(picked), 4)
+        by_app = {}
+        for row in picked:
+            by_app.setdefault(row["sample_id"].rsplit("_", 1)[0], []).append(float(row["err_px"]))
+        self.assertEqual(sorted(by_app["basic"]), [1.0, 50.0])
+        self.assertEqual(sorted(by_app["web_browser"]), [2.0, 9.0])
+
+    def test_generates_animated_gif(self):
+        """端到端冒烟：真的生成一张可播放的动图。缺素材时跳过。"""
+        csv_path = os.path.join(ROOT, "reports", "v3_coord", "demo_predictions_test.csv")
+        data_root = os.path.join(ROOT, "ai_operator_dataset_v3")
+        if not os.path.exists(csv_path) or not os.path.isdir(data_root):
+            self.skipTest("缺少预测 CSV 或 v3 数据集，跳过 GIF 冒烟测试")
+
+        from make_demo_gif import blank_sample_frames, load_predictions
+
+        rows = [r for r in load_predictions(Path(csv_path)) if r["correct"] == "1"]
+        self.assertTrue(rows)
+        row = rows[0]
+
+        frames = blank_sample_frames(row, Path(data_root), "test", 320, 58, 2, 1, 3.0)
+        self.assertGreater(len(frames), 2, "应当生成多帧")
+        self.assertEqual(len({f.size for f in frames}), 1, "所有帧尺寸必须一致，否则 GIF 无法播放")
+
+        with tempfile.TemporaryDirectory() as tmp:
+            out = os.path.join(tmp, "t.gif")
+            frames[0].save(out, format="GIF", save_all=True, append_images=frames[1:],
+                           duration=100, loop=0)
+            with Image.open(out) as gif:
+                self.assertTrue(gif.is_animated)
+                self.assertGreater(gif.n_frames, 1)
 
 
 class SpatialCoordHeadTest(unittest.TestCase):
