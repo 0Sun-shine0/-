@@ -1,0 +1,217 @@
+{
+  "split": "test",
+  "num_samples": 75,
+  "action_top1": 0.30666666666666664,
+  "action_top3": 0.8133333333333334,
+  "majority_baseline": 0.24,
+  "majority_action": "left_click",
+  "random_baseline": 0.0625,
+  "coord_mean_err_px": 596.748990538064,
+  "coord_median_err_px": 443.47019656403955,
+  "app_level_accuracy": 1.0,
+  "app_level_detail": [
+    {
+      "app": "basic",
+      "label": "桌面 (basic)",
+      "total": 39,
+      "correct": 39,
+      "acc": 1.0
+    },
+    {
+      "app": "file_explorer",
+      "label": "文件资源管理器",
+      "total": 14,
+      "correct": 14,
+      "acc": 1.0
+    },
+    {
+      "app": "text_editor",
+      "label": "文本编辑器",
+      "total": 12,
+      "correct": 12,
+      "acc": 1.0
+    },
+    {
+      "app": "web_browser",
+      "label": "浏览器",
+      "total": 10,
+      "correct": 10,
+      "acc": 1.0
+    }
+  ],
+  "prior_decoded_top1": 0.3333333333333333,
+  "per_app_majority_action": {
+    "basic": "left_click",
+    "file_explorer": "click_file",
+    "text_editor": "click_menu",
+    "web_browser": "click_button"
+  },
+  "per_class": {
+    "left_click": {
+      "total": 18,
+      "correct": 16
+    },
+    "double_click": {
+      "total": 12,
+      "correct": 0
+    },
+    "right_click": {
+      "total": 9,
+      "correct": 0
+    },
+    "click_address_bar": {
+      "total": 7,
+      "correct": 2
+    },
+    "click_sidebar": {
+      "total": 4,
+      "correct": 0
+    },
+    "click_toolbar": {
+      "total": 4,
+      "correct": 0
+    },
+    "click_folder": {
+      "total": 3,
+      "correct": 0
+    },
+    "click_file": {
+      "total": 3,
+      "correct": 1
+    },
+    "click_editor": {
+      "total": 3,
+      "correct": 2
+    },
+    "click_menu": {
+      "total": 3,
+      "correct": 0
+    },
+    "scroll_list": {
+      "total": 2,
+      "correct": 0
+    },
+    "scroll_page": {
+      "total": 2,
+      "correct": 0
+    },
+    "click_tab": {
+      "total": 2,
+      "correct": 1
+    },
+    "type_text": {
+      "total": 1,
+      "correct": 0
+    },
+    "click_button": {
+      "total": 1,
+      "correct": 1
+    },
+    "click_link": {
+      "total": 1,
+      "correct": 0
+    }
+  },
+  "top_confusions": [
+    {
+      "gt": "double_click",
+      "pred": "left_click",
+      "count": 12
+    },
+    {
+      "gt": "right_click",
+      "pred": "left_click",
+      "count": 9
+    },
+    {
+      "gt": "click_toolbar",
+      "pred": "click_menu",
+      "count": 3
+    },
+    {
+      "gt": "click_menu",
+      "pred": "click_editor",
+      "count": 3
+    },
+    {
+      "gt": "left_click",
+      "pred": "double_click",
+      "count": 2
+    },
+    {
+      "gt": "scroll_list",
+      "pred": "click_address_bar",
+      "count": 2
+    },
+    {
+      "gt": "click_sidebar",
+      "pred": "click_address_bar",
+      "count": 2
+    },
+    {
+      "gt": "click_folder",
+      "pred": "click_address_bar",
+      "count": 2
+    },
+    {
+      "gt": "click_file",
+      "pred": "click_address_bar",
+      "count": 2
+    },
+    {
+      "gt": "click_address_bar",
+      "pred": "click_tab",
+      "count": 2
+    },
+    {
+      "gt": "click_address_bar",
+      "pred": "click_button",
+      "count": 2
+    },
+    {
+      "gt": "click_folder",
+      "pred": "click_file",
+      "count": 1
+    },
+    {
+      "gt": "click_sidebar",
+      "pred": "click_file",
+      "count": 1
+    },
+    {
+      "gt": "click_address_bar",
+      "pred": "click_file",
+      "count": 1
+    },
+    {
+      "gt": "click_sidebar",
+      "pred": "click_editor",
+      "count": 1
+    },
+    {
+      "gt": "type_text",
+      "pred": "click_editor",
+      "count": 1
+    },
+    {
+      "gt": "click_toolbar",
+      "pred": "click_editor",
+      "count": 1
+    },
+    {
+      "gt": "click_editor",
+      "pred": "click_menu",
+      "count": 1
+    },
+    {
+      "gt": "scroll_page",
+      "pred": "click_tab",
+      "count": 1
+    },
+    {
+      "gt": "click_tab",
+      "pred": "click_button",
+      "count": 1
+    }
+  ]
+}

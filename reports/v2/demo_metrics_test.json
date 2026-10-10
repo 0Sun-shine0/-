@@ -1,0 +1,105 @@
+{
+  "split": "test",
+  "num_samples": 120,
+  "draw_cursor": false,
+  "action_top1": 1.0,
+  "action_top3": 1.0,
+  "majority_baseline": 0.23333333333333334,
+  "majority_action": "click_folder",
+  "random_baseline": 0.07692307692307693,
+  "coord_mean_err_px": 19.64155823519875,
+  "coord_median_err_px": 14.619630239257955,
+  "app_level_accuracy": 0.7166666666666667,
+  "app_level_detail": [
+    {
+      "app": "basic",
+      "label": "桌面 (basic)",
+      "total": 30,
+      "correct": 27,
+      "acc": 0.9
+    },
+    {
+      "app": "file_explorer",
+      "label": "文件资源管理器",
+      "total": 30,
+      "correct": 11,
+      "acc": 0.36666666666666664
+    },
+    {
+      "app": "text_editor",
+      "label": "文本编辑器",
+      "total": 30,
+      "correct": 27,
+      "acc": 0.9
+    },
+    {
+      "app": "web_browser",
+      "label": "浏览器",
+      "total": 30,
+      "correct": 21,
+      "acc": 0.7
+    }
+  ],
+  "causal_dataset": true,
+  "per_app_majority_action": {
+    "basic": "double_click",
+    "file_explorer": "click_file",
+    "text_editor": "click_menu",
+    "web_browser": "click_tab"
+  },
+  "per_class": {
+    "click_folder": {
+      "total": 28,
+      "correct": 28
+    },
+    "double_click": {
+      "total": 15,
+      "correct": 15
+    },
+    "click_tab": {
+      "total": 15,
+      "correct": 15
+    },
+    "click_toolbar": {
+      "total": 14,
+      "correct": 14
+    },
+    "click_editor": {
+      "total": 9,
+      "correct": 9
+    },
+    "click_file": {
+      "total": 7,
+      "correct": 7
+    },
+    "click_sidebar": {
+      "total": 7,
+      "correct": 7
+    },
+    "click_address_bar": {
+      "total": 6,
+      "correct": 6
+    },
+    "click_menu": {
+      "total": 6,
+      "correct": 6
+    },
+    "left_click": {
+      "total": 5,
+      "correct": 5
+    },
+    "click_link": {
+      "total": 5,
+      "correct": 5
+    },
+    "scroll_page": {
+      "total": 2,
+      "correct": 2
+    },
+    "scroll_list": {
+      "total": 1,
+      "correct": 1
+    }
+  },
+  "top_confusions": []
+}
