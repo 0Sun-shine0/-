@@ -7,11 +7,75 @@ import random
 import numpy as np
 from PIL import Image, ImageDraw
 from pathlib import Path
-from typing import Dict, List, Tuple, Any
+from typing import Dict, List, Tuple, Any, Optional
 from dataclasses import dataclass
 import time
 from datetime import datetime
 import cv2
+
+# --------------------------------------------------------------------------- #
+# 动作因果性定义
+#
+# 这里修的是一个会让整个数据集失去意义的 bug：原实现先 `random.choice` 选动作、
+# 再独立 `random.choice` 选目标元素，两者之间**没有任何关系**。于是"点了哪个元素"
+# 既不在画面上可见、也无法从标签推断，动作标签在给定截图下是均匀随机的，
+# 任何模型的上限都只能退化成"猜最常见的类"。
+#
+# 修法是让动作成为元素类型的**纯函数**：同一元素类型永远对应同一个动作。
+# 配合 save_sample() 里把光标画到目标元素上，任务才真正可解。
+# --------------------------------------------------------------------------- #
+
+#: 元素类型 -> 规范动作名（全局默认）
+ELEMENT_ACTION: Dict[str, str] = {
+    "button": "left_click",
+    "icon": "double_click",       # 与 create_desktop_screenshot 里声明的 action 一致
+    "start_button": "left_click",
+    "link": "click_link",
+    "input": "click_address_bar",
+    "tab": "click_tab",
+    "menu": "click_menu",
+    "toolbar": "click_toolbar",
+    "sidebar": "click_sidebar",
+    "editor": "click_editor",
+    "list": "scroll_list",
+    "content": "scroll_page",
+    "file": "click_file",
+    "folder": "click_folder",
+}
+
+#: 应用级覆盖：仅在该元素类型**只属于某一个应用**、且该应用有更贴切的动作名时使用。
+#: 注意不要把同一元素类型在不同应用里映射到不同动作（例如 button 在浏览器叫
+#: click_button、在桌面叫 left_click）——那会让"动作是元素类型的纯函数"这个不变量
+#: 只在给定应用时成立，既碎片化标签空间，也让数据审计出现假阳性。
+APP_ELEMENT_ACTION: Dict[str, Dict[str, str]] = {
+    "text_editor": {"editor": "type_text"},   # editor 只出现在编辑器里
+}
+
+#: 没有明确操作语义的元素，不参与"目标元素"的挑选
+NON_TARGET_ELEMENTS = {"statusbar"}
+
+#: 绘制光标时的箭头顶点（15x16 归一化框，尖端在原点）
+_CURSOR_SHAPE = (
+    (0.0, 0.0), (0.0, 15.0), (3.5, 11.0), (6.0, 16.0),
+    (9.0, 14.5), (6.5, 10.0), (11.0, 10.0),
+)
+
+
+def resolve_action(app_type: Optional[str], element: "UIElement") -> Optional[str]:
+    """由元素类型唯一决定动作；结果与随机数无关。
+
+    Returns:
+        动作名；若该元素没有明确操作语义（如状态栏）则返回 ``None``，
+        表示它不应被选作目标元素。
+    """
+    kind = element.element_type
+    if kind in NON_TARGET_ELEMENTS:
+        return None
+    override = APP_ELEMENT_ACTION.get(app_type or "", {})
+    if kind in override:
+        return override[kind]
+    return ELEMENT_ACTION.get(kind)
+
 
 @dataclass
 class UIElement:
@@ -25,9 +89,16 @@ class UIElement:
 class ProfessionalDatasetCreator:
     """专业级数据集生成器"""
     
-    def __init__(self, output_dir: str = "datasets"):
+    def __init__(self, output_dir: str = "datasets", draw_cursor: bool = True,
+                 layout: str = "samples"):
         self.output_dir = Path(output_dir)
         self.output_dir.mkdir(exist_ok=True, parents=True)
+        
+        # 是否把光标画到目标元素中心（坐标为任务可解的前提；仅对照实验时关闭）
+        self.draw_cursor = bool(draw_cursor)
+        
+        # "samples" = 历史布局；"train"/"val"/"test" = 训练脚本可直接读取的布局
+        self.layout = layout
         
         # 屏幕分辨率配置
         self.resolutions = [
@@ -284,6 +355,12 @@ class ProfessionalDatasetCreator:
         elif app_type == "file_explorer":
             elements = self.create_explorer_interface(draw, theme, width, height)
         
+        # 关键修复：上面各 *_interface 只负责声明 UI 元素，必须在这里统一绘制。
+        # 之前缺少这一步，导致 web_browser / text_editor / file_explorer 的截图
+        # 全部是纯背景色的空白图（像素标准差为 0），模型无法从中学到任何东西。
+        for element in elements:
+            self.draw_ui_element(draw, element, theme)
+        
         return img, elements
     
     def create_browser_interface(self, draw, theme, width, height):
@@ -489,6 +566,15 @@ class ProfessionalDatasetCreator:
             if element.text:
                 draw.text((x1 + 10, y1 + (y2 - y1 - 20) // 2), element.text, fill=theme["text_color"])
         
+        elif element.element_type in ["sidebar", "editor", "list", "content", "file", "folder", "tab"]:
+            # 容器类/列表类元素：填充背景并写上文字
+            bg_color = element.style.get("bg_color", theme["border_color"])
+            draw.rectangle([x1, y1, x2, y2], fill=bg_color, outline=theme["border_color"], width=1)
+            
+            if element.text:
+                text_color = element.style.get("text_color", theme["text_color"])
+                draw.text((x1 + 5, y1 + max((y2 - y1) // 2 - 8, 2)), element.text, fill=text_color)
+        
         elif element.element_type == "link":
             # 绘制链接
             text_color = element.style.get("text_color", (0, 0, 255))
@@ -503,32 +589,22 @@ class ProfessionalDatasetCreator:
                 draw.line([x1, y2-5, x1 + text_width, y2-5], fill=text_color, width=1)
     
     def generate_random_operation(self, elements: List[UIElement]) -> Dict[str, Any]:
-        """生成随机操作"""
+        """生成随机操作（桌面场景，动作由元素类型决定）"""
         if not elements:
             return {"action": "idle", "target": None, "params": {}}
         
-        # 随机选择一个元素
-        element = random.choice(elements)
-        
-        # 根据元素类型确定操作
-        if element.element_type == "button":
-            action = "left_click"
-        elif element.element_type == "input":
-            action = random.choice(["click_input", "type_text"])
-        elif element.element_type == "icon":
-            action = random.choice(["left_click", "double_click", "right_click"])
-        elif element.element_type == "link":
-            action = "left_click"
-        elif element.element_type == "file":
-            action = random.choice(["left_click", "right_click"])
-        else:
-            action = random.choice(["left_click", "right_click", "hover"])
+        # 只随机"点哪个元素"；动作由元素类型唯一决定，不再独立随机
+        candidates = [e for e in elements if resolve_action(None, e) is not None]
+        if not candidates:
+            return {"action": "idle", "target": None, "params": {}}
+        element = random.choice(candidates)
+        action = resolve_action(None, element)
         
         # 构建操作参数
         params = {}
         if action == "type_text":
             params["text"] = random.choice(["Hello World", "test", "username", "password", "search query"])
-        elif action == "click_input":
+        elif action == "click_address_bar":
             params["cursor_position"] = random.randint(0, len(element.text) if element.text else 0)
         
         return {
@@ -541,43 +617,24 @@ class ProfessionalDatasetCreator:
         }
     
     def generate_app_specific_operation(self, app_type: str, elements: List[UIElement]) -> Dict[str, Any]:
-        """生成应用程序特定操作"""
+        """生成应用程序特定操作
+        
+        动作由目标元素类型唯一决定（见 :func:`resolve_action`）。
+        原实现在这里先随机选动作、再独立随机选元素，使动作标签在给定截图下
+        完全不可预测 —— 那是数据集的主要缺陷，已修复。
+        """
         if not elements:
             return {"action": "idle", "target": None, "params": {}}
         
-        # 根据应用类型选择操作
-        if app_type == "web_browser":
-            possible_actions = [
-                "click_link", "click_button", "click_tab", 
-                "click_address_bar", "scroll_page"
-            ]
-        elif app_type == "text_editor":
-            possible_actions = [
-                "type_text", "click_menu", "click_toolbar", 
-                "click_editor", "click_sidebar"
-            ]
-        elif app_type == "file_explorer":
-            possible_actions = [
-                "click_file", "click_folder", "click_address_bar",
-                "click_sidebar", "scroll_list"
-            ]
-        else:
-            possible_actions = ["left_click", "right_click", "hover"]
-        
-        action = random.choice(possible_actions)
-        
-        # 选择相关元素
-        relevant_elements = [e for e in elements if e.element_type in [
-            "button", "link", "input", "file", "folder", "menu", "toolbar", "editor", "sidebar"
-        ]]
-        
-        if relevant_elements:
-            element = random.choice(relevant_elements)
-        else:
-            element = random.choice(elements)
+        # 只随机"点哪个元素"；动作由元素类型唯一决定
+        candidates = [e for e in elements if resolve_action(app_type, e) is not None]
+        if not candidates:
+            return {"action": "idle", "target": None, "params": {}}
+        element = random.choice(candidates)
+        action = resolve_action(app_type, element)
         
         params = {}
-        if action == "type_text":
+        if action in ("type_text", "click_editor"):
             params["text"] = random.choice(["Hello World", "test code", "document content"])
         
         return {
@@ -589,11 +646,45 @@ class ProfessionalDatasetCreator:
             "timestamp": time.time()
         }
     
+    def draw_target_cursor(self, image: Image.Image, operation: Dict) -> None:
+        """把光标箭头画到目标元素中心（就地修改 image）。
+
+        这是让数据集"可解"的另一半：动作虽然已由元素类型决定，但截图里有很多个
+        同类元素，若没有光标标出到底点了哪一个，从画面仍然无法确定目标，
+        坐标回归也就无从训练。真实桌面上光标本来就在点击位置，所以这里补上。
+        """
+        bounds = operation.get("target_bounds")
+        if not bounds or len(bounds) != 4:
+            return
+        x1, y1, x2, y2 = (float(v) for v in bounds)
+        cx, cy = (x1 + x2) / 2.0, (y1 + y2) / 2.0
+
+        width = image.width
+        size = max(16, int(round(15 * width / 224)))  # 缩放到 224 输入后仍是约 15px
+        scale = size / 15.0
+        points = [(cx + px * scale, cy + py * scale) for px, py in _CURSOR_SHAPE]
+
+        painter = ImageDraw.Draw(image)
+        painter.polygon(points, fill=(255, 255, 255), outline=(0, 0, 0))
+        painter.line(points + [points[0]], fill=(0, 0, 0), width=max(1, int(round(size / 7))))
+
     def save_sample(self, sample_id: str, image: Image.Image, operation: Dict, elements: List[UIElement]):
         """保存样本"""
         # 创建样本目录
-        sample_dir = self.output_dir / "samples" / sample_id
+        # layout="samples" 是历史布局（<out>/samples/<id>/）；传入 "train"/"val"/"test"
+        # 则使用训练脚本能直接读取的布局（<out>/<split>/images|annotations/）。
+        if self.layout == "samples":
+            sample_dir = self.output_dir / "samples" / sample_id
+            annotation_dir = sample_dir
+        else:
+            sample_dir = self.output_dir / self.layout / "images" / sample_id
+            annotation_dir = self.output_dir / self.layout / "annotations"
         sample_dir.mkdir(exist_ok=True, parents=True)
+        annotation_dir.mkdir(exist_ok=True, parents=True)
+        
+        # 把光标画到目标元素上，使坐标与动作在画面上可见（可用 self.draw_cursor 关闭）
+        if self.draw_cursor:
+            self.draw_target_cursor(image, operation)
         
         # 保存图像
         image_path = sample_dir / "screenshot.png"
@@ -602,8 +693,11 @@ class ProfessionalDatasetCreator:
         # 保存标注
         annotation = {
             "sample_id": sample_id,
+            # app 让下游工具能按应用分组统计，也让"这是哪个应用的界面"成为显式元数据
+            "app": sample_id.rsplit("_", 1)[0] if "_" in sample_id else "",
+            "cursor_drawn": bool(self.draw_cursor),
             "image_path": str(image_path.relative_to(self.output_dir)),
-            "operation": operation,
+            "operation": {**operation, "cursor_drawn": bool(self.draw_cursor)},
             "elements": [
                 {
                     "type": elem.element_type,
@@ -617,7 +711,7 @@ class ProfessionalDatasetCreator:
         }
         
         # 使用样本ID作为标注文件名，以便与图像文件对应
-        annotation_path = sample_dir / f"{sample_id}.json"
+        annotation_path = annotation_dir / f"{sample_id}.json"
         with open(annotation_path, 'w', encoding='utf-8') as f:
             json.dump(annotation, f, ensure_ascii=False, indent=2)
     
