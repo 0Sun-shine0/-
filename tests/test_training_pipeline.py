@@ -30,23 +30,28 @@ def create_small_dataset(path, n=16, img_size=(32, 32)):
 class TrainingPipelineSmokeTest(unittest.TestCase):
 
     def test_train_one_epoch(self):
-        tmpdir = tempfile.mkdtemp()
-        ds_path = os.path.join(tmpdir, 'ds.json')
-        create_small_dataset(ds_path, n=24, img_size=(32, 32))
+        # 必须用 TemporaryDirectory 而不是 mkdtemp()：train_model 会在 save_dir 里
+        # 写 checkpoint，而 EnhancedCNN 是 ResNet50 —— 单个 checkpoint（含优化器状态）
+        # 约 450 MB。mkdtemp() 不会自动清理，反复跑测试会把临时盘写满
+        # （本次实测：109 个残留目录共 8.19 GB，直接导致后续测试
+        #  "PytorchStreamWriter failed writing file"）。
+        with tempfile.TemporaryDirectory() as tmpdir:
+            ds_path = os.path.join(tmpdir, 'ds.json')
+            create_small_dataset(ds_path, n=24, img_size=(32, 32))
 
-        cfg = Config()
-        tp = TrainingPipeline(cfg)
+            cfg = Config()
+            tp = TrainingPipeline(cfg)
 
-        train_data, val_data = tp.prepare_dataset(ds_path, validation_split=0.2)
-        sample_y = train_data[1]
-        num_actions = sample_y.shape[1]
-        tp.setup_model('EnhancedCNN', num_actions=num_actions, lr=cfg.LEARNING_RATE, use_amp=False)
+            train_data, val_data = tp.prepare_dataset(ds_path, validation_split=0.2)
+            sample_y = train_data[1]
+            num_actions = sample_y.shape[1]
+            tp.setup_model('EnhancedCNN', num_actions=num_actions, lr=cfg.LEARNING_RATE, use_amp=False)
 
-        hist = tp.train_model(train_data, val_data, epochs=1, batch_size=4, save_dir=tmpdir, use_amp=False)
+            hist = tp.train_model(train_data, val_data, epochs=1, batch_size=4, save_dir=tmpdir, use_amp=False)
 
-        self.assertIn('loss', hist)
-        self.assertIn('val_loss', hist)
-        self.assertEqual(len(hist['loss']), 1)
+            self.assertIn('loss', hist)
+            self.assertIn('val_loss', hist)
+            self.assertEqual(len(hist['loss']), 1)
 
 
 if __name__ == '__main__':
