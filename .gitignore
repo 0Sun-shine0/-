@@ -20,15 +20,28 @@ env/
 Thumbs.db
 
 # Model artifacts and datasets (generated)
-models/trained_example/
-models/example_run/
+# models/ 下的内容全部可由 scripts/ 重现（训练脚本 + 导出脚本），且单个体积达数百 MB，
+# 因此整个目录不入库；需要时按 README 的命令重新生成。
+models/
 *.pth
 *.ckpt
+*.onnx
+*.onnx.data
 training_history.json
 data/synthetic_dataset_small.json
 
 # Test artifacts
 tests/__pycache__/
+
+# 数据修复脚本产生的空白图备份（仅本地保留，便于 --restore）
+ai_operator_dataset/_blank_screenshots_backup/
+
+# v2/v3 数据集由脚本以固定 seed 生成，可随时重建，不入库
+ai_operator_dataset_v2/
+ai_operator_dataset_v3/
+
+# 实时演示会截取真实桌面，不要提交
+reports/live_*.png
 
 # Environment files
 .env
