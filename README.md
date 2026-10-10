@@ -72,7 +72,7 @@ scripts/
 └── export_onnx.py           # 导出 ONNX
 
 tests/
-└── test_desktop_pipeline.py # ★ 23 项单测（含生成器因果性与坐标头回归测试）
+└── test_desktop_pipeline.py # ★ 29 项单测（含生成器因果性与坐标头回归测试）
 ```
 
 ## 安装
@@ -152,18 +152,38 @@ setx DEEPSEEK_API_KEY "your_api_key_here"        # 永久
 | 预处理 | 缩放到 224×224 + **ImageNet 均值方差归一化**（与预训练 ResNet 对齐；旧的 `data_processor` 只做 `/255`，会浪费预训练权重） |
 | 损失 | `CrossEntropy(label_smoothing=0.1) + 1.0 × SmoothL1(坐标头输出, 目标点)` |
 | 优化 | AdamW，主干 `1e-4` / 预测头 `1e-3` 分组学习率 + CosineAnnealing，梯度裁剪 5.0 |
+| 选优/早停 | 默认按验证准确率；`--monitor coord` 改为按坐标误差（见下） |
+| 增强 | 亮度/对比度抖动；`--augment-shift N` 追加保标签的平移增强 |
 | 加速 | 训练时跳过用不上的分割分支（省约一半算力）；截图预载进内存（`--draw-cursor` 在预载阶段画一次，训练循环零开销） |
 | 产出 | `best_model.pth` / `last_model.pth` / `label_map.json` / `training_history.json` / `metrics.json` |
 
-### 三个关键开关
+### 五个关键开关
 
 - **`--spatial-coord`（重要）**：把坐标头从"全局池化 + 线性"换成 **soft-argmax 热力图**。
   旧结构下 `mouse_head` 收到的是被 ResNet `avgpool` 压成 `1×1` 的特征，
   **线性层不可能从全局描述子里恢复坐标**——实测坐标误差会卡在 200–300 px 下不去。
-  打开后第 1 轮就降到 35 px，最终 11 px。
+  打开后第 1 轮就降到 35 px。
+- **`--monitor`**（`acc` / `coord`，默认 `acc`）：决定用哪个指标选最优模型、并据其早停。
+  准确率会**饱和在 100%** 而坐标往往还在继续下降，按准确率早停会白丢精度。
+  同一份 v3 数据、同一套超参、同样 12 轮：
+
+  | 选优准则 | 验证坐标误差 | test 坐标误差 | 准确率 |
+  |---|---|---|---|
+  | `--monitor acc`（默认，向后兼容） | 26 px（第 3 轮即饱和） | 42 px | 100% |
+  | **`--monitor coord`** | **8 px** | **13 px** | 100% |
+
+  即"只换选优准则"就换来约 **3.2×** 的定位精度提升，准确率不变。关心定位时请用它。
+- **`--augment-shift N`**：保标签的平移增强（图像移多少、目标点标签就移多少，边缘填充）。
+  目标点贴边时会**放弃该次增强**而不是夹标签——否则图像移了、标签没跟上，等于掺错标。
+  仅训练集生效，验证集绝不增强。实测结论见下文（**在本合成数据上并未带来收益**）。
 - **`--draw-cursor`**：在目标点画箭头光标。只适用于截图里**没有**光标的 v1 数据集；
   v2/v3 的光标已烘烤进图片，再加会重复画。
 - **`--data-root`**：数据集根目录，用于切换 v1 / v2 / v3。
+
+> `metrics.json` 会同时记录两个准则各自的最优轮次（`best_acc_epoch` / `best_coord_epoch`）
+> 以及实际被保存的那一轮（`selected_*`），便于判断"是否因选优准则而丢掉了精度"。
+> 逐类统计也会先载回 `best_model.pth` 的权重再算，避免早停后"最后一轮"与"最优轮"
+> 不是同一组权重导致报告自相矛盾。
 
 ### 数据集生成器本身的修复（`ProfessionalDatasetCreator`）
 
@@ -240,13 +260,20 @@ python -m ai_operator.main --mode workflow --topic "人工智能发展趋势" --
 
 ```powershell
 .venv\Scripts\python.exe scripts\export_onnx.py `
-    --checkpoint models\desktop_v2\best_model.pth `
-    --onnx-path models\desktop_v2\best_model.onnx
-.venv\Scripts\python.exe scripts\infer_example.py --use-onnx --onnx-path models\desktop_v2\best_model.onnx
+    --checkpoint models\desktop_v3_coord\best_model.pth `
+    --onnx-path models\desktop_v3_coord\best_model.onnx
+.venv\Scripts\python.exe scripts\infer_example.py --use-onnx --onnx-path models\desktop_v3_coord\best_model.onnx
 ```
 
-导出脚本同样会自动识别坐标头类型。已验证 ONNX 与 PyTorch 数值一致
-（8 张真实截图，坐标最大偏差 `5.4e-07`，logits 最大偏差 `1.1e-06`，Top-1 全部一致）。
+导出脚本会自动识别坐标头类型，并自动从权重推断动作类别数。
+默认 opset 为 **18**：当前 torch 只内置了 opset 18 的实现，请求更低版本会触发 ONNX
+的自动降级转换并打印 `axes_input_to_attribute` / `Failed to convert` 报错文本
+（转换失败但模型保留在 18，导出结果仍可用）。用 18 就没有这些噪音。
+目标运行时较老时可用 `--opset` 显式指定更低值，但请自行验证数值一致性。
+
+已验证 ONNX 与 PyTorch 数值一致（8 张真实截图，坐标最大偏差 `5.4e-07`，
+logits 最大偏差 `1.1e-06`，Top-1 全部一致）——该检查已固化为
+`tests/test_desktop_pipeline.py::OnnxExportEquivalenceTest`。
 
 `best_model.onnx` 会配套一个 100 MB+ 的 `best_model.onnx.data`（外置权重），两者都已加入 `.gitignore`。
 
@@ -255,43 +282,48 @@ python -m ai_operator.main --mode workflow --topic "人工智能发展趋势" --
 ## 实测结果
 
 所有数字都在同一台机器（CPU，i7-11800H）、同一套评估协议下实测。
-逐样本预测与可视化在 `reports/`、`reports/v2/` 下。
+逐样本预测与可视化在 `reports/` 下的各子目录。
 
 ### 总览
 
 > ⚠️ 下表的"test"列都是在**各自数据集上**跑出来的。最初的损坏数据集版本只跑到第 4 轮就被中止，
 > 没有留下 test 结果，它的验证集数字单列在下一节。
 
-| 配置 | 数据集 | 光标 | 坐标头 | test 动作 Top-1 | test 坐标平均误差 |
-|---|---|---|---|---|---|
-| A | v1 修复后 | 无 | 全局池化 + 线性 | 30.7% | 597 px |
-| B | v1 修复后 | 运行时注入 | 全局池化 + 线性 | 29.3% | 309 px |
-| C | v2 因果 | 已烘烤 | 全局池化 + 线性 | 57.5% ⚠️ | 360 px |
-| **D** | **v2 因果** | **已烘烤** | **spatial soft-argmax** | **100.0%** | **20 px** |
-| **E** | **v3（修复后的旧生成器）** | **已烘烤** | **spatial soft-argmax** | **100.0%** | **42 px** |
+| 配置 | 数据集 | 光标 | 坐标头 | 选优准则 | test 动作 Top-1 | test 坐标平均误差 |
+|---|---|---|---|---|---|---|
+| A | v1 修复后 | 无 | 全局池化 + 线性 | acc | 30.7% | 597 px |
+| B | v1 修复后 | 运行时注入 | 全局池化 + 线性 | acc | 29.3% | 309 px |
+| C | v2 因果 | 已烘烤 | 全局池化 + 线性 | acc | 57.5% ⚠️ | 360 px |
+| D | v2 因果 | 已烘烤 | spatial soft-argmax | acc | **100.0%** | 20 px |
+| E | v3（修复后的旧生成器） | 已烘烤 | spatial soft-argmax | acc | **100.0%** | 42 px |
+| **F** | **v3** | **已烘烤** | **spatial soft-argmax** | **coord** | **100.0%** | **13 px** |
 
 > ⚠️ 配置 C 只训练了 1 轮就被中止，动作准确率被严重低估，不能与 D 直接比动作。
 > 但坐标误差 360 px vs 20 px 的差距与下面的架构分析一致。
 
 参考基线：随机猜测 6.2%–8.3%，多数类 23.3%–45.6%。
 
-### 两个可用模型
+### 可用模型
 
-| | **D：v2（推荐）** | **E：v3** |
-|---|---|---|
-| 数据来源 | `scripts/build_dataset_v2.py` | `scripts/build_dataset_from_creator.py` |
-| 训练/验证/测试 | 560 / 120 / 120 | 300 / 79 / 79 |
-| 类别数 | 13 | 12 |
-| 验证集动作 Top-1 | 100.0%（第 6 轮，11 轮早停） | 100.0%（第 3 轮，7 轮早停） |
-| 验证集坐标误差 | 11 px | 26 px（最优轮） |
-| test 动作 Top-1 / Top-3 | **100.0% / 100.0%** | **100.0% / 100.0%** |
-| test 坐标误差 | 平均 **20 px** / 中位 15 px | 平均 **42 px** / 中位 27 px |
-| 训练耗时（CPU） | 1083 s | 282 s |
-| ONNX 数值一致性 | 坐标 `5.4e-07`，logits `1.1e-06` | — |
+| | **F：v3 + coord 选优（当前最佳）** | **D：v2** | **E：v3 + acc 选优** |
+|---|---|---|---|
+| 数据来源 | `build_dataset_from_creator.py` | `build_dataset_v2.py` | `build_dataset_from_creator.py` |
+| 训练/验证/测试 | 300 / 79 / 79 | 560 / 120 / 120 | 300 / 79 / 79 |
+| 类别数 | 12 | 13 | 12 |
+| 选优准则 | `--monitor coord` | `--monitor acc` | `--monitor acc` |
+| 验证集动作 Top-1 | 100.0% | 100.0% | 100.0% |
+| 验证集坐标误差 | **8 px** | 11 px | 26 px |
+| test 动作 Top-1 / Top-3 | **100.0% / 100.0%** | 100.0% / 100.0% | 100.0% / 100.0% |
+| test 坐标误差 | **平均 13 px / 中位 10 px** | 平均 20 px / 中位 15 px | 平均 42 px / 中位 27 px |
+| 训练耗时（CPU） | 492 s | 1083 s | 282 s |
+| 12–13 类是否全对 | 是 | 是 | 是 |
 
-v3 的坐标误差比 v2 大一些，原因可解释：v3 沿用了旧生成器的分辨率集合
-（含 3840×2160 / 2560×1440），且训练样本只有 300。**两者的动作准确率都是 100%**，
-说明"动作由元素类型唯一决定 + 光标可见"这个修法本身是充分的。
+F 与 E 用的是**完全相同的数据、架构和超参**，唯一区别就是 `--monitor`：
+E 在第 3 轮准确率触顶 100% 后就被早停，保存的权重坐标误差 26 px；
+F 改按坐标选优，一路降到第 12 轮的 8 px。这是"继续优化"里性价比最高的一处改动。
+
+ONNX 导出（opset 18）与 PyTorch 的一致性已用 8 张真实截图验证：
+坐标最大偏差 `5.4e-07`、logits `1.1e-06`、Top-1 全部一致；该检查已固化为单测。
 
 **泛化性**（按截图指纹拆分 test 集）：
 
@@ -299,13 +331,33 @@ v3 的坐标误差比 v2 大一些，原因可解释：v3 沿用了旧生成器�
 |---|---|---|---|---|
 | v2 | 见过该界面 | 55 | 100.0% | 16 px |
 | v2 | **没见过该界面** | **65** | **100.0%** | **23 px** |
-| v3 | 见过该界面 | 71 | 100.0% | 43 px |
-| v3 | **没见过该界面** | **8** | **100.0%** | **25 px** |
+| v3（F） | 见过该界面 | 71 | 100.0% | 13 px |
+| v3（F） | **没见过该界面** | **8** | **100.0%** | **9 px** |
 
 在完全没见过的界面上依然 100% —— 模型学的是"光标压在什么元素上"这个规律，
 而不是记住了某几张图。
 
-![v2 演示拼图](reports/v2/demo_grid_test.png)
+### 一个**负结果**：平移增强没有帮上忙
+
+`--augment-shift 12`（保标签平移增强）在同一份 v3 数据上做了 A/B，选优准则都是 `--monitor coord`：
+
+| 配置 | 验证坐标误差 | test 坐标误差 | test（未见过的界面） |
+|---|---|---|---|
+| **无增强** | **8 px** | **13 px** | **9 px** |
+| `--augment-shift 12` | 13 px | 21 px | 13 px |
+| `--augment-shift 12`（修掉"夹标签"缺陷后） | 15 px | 23 px | 18 px |
+
+**结论：在这个合成数据集上，平移增强让定位变差了**，因此默认关闭（`--augment-shift 0`）。
+可能的原因：界面元素本就落在固定的布局槽位上，平移并没有带来"更多真实布局"，
+反而破坏了"光标相对元素边框的位置"这个最有用的线索。
+
+另外要说明：过程中发现并修掉了一个真实缺陷——增强原本会把目标点标签 **clamp 到 [0,1]**，
+而图像内容是整体平移的，于是贴边样本出现"图移了、标签没跟上"的错标。
+现已改为**放弃该次增强**（见 `test_no_shift_when_target_would_leave_frame`）。
+但这个修正并没有把增强的收益扳正——即使没有错标，它在本数据上依然更差。
+如实记录这个负结果，是为了避免后来者以为"没开增强是漏了优化"。
+
+![v3 演示拼图](reports/v3_coord/demo_grid_test.png)
 
 绿框是标注里的目标元素，红十字符是模型预测的点击点。预测点落在光标尖端上。
 
@@ -322,10 +374,18 @@ v3 的坐标误差比 v2 大一些，原因可解释：v3 沿用了旧生成器�
 
 坐标误差完全不动（380–396 px），因为那 40% 的截图里根本没有任何可看的内容。
 
-### 推荐模型：v2 + 空间坐标头（配置 D）
+### 推荐模型
 
-`models/desktop_v2/best_model.pth`。逐项指标见上面的"两个可用模型"表。
-它在 13 个动作类别上**全部 100%**，且 ONNX 导出后与 PyTorch 数值一致。
+`models/desktop_v3_coord/best_model.pth`（配置 F）。逐项指标见上面的"可用模型"表：
+12 个动作类别**全部 100%**，test 坐标平均 13 px，ONNX 导出后与 PyTorch 数值一致。
+
+复现命令：
+
+```powershell
+.venv\Scripts\python.exe scripts\train_ai_operator.py `
+    --data-root ai_operator_dataset_v3 --out-dir models\desktop_v3_coord `
+    --spatial-coord --monitor coord --epochs 12 --batch-size 16
+```
 
 ### 每个改动各自贡献了多少
 
@@ -348,6 +408,8 @@ mouse_head 第 0 层实际收到: (1, 128)
 | ② 再注入光标（仅此一项变化） | 29.3%（test） | **309 px（-48%）** | 坐标确实改善，但动作毫无起色 |
 | ③ 换 spatial soft-argmax 坐标头 | — | 第 1 轮即 **35 px** | **坐标可用性的决定因素** |
 | ④ 换 v2/v3 因果数据 | **100.0%** | 20 / 42 px | **动作准确率的决定因素** |
+| ⑤ 选优准则改按坐标（`--monitor coord`） | 100.0% | **13 px** | **不需要重新设计，只换准则就 3.2×** |
+| ⑥ 平移增强 `--augment-shift` | 100.0% | 21–23 px ↑ | **负结果，默认关闭** |
 
 ①② 是在完全相同的数据、架构、超参下只切换 `--draw-cursor` 的受控对比，
 所以 597→309 px 可以归因于光标本身；但它只走完了到可用坐标的一半路，
@@ -356,6 +418,9 @@ mouse_head 第 0 层实际收到: (1, 128)
 结论：**凭直觉猜原因很容易猜错。**"没有光标"看起来最像元凶，实际只贡献了 597→309；
 动作准确率更是和光标无关——它的瓶颈在标签本身（② 让动作从 30.7% 微降到 29.3%，
 因为光标反而给模型提供了新的、与动作无关的干扰线索）。
+
+⑤ 与 ⑥ 也值得注意：**最省力的改动（换选优准则）收益最大，而看起来"更专业"的
+数据增强反而有害**。两者都只有在实测之后才知道。
 
 ### 为什么 v1 的动作准确率只有 ~30%？那是数据集的天花板
 
@@ -422,12 +487,20 @@ v3 也一样：第 3 轮就达到 100% 准确率并保存，而第 7 轮的坐�
 5. `enhanced_training.py` / `model_finetuning.py` 里的 `EnhancedCNN` 与 `model_evaluation.py` 的
    坐标解析逻辑仍是旧接口（对 `mouse_positions` 直接 `sigmoid`）。新代码请用
    `ai_operator.models.cnn_model.decode_points()`，它会根据 `spatial_coord` 自动选择正确的解码方式。
-6. `scripts/export_onnx.py` 在 opset 11 下会打印一条 `axes_input_to_attribute` 的内部警告
-   （ONNX 版本转换器发出），**不影响导出结果**，已用数值对比验证。
+6. `scripts/export_onnx.py` 的 opset 默认值已从 11 提到 18（原因见上文）。
+   若显式传 `--opset 11`，会看到 `axes_input_to_attribute` / `Failed to convert` 报错文本，
+   那是 ONNX 版本转换器的内部行为，**不影响导出结果**（模型会保留在 18）。
 7. `dataset_creator.create_app_specific_dataset()` 的 `num_samples` 会被
    `basic/app` 的比例整除后取整，实际产出可能略少于请求数量（如请求 80 得到 79）。
    这不会影响训练，但如果你依赖精确样本数，请以生成清单里的实际数字为准。
-8. 仓库里跟踪了 `__pycache__/*.pyc`，建议 `git rm -r --cached .` 清理后重新添加。
+8. **不要用 PowerShell 的 `Set-Content`/`Out-File` 直接改写仓库里的 UTF-8 文件**：
+   Windows PowerShell 5.1 默认按 ANSI(GBK) 写出，会把中文全部变成乱码。
+   需要改文件请用编辑器/`edit` 工具，或显式 `-Encoding utf8`。
+   （本次开发中 README 就被这样破坏过一次，靠 git 才恢复回来。）
+9. `--augment-shift` 平移增强在本合成数据集上是负收益，默认关闭。
+   若要启用，请先用 `--monitor coord` 做 A/B 对比再决定。
+10. 仓库里已不再跟踪 `__pycache__/*.pyc`（本次已用 `git rm --cached` 清理），
+    `.gitignore` 也已覆盖 `/models/`、`ai_operator_dataset_v2/v3/`、`reports/live_*.png`。
 
 ## 注意事项
 
