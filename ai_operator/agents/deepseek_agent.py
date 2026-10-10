@@ -37,14 +37,16 @@ class DeepSeekAgent:
             self.config = Config()
         
         self.api_key = api_key or self.config.DEEPSEEK_API_KEY
+        self._client: Optional[OpenAI] = None
+
         if not self.api_key:
-            # 如果没有API密钥，可以设置为模拟模式
-            logger.warning("DeepSeek API key未设置，将使用模拟模式")
-        
-        self.client = OpenAI(
-            api_key=self.api_key,
-            base_url=config.DEEPSEEK_API_URL
-        )
+            # 注意：以前这里只打了日志，紧接着却无条件构造 OpenAI(...)，
+            # 于是没有密钥时直接抛 OpenAIError —— GUI 连窗口都打不开。
+            # 现在改为惰性构造：对象可以正常创建，只有真正调用 API 时才报错。
+            logger.warning(
+                "DeepSeek API key 未设置：与 DeepSeek 相关的功能不可用。"
+                "请设置环境变量 DEEPSEEK_API_KEY，或写入项目根目录的 .env。"
+            )
         
         self.thought_chain: List[ThoughtStep] = []
         
@@ -75,6 +77,27 @@ class DeepSeekAgent:
 - "expected_outcomes": 预期结果
 """
     
+    @property
+    def client(self) -> OpenAI:
+        """惰性构造 OpenAI 客户端。
+
+        只有真正要发请求时才建客户端，这样"没有密钥"不会阻止 GUI 启动，
+        而是在调用 API 的那一刻给出明确的错误提示。
+        """
+        if self._client is None:
+            if not self.api_key:
+                raise RuntimeError(
+                    "未配置 DEEPSEEK_API_KEY，无法调用 DeepSeek API。\n"
+                    "请设置环境变量 DEEPSEEK_API_KEY，或写入项目根目录的 .env（KEY=VALUE）。"
+                )
+            # 用 self.config 而不是模块级 config，否则传入自定义 Config 时 base_url 不生效
+            self._client = OpenAI(api_key=self.api_key, base_url=self.config.DEEPSEEK_API_URL)
+        return self._client
+
+    def is_available(self) -> bool:
+        """是否具备调用 DeepSeek 的条件（GUI 可据此决定是否禁用相关按钮）。"""
+        return bool(self.api_key)
+
     def create_thought_chain(self, user_query: str, context: Dict[str, Any]) -> Dict[str, Any]:
         """创建思维链来处理复杂任务"""
         

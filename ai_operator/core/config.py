@@ -8,6 +8,63 @@ from typing import Dict, List, Tuple, Any, Optional
 from pathlib import Path
 import logging
 
+
+def load_dotenv_file(path: Optional[Path] = None, override: bool = False) -> Dict[str, str]:
+    """把项目根目录的 ``.env`` 读进 ``os.environ``。
+
+    项目里一直存在 ``.env``，但此前**没有任何代码读取它** —— 用户按直觉把密钥写进
+    ``.env`` 后，``os.getenv`` 依然拿不到，与 README 的说明形成落差。
+    这里用十几行实现，避免为此新增 python-dotenv 依赖。
+
+    语法支持：``KEY=VALUE``、``#`` 注释、``export`` 前缀、单/双引号包裹的值。
+    已存在的环境变量默认**不覆盖**（显式设的环境变量优先级更高）；
+    但"存在却为空"的值视为未设置 —— Windows 上 ``$env:KEY=""`` 会留下一个已定义
+    的空变量，若把它当成"已设置"，``.env`` 就会被静默忽略，与用户直觉相反。
+
+    Returns:
+        实际写入的键值对（便于测试与日志）。
+    """
+    if path is None:
+        path = Path(__file__).resolve().parents[2] / ".env"
+    if not path.is_file():
+        return {}
+
+    loaded: Dict[str, str] = {}
+    try:
+        raw = path.read_text(encoding="utf-8-sig")
+    except OSError:
+        return {}
+
+    for line in raw.splitlines():
+        line = line.strip()
+        if not line or line.startswith("#"):
+            continue
+        if line.startswith("export "):
+            line = line[len("export "):].lstrip()
+        if "=" not in line:
+            continue
+        key, _, value = line.partition("=")
+        key = key.strip()
+        value = value.strip()
+        if not key:
+            continue
+        # 去掉成对的引号
+        if len(value) >= 2 and value[0] == value[-1] and value[0] in ("'", '"'):
+            value = value[1:-1]
+        if not override:
+            existing = os.environ.get(key)
+            if existing is not None and existing.strip():
+                continue
+        os.environ[key] = value
+        loaded[key] = value
+    return loaded
+
+
+# 必须在 Config 类定义**之前**执行：DEEPSEEK_API_KEY 的默认值是在类定义时
+# 由 os.getenv 求值的，模块加载后再调用就来不及了。
+load_dotenv_file()
+
+
 @dataclass
 class Config:
     """项目配置类"""

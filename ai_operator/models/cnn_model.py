@@ -5,8 +5,10 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from torchvision import models
-from typing import Tuple, Dict, Any
+from typing import Tuple, Dict, Any, Optional, Sequence
 import logging
+
+import numpy as np
 
 logger = logging.getLogger(__name__)
 
@@ -195,53 +197,94 @@ class EnhancedCNN(nn.Module):
             'segmentation': segmentation
         }
     
-    def predict(self, screen_tensor: torch.Tensor, threshold: float = 0.5) -> Dict[str, Any]:
-        """推理预测"""
+    def _to_input_tensor(self, image) -> torch.Tensor:
+        """把 numpy 图像或任意形状张量整理成模型输入 ``(1, 3, S, S)``。
+
+        GUI 之前直接把 OpenCV 的 ``(H, W, 3) uint8`` 数组传进 predict()，
+        而 nn.Module 只接受张量，于是必然抛
+        ``TypeError: conv2d() received numpy.ndarray``。这里统一做转换。
+        """
+        if isinstance(image, np.ndarray):
+            arr = image
+            if arr.ndim == 2:
+                arr = np.stack([arr] * 3, axis=-1)
+            if arr.dtype != np.uint8:
+                arr = np.clip(arr, 0, 255).astype(np.uint8)
+            # OpenCV 给的是 BGR；调用方若已是 RGB 可先自行转换
+            tensor = torch.from_numpy(np.ascontiguousarray(arr)).permute(2, 0, 1).float() / 255.0
+        elif isinstance(image, torch.Tensor):
+            tensor = image.detach().float()
+            if tensor.max() > 1.5:  # 看起来是 0-255 的原始像素
+                tensor = tensor / 255.0
+        else:
+            raise TypeError(f"不支持的输入类型: {type(image)!r}（应为 numpy 数组或 torch.Tensor）")
+
+        while tensor.dim() == 3:
+            tensor = tensor.unsqueeze(0)
+        if tensor.shape[1] != 3 and tensor.shape[-1] == 3:
+            tensor = tensor.permute(0, 3, 1, 2)
+
+        target = (self.screen_size[0], self.screen_size[1])
+        if (tensor.shape[2], tensor.shape[3]) != target:
+            tensor = F.interpolate(tensor, size=target, mode="bilinear", align_corners=False)
+        return tensor
+
+    @torch.no_grad()
+    def predict(self, image, topk: int = 3, action_names: Optional[Sequence[str]] = None,
+                with_segmentation: bool = False) -> Dict[str, Any]:
+        """推理预测。
+
+        Args:
+            image: numpy 图像（HWC, uint8, BGR）或 torch 张量。
+            topk: 返回前 k 个动作。
+            action_names: 类别索引 -> 动作名。传入后额外返回 ``action_name``，
+                否则调用方只拿到无意义的整数索引。
+            with_segmentation: 是否计算分割图。默认关闭：该分支含 4 层
+                ConvTranspose2d，代价约等于再跑一遍主干，而训练数据并没有分割标签。
+
+        Returns:
+            ``mouse_position`` 是 **[0,1] 归一化坐标**（不再是乘过 224 的像素值）；
+            要落到真实屏幕像素请乘上屏幕宽高，用 :func:`decode_points` 的语义保持一致。
+        """
         self.eval()
-        with torch.no_grad():
-            outputs = self.forward(screen_tensor)
-            
-            # 处理动作预测
-            action_probs = F.softmax(outputs['actions'], dim=1)
-            top_actions = torch.topk(action_probs, 3)  # 获取top-3动作
-            
-            # 处理应用程序识别
-            app_probs = F.softmax(outputs['applications'], dim=1)
-            top_apps = torch.topk(app_probs, 2)
-            
-            # 处理边界框（归一化到[0, 1]）
-            bboxes = torch.sigmoid(outputs['bounding_boxes'])
-            
-            # 处理鼠标位置（归一化到屏幕尺寸）
-            mouse_pos = decode_points(self, outputs['mouse_positions'])
-            mouse_pos = mouse_pos * torch.tensor([self.screen_size[1], self.screen_size[0]])
-            
-            # 处理分割结果
-            segmentation = torch.argmax(outputs['segmentation'], dim=1)
-            
-            return {
-                'top_actions': [
-                    {
-                        'action': idx.item(),
-                        'confidence': prob.item()
-                    }
-                    for idx, prob in zip(top_actions.indices[0], top_actions.values[0])
-                ],
-                'top_applications': [
-                    {
-                        'app': idx.item(),
-                        'confidence': prob.item()
-                    }
-                    for idx, prob in zip(top_apps.indices[0], top_apps.values[0])
-                ],
-                'bounding_boxes': bboxes[0].tolist(),
-                'mouse_position': mouse_pos[0].tolist(),
-                'segmentation_map': segmentation[0].cpu().numpy(),
-                'confidence_scores': {
-                    'action_max': action_probs.max().item(),
-                    'app_max': app_probs.max().item()
-                }
-            }
+        tensor = self._to_input_tensor(image)
+        outputs = self.forward(tensor, return_segmentation=with_segmentation)
+
+        k = max(1, min(int(topk), outputs["actions"].shape[1]))
+        action_probs = F.softmax(outputs["actions"], dim=1)
+        top_actions = torch.topk(action_probs, k)
+        app_probs = F.softmax(outputs["applications"], dim=1)
+        top_apps = torch.topk(app_probs, min(2, app_probs.shape[1]))
+        bboxes = torch.sigmoid(outputs["bounding_boxes"])
+        # 必须走 decode_points：spatial_coord 模型的坐标已在 [0,1]，
+        # 再套一次 sigmoid 会被压向 0.5
+        mouse_pos = decode_points(self, outputs["mouse_positions"])
+
+        def name_of(idx: int) -> Optional[str]:
+            if action_names is None or not (0 <= idx < len(action_names)):
+                return None
+            return str(action_names[idx])
+
+        result: Dict[str, Any] = {
+            "top_actions": [
+                {"action": idx.item(), "action_name": name_of(idx.item()), "confidence": prob.item()}
+                for idx, prob in zip(top_actions.indices[0], top_actions.values[0])
+            ],
+            "top_applications": [
+                {"app": idx.item(), "confidence": prob.item()}
+                for idx, prob in zip(top_apps.indices[0], top_apps.values[0])
+            ],
+            "bounding_boxes": bboxes[0].tolist(),
+            # 归一化坐标；乘屏幕宽高即得真实像素
+            "mouse_position": mouse_pos[0].tolist(),
+            "confidence_scores": {
+                "action_max": action_probs.max().item(),
+                "app_max": app_probs.max().item(),
+            },
+        }
+        if with_segmentation and outputs["segmentation"] is not None:
+            result["segmentation_map"] = torch.argmax(outputs["segmentation"], dim=1)[0].cpu().numpy()
+        return result
 
 class MultiModalTransformer(nn.Module):
     """多模态Transformer模型，结合图像和文本特征"""
