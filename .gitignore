@@ -20,9 +20,10 @@ env/
 Thumbs.db
 
 # Model artifacts and datasets (generated)
-# models/ 下的内容全部可由 scripts/ 重现（训练脚本 + 导出脚本），且单个体积达数百 MB，
-# 因此整个目录不入库；需要时按 README 的命令重新生成。
-models/
+# 根目录的 models/ 下内容全部可由 scripts/ 重现，且单次训练产出达数百 MB，故不入库。
+# 注意必须写成 /models/（根锚定）：只写 models/ 会连 ai_operator/models/ 源码目录
+# 一起忽略掉，那里面是 EnhancedCNN 的实现。
+/models/
 *.pth
 *.ckpt
 *.onnx
