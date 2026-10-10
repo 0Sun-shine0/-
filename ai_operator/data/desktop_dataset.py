@@ -282,6 +282,9 @@ class DesktopScreenshotDataset(Dataset):
             开启后坐标回归才成为良定义的任务（见 :func:`draw_cursor`）。
             注意光标位置由标签决定且每个样本固定，所以在 ``preload`` 阶段画一次即可，
             训练循环里没有任何额外开销。
+        augment_shift: 平移增强的最大像素数（输入空间）。图像被平移多少，目标点标签
+            就同步平移多少，因此标签语义不变、却能显著提升对界面布局偏移的鲁棒性。
+            0 表示关闭。仅在 ``train=True`` 时生效。
     """
 
     def __init__(
@@ -295,6 +298,7 @@ class DesktopScreenshotDataset(Dataset):
         preload: bool = True,
         verbose: bool = True,
         draw_cursor: bool = False,
+        augment_shift: int = 0,
     ) -> None:
         self.samples = list(samples)
         self.label_map = dict(label_map)
@@ -303,6 +307,7 @@ class DesktopScreenshotDataset(Dataset):
         self.mean = tuple(mean)
         self.std = tuple(std)
         self.draw_cursor = bool(draw_cursor)
+        self.augment_shift = max(int(augment_shift), 0)
         self._cache: Optional[List[np.ndarray]] = None
 
         if preload:
@@ -323,21 +328,61 @@ class DesktopScreenshotDataset(Dataset):
         size = self.input_size
         return draw_cursor(arr, nx * size, ny * size, max(9, round(CURSOR_SIZE * size / 224)))
 
+    def _augment(self, arr: np.ndarray, norm_point: Tuple[float, float]
+                 ) -> Tuple[np.ndarray, Tuple[float, float]]:
+        """随机平移图像，并让目标点标签同步平移。
+
+        平移是**保标签**的几何增强：图像内容移动 (dx, dy) 像素，目标点也移动同样多，
+        所以"该点哪里"这个语义完全不变，只是让模型见过更多布局位置。
+        用边缘像素填充（np.pad 的 edge 模式）而不是补零，避免引入现实中不存在的黑边。
+
+        目标点贴边时**放弃这次增强**而不是把标签夹到 [0,1]：内容已经整体平移，
+        若只夹标签就会出现"图像移了、标签没跟上"的错标，等于往训练集里掺噪声。
+        """
+        if not (self.train and self.augment_shift > 0):
+            return arr, norm_point
+
+        limit = self.augment_shift
+        size = float(self.input_size)
+        dx = int(np.random.randint(-limit, limit + 1))
+        dy = int(np.random.randint(-limit, limit + 1))
+        if dx == 0 and dy == 0:
+            return arr, norm_point
+
+        shifted_point = (norm_point[0] + dx / size, norm_point[1] + dy / size)
+        # 目标点必须仍落在画面内，否则这次平移会破坏标签
+        margin = 1.0 / size  # 允许一个像素的余量
+        if not (margin <= shifted_point[0] <= 1.0 - margin
+                and margin <= shifted_point[1] <= 1.0 - margin):
+            return arr, norm_point
+
+        # shifted[i, j] 必须等于 arr[i - dy, j - dx]，这样"内容里的特征从 (r, c)
+        # 移到 (r + dy, c + dx)"才与标签的 (+dx, +dy) 一致。
+        # 注意 x 方向也是减 dx：写成加号会让内容向左、标签向右，标签就不守恒了。
+        padded = np.pad(arr, ((limit, limit), (limit, limit), (0, 0)), mode="edge")
+        offset = limit
+        shifted = padded[offset - dy: offset - dy + arr.shape[0],
+                         offset - dx: offset - dx + arr.shape[1]]
+        return shifted, shifted_point
+
     def __len__(self) -> int:
         return len(self.samples)
 
     def __getitem__(self, index: int) -> Dict[str, object]:
         sample = self.samples[index]
         if self._cache is not None:
-            image = _array_to_tensor(self._cache[index], self.mean, self.std, self.train)
+            arr = self._cache[index]
         else:
             with Image.open(sample.image_path) as im:
                 im = im.convert("RGB").resize((self.input_size, self.input_size), Image.BILINEAR)
             arr = self._maybe_draw_cursor(np.asarray(im, dtype=np.uint8), sample)
-            image = _array_to_tensor(arr, self.mean, self.std, self.train)
+
+        norm_point = sample.norm_point
+        arr, norm_point = self._augment(arr, norm_point)
+        image = _array_to_tensor(arr, self.mean, self.std, self.train)
 
         action_idx = self.label_map.get(sample.action, -1)
-        nx, ny = sample.norm_point
+        nx, ny = norm_point
         return {
             "image": image,
             "action": torch.tensor(action_idx, dtype=torch.long),

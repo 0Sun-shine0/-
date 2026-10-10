@@ -227,7 +227,16 @@ def parse_args() -> argparse.Namespace:
                         help="使用带空间信息的 soft-argmax 坐标头（强烈建议开启）。"
                              "不开启时坐标头只能看到全局平均池化后的特征，无法定位，"
                              "坐标误差会卡在几百像素")
-    parser.add_argument("--patience", type=int, default=0, help=">0 时验证准确率连续多少轮不提升就早停")
+    parser.add_argument("--patience", type=int, default=0, help=">0 时监控指标连续多少轮不提升就早停")
+    parser.add_argument("--monitor", choices=["acc", "coord"], default="acc",
+                        help="模型选优与早停依据：acc=验证准确率（默认，向后兼容）；"
+                             "coord=验证坐标MAE。准确率会饱和在 100% 而坐标往往还在下降，"
+                             "关心定位精度时用 coord")
+    parser.add_argument("--augment-shift", type=int, default=0,
+                        help="平移增强的最大像素数（输入空间）。图像与目标点标签同步平移，"
+                             "属保标签增强，用于提升对布局偏移的鲁棒性。0=关闭")
+    parser.add_argument("--min-delta", type=float, default=0.0,
+                        help="监控指标至少改善这么多才算提升，用于滤掉噪声触发的'提升'")
     return parser.parse_args()
 
 
@@ -286,7 +295,8 @@ def main() -> int:
         print("已启用光标注入：目标点会画上箭头光标，坐标回归因此可解")
     t0 = time.time()
     train_ds = DesktopScreenshotDataset(train_samples, label_map, args.input_size, train=True,
-                                        preload=True, draw_cursor=args.draw_cursor)
+                                        preload=True, draw_cursor=args.draw_cursor,
+                                        augment_shift=args.augment_shift)
     val_ds = DesktopScreenshotDataset(val_samples, label_map, args.input_size, train=False,
                                       preload=True, draw_cursor=args.draw_cursor)
     print(f"数据集就绪，用时 {time.time() - t0:.1f}s")
@@ -320,10 +330,31 @@ def main() -> int:
         "val_loss": [], "val_acc": [], "val_top3": [],
         "val_coord_mae": [], "val_coord_mae_px": [], "lr": [], "seconds": [],
     }
-    best = {"acc": -1.0, "epoch": -1, "metrics": {}}
-    epochs_without_improvement = 0
 
-    print("\n开始训练")
+    # 选优准则。默认沿用"验证准确率"以保持行为兼容，但准确率会在 100% 处饱和，
+    # 而坐标误差往往还在继续下降（实测 v3：第 3 轮 acc 已达 100%、坐标 26px，
+    # 第 7 轮坐标降到 11px 却被早停丢弃，白丢 15px 定位精度）。
+    # 关心定位时用 --monitor coord 让选优与早停都跟随坐标误差。
+    monitor = args.monitor
+    higher_is_better = monitor == "acc"
+
+    def metric_of(metrics: Dict[str, float]) -> float:
+        return metrics["acc"] if monitor == "acc" else metrics["coord_mae_px"]
+
+    def is_better(value: float, reference: float) -> bool:
+        if higher_is_better:
+            return value > reference + args.min_delta
+        return value < reference - args.min_delta
+
+    best_value = float("-inf") if higher_is_better else float("inf")
+    best = {"epoch": -1, "value": None, "metrics": {}}
+    best_by = {"acc": {"epoch": -1, "value": float("-inf")},
+               "coord": {"epoch": -1, "value": float("inf")}}
+    epochs_without_improvement = 0
+    monitor_label = "验证准确率" if monitor == "acc" else "验证坐标MAE(px)"
+
+    print(f"\n模型选优与早停均依据: {monitor_label}"
+          f"（min-delta={args.min_delta}）")
     print("-" * 72)
     for epoch in range(1, args.epochs + 1):
         started = time.time()
@@ -346,29 +377,52 @@ def main() -> int:
         history["lr"].append(optimizer.param_groups[0]["lr"])
         history["seconds"].append(elapsed)
 
+        # 两个准则各自的最优轮次都记录下来，便于事后对比
+        if val_metrics["acc"] > best_by["acc"]["value"]:
+            best_by["acc"] = {"epoch": epoch, "value": val_metrics["acc"]}
+        if val_metrics["coord_mae_px"] < best_by["coord"]["value"]:
+            best_by["coord"] = {"epoch": epoch, "value": val_metrics["coord_mae_px"]}
+
+        marker = ""
+        if is_better(metric_of(val_metrics), best_value):
+            best_value = metric_of(val_metrics)
+            best = {"epoch": epoch, "value": best_value, "metrics": val_metrics}
+            torch.save(model.state_dict(), out_dir / "best_model.pth")
+            epochs_without_improvement = 0
+            marker = "  <- 保存 best_model.pth"
+        else:
+            epochs_without_improvement += 1
+
         print(f"Epoch {epoch:>3}/{args.epochs} | "
               f"train loss {train_metrics['loss']:.4f} acc {train_metrics['acc']:.1%} | "
               f"val loss {val_metrics['loss']:.4f} acc {val_metrics['acc']:.1%} "
               f"top3 {val_metrics['top3_acc']:.1%} | "
-              f"坐标MAE {val_metrics['coord_mae_px']:.0f}px | {elapsed:.1f}s", flush=True)
-
-        if val_metrics["acc"] > best["acc"]:
-            best = {"acc": val_metrics["acc"], "epoch": epoch, "metrics": val_metrics}
-            torch.save(model.state_dict(), out_dir / "best_model.pth")
-            epochs_without_improvement = 0
-        else:
-            epochs_without_improvement += 1
+              f"坐标MAE {val_metrics['coord_mae_px']:.0f}px | {elapsed:.1f}s{marker}", flush=True)
 
         torch.save(model.state_dict(), out_dir / "last_model.pth")
 
         if args.patience and epochs_without_improvement >= args.patience:
-            print(f"验证准确率连续 {args.patience} 轮未提升，提前结束训练")
+            print(f"{monitor_label}连续 {args.patience} 轮未提升，提前结束训练")
             break
 
     total_time = sum(history["seconds"])
     print("-" * 72)
-    print(f"训练结束：最优第 {best['epoch']} 轮，验证准确率 {best['acc']:.1%}"
-          f"（多数类基线 {baseline_acc:.1%}），累计 {total_time:.1f}s")
+    if monitor == "acc":
+        print(f"训练结束：按准确率选优 -> 第 {best['epoch']} 轮，"
+              f"验证准确率 {best['value']:.1%}（多数类基线 {baseline_acc:.1%}），累计 {total_time:.1f}s")
+    else:
+        print(f"训练结束：按坐标误差选优 -> 第 {best['epoch']} 轮，"
+              f"验证坐标MAE {best['value']:.0f}px（多数类基线 {baseline_acc:.1%}），累计 {total_time:.1f}s")
+    print(f"两组准则各自的最优: 准确率 {best_by['acc']['value']:.1%} @ 第 {best_by['acc']['epoch']} 轮 | "
+          f"坐标 {best_by['coord']['value']:.0f}px @ 第 {best_by['coord']['epoch']} 轮")
+
+    # 载回被保存的最优权重再统计逐类表现。
+    # 早停会让"最后一轮"与"最优轮"不是同一组权重，若直接用内存里的 model
+    # 就会得到一份与 best_model.pth 不符的逐类报告（metrics.json 里会前后矛盾）。
+    best_path = out_dir / "best_model.pth"
+    if best_path.exists():
+        model.load_state_dict(torch.load(best_path, map_location=device))
+        print(f"\n已载回最优权重用于逐类统计: 第 {best['epoch']} 轮")
 
     per_class = evaluate_per_class(model, val_ds, device, args.batch_size)
     sorted_classes = sorted(per_class.items(), key=lambda kv: -kv[1]["total"])
@@ -381,10 +435,18 @@ def main() -> int:
         json.dump(history, f, ensure_ascii=False, indent=2)
     metrics = {
         "best_epoch": best["epoch"],
-        "best_val_acc": best["acc"],
-        "best_val_top3_acc": best["metrics"].get("top3_acc"),
-        "best_val_coord_mae": best["metrics"].get("coord_mae"),
-        "best_val_coord_mae_px": best["metrics"].get("coord_mae_px"),
+        "monitor": monitor,
+        "min_delta": args.min_delta,
+        # selected_* 是被保存到 best_model.pth 的那一轮；best_acc_*/best_coord_*
+        # 是两个准则各自的最优轮次，便于判断"是否因为选优准则而丢掉了精度"
+        "selected_val_acc": best["metrics"].get("acc"),
+        "selected_val_top3_acc": best["metrics"].get("top3_acc"),
+        "selected_val_coord_mae": best["metrics"].get("coord_mae"),
+        "selected_val_coord_mae_px": best["metrics"].get("coord_mae_px"),
+        "best_acc_epoch": best_by["acc"]["epoch"],
+        "best_acc": best_by["acc"]["value"],
+        "best_coord_epoch": best_by["coord"]["epoch"],
+        "best_coord_mae_px": best_by["coord"]["value"],
         "majority_baseline_action": baseline_action,
         "majority_baseline_acc": baseline_acc,
         "random_baseline_acc": 1.0 / num_actions,
@@ -394,6 +456,7 @@ def main() -> int:
         "input_size": args.input_size,
         "batch_size": args.batch_size,
         "draw_cursor": bool(args.draw_cursor),
+        "augment_shift": int(args.augment_shift),
         "spatial_coord": bool(args.spatial_coord),
         "epochs_run": len(history["epoch"]),
         "total_seconds": total_time,
