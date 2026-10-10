@@ -7,8 +7,20 @@ AI智能桌面操作员是一个基于深度学习和大语言模型的智能桌
 
 ## ⚠️ 请先处理：API 密钥已经泄露
 
-`.env` 文件**曾被 git 跟踪**并推送到 GitHub（`origin/improve-training-and-automation`、`origin/backup-before-filter`，
-涉及提交 `1f7f48d`）。其中的 `DEEPSEEK_API_KEY` 属于公开可读状态。
+`.env` 文件**曾被 git 跟踪**，且本地 reflog 显示历史上确实推送过
+（`origin/improve-training-and-automation@{0}: update by push`，2026-01-17），
+涉及提交 `1f7f48d`。其中的 `DEEPSEEK_API_KEY` 当时处于公开可读状态。
+
+**当前状态的实测核查**（2026-10-10，通过 GitHub API）：
+
+| 检查项 | 结果 |
+|---|---|
+| 仓库 `0Sun-shine0/-` 可见性 | **public** |
+| 仓库大小 / 分支数 | `size = 0`，**无任何分支**（`git ls-remote` 空输出，commits API 返回 409 = 空仓库） |
+| `raw.githubusercontent.com/.../{各分支}/.env` | 全部 404，**当前读不到** |
+
+也就是说：远端现在是**空的公开仓库**（创建于 2026-09-06，晚于那次推送），
+当前读不到密钥；但**它确实曾公开暴露过**，因此该密钥必须视为已泄露。
 
 已完成的处理：
 
@@ -16,12 +28,16 @@ AI智能桌面操作员是一个基于深度学习和大语言模型的智能桌
 - ✅ 全历史扫描确认：**只有 `.env` 一个文件、只有 `1f7f48d` 一个提交**含该密钥，
   `config.py` 从未硬编码过密钥（它一直是 `os.getenv`）
 
+> 这个仓库有 23 个本地提交尚未推送。**注意：远端为空时直接 `git push` 会把
+> `1f7f48d` 一并上传，等于在一个公开仓库上重新公开这个密钥。**
+> 推送前请先吊销密钥、并按下述第 2 步清除历史。
+
 **仍需你人工完成的两步：**
 
 1. **到 <https://platform.deepseek.com> 吊销并轮换这个密钥。**
-   这是唯一真正有效的补救——重写 git 历史**撤不回已经发生的泄露**
-   （GitHub 的缓存、fork、以及任何克隆过仓库的人手里都还有旧密钥）。
-2. **重写历史并强推**（可选，但建议做，防止旧密钥继续散播）：
+   这是唯一真正有效的补救——重写 git 历史**撤不回已经发生的泄露**。
+   另外自检发现该密钥对应账户**余额不足**（调用返回 `402 Insufficient Balance`）。
+2. **重写历史**（推送前强烈建议先做）：
 
    ```powershell
    pwsh scripts/purge_env_from_git_history.ps1            # 演练，只打印将执行的命令
